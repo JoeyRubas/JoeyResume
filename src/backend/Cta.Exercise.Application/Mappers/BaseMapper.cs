@@ -39,7 +39,8 @@ public static class BaseMapper
             Id = Guid.NewGuid().ToString(),
             Name = skillCreateDto.Name,
             Description = skillCreateDto.Description,
-            SkillLevel = skillCreateDto.SkillLevel
+            SkillLevel = skillCreateDto.SkillLevel,
+            HoursExperience = skillCreateDto.HoursExperience
         };
     }
 
@@ -49,7 +50,8 @@ public static class BaseMapper
         {
             Id = Guid.NewGuid().ToString(),
             Name = hobbyCreateDto.Name,
-            Description = hobbyCreateDto.Description
+            Description = hobbyCreateDto.Description,
+            HoursExperience = hobbyCreateDto.HoursExperience
         };
     }
 
@@ -60,7 +62,8 @@ public static class BaseMapper
             Id = skillEntity.Id,
             Name = skillEntity.Name,
             Description = skillEntity.Description,
-            SkillLevel = skillEntity.SkillLevel
+            SkillLevel = skillEntity.SkillLevel,
+            HoursExperience = skillEntity.HoursExperience
         };
     }
 
@@ -70,7 +73,8 @@ public static class BaseMapper
         {
             Id = hobbyEntity.Id,
             Name = hobbyEntity.Name,
-            Description = hobbyEntity.Description
+            Description = hobbyEntity.Description,
+            HoursExperience = hobbyEntity.HoursExperience
         };
     }
 
@@ -81,7 +85,8 @@ public static class BaseMapper
             Id = id,
             Name = skillCreateDto.Name,
             Description = skillCreateDto.Description,
-            SkillLevel = skillCreateDto.SkillLevel
+            SkillLevel = skillCreateDto.SkillLevel,
+            HoursExperience = skillCreateDto.HoursExperience
         };
     }
 
@@ -91,7 +96,8 @@ public static class BaseMapper
         {
             Id = id,
             Name = hobbyCreateDto.Name,
-            Description = hobbyCreateDto.Description
+            Description = hobbyCreateDto.Description,
+            HoursExperience = hobbyCreateDto.HoursExperience
         };
     }
 }

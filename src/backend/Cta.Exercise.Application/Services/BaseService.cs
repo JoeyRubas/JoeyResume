@@ -17,22 +17,11 @@ public class BaseService : IBaseService
 
     public ActionResult<U> Create<T, U>(T entity) where T : BaseCreateDto where U : BaseGetDto
     {
-        BaseEntity newEntity;
-        if (entity is HobbyCreateDto) {
-            newEntity = new HobbyEntity();
-        }
-        else if (entity is SkillCreateDto)
-        {
-            newEntity = new SkillEntity();
-        }
-        else {
-            return new NotFoundResult();
-        }
 
-        newEntity.Name = entity.Name;
-        newEntity.Description = entity.Description;
+        var newEntity = BaseMapper.Map(entity);
         _repository.Add(newEntity);
-        return GetById<U>(newEntity.Id);
+        var dto = BaseMapper.Map(newEntity);
+        return new OkObjectResult(dto);
     }
 
     public ActionResult<string> Delete(string id)

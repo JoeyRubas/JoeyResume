@@ -22,17 +22,13 @@ builder.Services.AddHttpClient<IRandomFactServiceClient, RandomFactServiceClient
     client.BaseAddress = new Uri("https://uselessfacts.jsph.pl/");
 });
 
-// Add CORS policy
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowedOrigins", policy =>
+    options.AddPolicy("AllowReactLocalhost", policy =>
     {
-        policy.WithOrigins(
-            "http://localhost:3000",
-            "https://yellow-sand-045d4620f.1.azurestaticapps.net"
-        )
-        .AllowAnyHeader()
-        .AllowAnyMethod();
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
@@ -45,10 +41,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("AllowReactLocalhost");
 
-// Use CORS policy
-app.UseCors("AllowedOrigins");
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

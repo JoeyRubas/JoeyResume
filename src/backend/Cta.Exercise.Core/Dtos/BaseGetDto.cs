@@ -8,6 +8,8 @@ public class BaseGetDto
     public string Name { get; set; }
     public string Description { get; set; }
 
+    public int HoursExperience { get; set; }
+
     public static BaseType GetTypeByConstraint(Type type) => type switch
     {
         not null when type == typeof(HobbyGetDto) => BaseType.Hobby,

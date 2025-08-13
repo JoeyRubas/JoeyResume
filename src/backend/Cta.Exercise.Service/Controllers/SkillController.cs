@@ -18,7 +18,7 @@ public class SkillController : ControllerBase
     [HttpGet]
     public ActionResult<List<SkillGetDto>> GetAllSkills()
     {
-        throw new NotImplementedException();
+        return _service.GetByType<SkillGetDto>();
     }
 
     [HttpGet("{id}")]
@@ -30,7 +30,7 @@ public class SkillController : ControllerBase
     [HttpDelete("{id}")]
     public ActionResult<string> DeleteSkill(string id)
     {
-        throw new NotImplementedException();
+        return _service.Delete(id);
     }
 
     [HttpPost]

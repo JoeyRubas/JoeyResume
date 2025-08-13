@@ -15,6 +15,16 @@ public class RandomFactServiceClient : IRandomFactServiceClient
 
     public async Task<string?> GetRandomFact()
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync(new Uri(_httpClient.BaseAddress, "/api/v2/facts/random"));
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return null;
+        }
+
+        var parsedString = await response.Content.ReadAsStringAsync();
+        var deserializedResponse = JsonSerializer.Deserialize<RandomFactResponse>(parsedString);
+
+        return deserializedResponse?.text;
     }
 }

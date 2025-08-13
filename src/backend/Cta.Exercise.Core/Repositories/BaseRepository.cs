@@ -54,55 +54,64 @@ public class BaseRepository : IBaseRepository
                     Id = Guid.NewGuid().ToString(),
                     Name = "React",
                     Description = "I have 2 years of experience using React",
-                    SkillLevel = SkillLevel.Novice
+                    SkillLevel = SkillLevel.Novice,
+                    HoursExperience = 250
                 },
                 new SkillEntity {
                     Id = Guid.NewGuid().ToString(),
                     Name = "Next.js",
                     Description = "I have very little experience here, but excited and hopeful to learn more!",
-                    SkillLevel = SkillLevel.Basic
+                    SkillLevel = SkillLevel.Basic,
+                    HoursExperience = 2
                 },
                 new SkillEntity {
                     Id = Guid.NewGuid().ToString(),
                     Name = "Javascript",
                     Description = "I have 3 years of experience using JavaScript",
-                    SkillLevel = SkillLevel.Expert
+                    SkillLevel = SkillLevel.Expert,
+                    HoursExperience = 5000
                 },
                 new SkillEntity {
                     Id = Guid.NewGuid().ToString(),
                     Name = "C#",
                     Description = "I am still learning!",
-                    SkillLevel = SkillLevel.Novice
+                    SkillLevel = SkillLevel.Novice,
+                    HoursExperience = 2
                 },
                 new SkillEntity {
                     Id = Guid.NewGuid().ToString(),
                     Name = "Azure",
                     Description = "I have been working with Azure for a little now",
-                    SkillLevel = SkillLevel.Intermediate
+                    SkillLevel = SkillLevel.Intermediate,
+                    HoursExperience = 50
                 },
                 new HobbyEntity
                 {
                     Id  = Guid.NewGuid().ToString(),
                     Name = "Kickball",
-                    Description = "I've been playing with my friends from CarMax for two months now!"
+                    Description = "I've been playing with my friends from CarMax for two months now!",
+                    HoursExperience = 5
                 },
                 new HobbyEntity
                 {
                     Id  = Guid.NewGuid().ToString(),
                     Name = "Escape Room Connoisseur",
-                    Description = "I have done every escape room in Richmond"
+                    Description = "I have done every escape room in Richmond",
+                    HoursExperience = 50000
                 },
                 new HobbyEntity
                 {
                     Id  = Guid.NewGuid().ToString(),
                     Name = "Buying Used Cars",
-                    Description = "All I want to do is shop at CarMax! 3 cars a year really isn't enough"
+                    Description = "All I want to do is shop at CarMax! 3 cars a year really isn't enough",
+                    HoursExperience = 500
                 },
                 new HobbyEntity
                 {
                     Id  = Guid.NewGuid().ToString(),
                     Name = "Guitar",
-                    Description = "Lately I have been trying to master the guitar riff in Enter Sandman"
+                    Description = "Lately I have been trying to master the guitar riff in Enter Sandman",
+                    HoursExperience = 50
                 }
             };
     }
