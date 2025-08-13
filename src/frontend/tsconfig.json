@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Target modern JavaScript
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2020"
+    ],
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src", // Base URL for module resolution
+    "declaration": true, // Generate .d.ts files
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx", // Use React JSX
+    "module": "ESNext", // Use ESNext module system
+    "moduleResolution": "bundler", // Use a module bundler
+    "noEmit": true, // Do not emit output files
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "resolveJsonModule": true, // Allow importing JSON modules
+    "skipLibCheck": true,
+    "strict": true, // Enable all strict type-checking options
+    "strictNullChecks": true
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "templates/**"
+  ]
+}

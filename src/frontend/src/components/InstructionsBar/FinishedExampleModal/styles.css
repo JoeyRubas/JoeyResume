@@ -1,0 +1,6 @@
+.img-thumbnail {
+    position: relative; /* Needed for positioning the pseudo-element if used */
+    display: inline-block; /* Or block, depending on layout */
+    box-shadow: 0 0 10px 10px rgb(75 157 255);
+    cursor: pointer;
+}

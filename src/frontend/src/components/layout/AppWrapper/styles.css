@@ -1,0 +1,9 @@
+.app_container {
+    display: grid;
+    grid-template-rows: 1fr; /* Project */
+    min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+}
+
+.app_container.instructions {
+    grid-template-rows: auto 1fr; /* Instructions, Project */
+}
