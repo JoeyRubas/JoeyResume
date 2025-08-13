@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as ResumeRouteImport } from './routes/resume'
-import { Route as HobbiesRouteImport } from './routes/hobbies'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SkillsRoute = SkillsRouteImport.update({
@@ -24,11 +23,6 @@ const ResumeRoute = ResumeRouteImport.update({
   path: '/resume',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HobbiesRoute = HobbiesRouteImport.update({
-  id: '/hobbies',
-  path: '/hobbies',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,34 +31,30 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/hobbies': typeof HobbiesRoute
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/hobbies': typeof HobbiesRoute
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/hobbies': typeof HobbiesRoute
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/hobbies' | '/resume' | '/skills'
+  fullPaths: '/' | '/resume' | '/skills'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/hobbies' | '/resume' | '/skills'
-  id: '__root__' | '/' | '/hobbies' | '/resume' | '/skills'
+  to: '/' | '/resume' | '/skills'
+  id: '__root__' | '/' | '/resume' | '/skills'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  HobbiesRoute: typeof HobbiesRoute
   ResumeRoute: typeof ResumeRoute
   SkillsRoute: typeof SkillsRoute
 }
@@ -85,13 +75,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResumeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/hobbies': {
-      id: '/hobbies'
-      path: '/hobbies'
-      fullPath: '/hobbies'
-      preLoaderRoute: typeof HobbiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -104,7 +87,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  HobbiesRoute: HobbiesRoute,
   ResumeRoute: ResumeRoute,
   SkillsRoute: SkillsRoute,
 }

@@ -2,7 +2,6 @@ import { FileRoutesByPath } from "@tanstack/react-router";
 
 export enum ProfileRoutes {
     Home = '/',
-    Hobbies = '/hobbies',
     Skills = '/skills',
 }
 

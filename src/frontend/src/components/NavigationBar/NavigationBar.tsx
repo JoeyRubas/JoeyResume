@@ -13,9 +13,6 @@ const NavigationBar = () => {
             <Link to="/skills" className={`link ${location.pathname === '/skills' ? 'active' : ''}`}>
                 Skills
             </Link>
-            <Link to="/hobbies" className={`link ${location.pathname === '/hobbies' ? 'active' : ''}`}>
-                Hobbies
-            </Link>
             <Link to="/resume" className={`link ${location.pathname === '/resume' ? 'active' : ''}`}>
                 Resume
             </Link>
