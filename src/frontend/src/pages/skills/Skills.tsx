@@ -16,6 +16,8 @@ const Skills: React.FC = () => {
     name: '', skillLevel: '0', hoursExperience: '', description: ''
   });
 
+  const showEditFunctionality = import.meta.env.VITE_SHOW_EDIT_FUNCTIONALITY === 'true';
+
   useEffect(() => { loadSkills(); }, []);
 
   const loadSkills = async () => {
@@ -144,14 +146,16 @@ const Skills: React.FC = () => {
           
         
         </CardContent>
-        <CardActions sx={{ justifyContent: 'flex-end', pt: 0 }}>
-          <IconButton size="small" color="primary" id={`edit${skill.id}`} onClick={handleEdit} sx={{ mr: 1 }} >
-            ✏️
-          </IconButton>
-          <IconButton size="small" color="error" id={`delete${skill.id}`} onClick={handleDelete} >
-            ❌
-          </IconButton>
-        </CardActions>
+        {showEditFunctionality && (
+          <CardActions sx={{ justifyContent: 'flex-end', pt: 0 }}>
+            <IconButton size="small" color="primary" id={`edit${skill.id}`} onClick={handleEdit} sx={{ mr: 1 }} >
+              ✏️
+            </IconButton>
+            <IconButton size="small" color="error" id={`delete${skill.id}`} onClick={handleDelete} >
+              ❌
+            </IconButton>
+          </CardActions>
+        )}
       </Card>
     );
   }
@@ -173,37 +177,39 @@ const Skills: React.FC = () => {
         My Skills
       </Typography>
       
-      <Paper elevation={3} sx={{ p: 3, mb: 4, maxWidth: 800, mx: 'auto' }}>
-        <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-          <TextField label="Skill Name" name="name" value={formData.name} onChange={handleInputChange} required variant="outlined" size="small" sx={{ minWidth: 200, flex: 1 }} />
-          
-          <TextField select label="Skill Level" name="skillLevel" value={formData.skillLevel} onChange={handleInputChange} required variant="outlined" size="small" sx={{ minWidth: 150 }} >
-            <option value="0">Basic</option>
-            <option value="1">Novice</option>
-            <option value="2">Intermediate</option>
-            <option value="3">Advanced</option>
-            <option value="4">Expert</option>
-          </TextField>
-          
-          <TextField label="Hours Experience" name="hoursExperience" type="number" value={formData.hoursExperience} onChange={handleInputChange} required variant="outlined" size="small" />
-          
-          <TextField label="Skill Description" name="description" value={formData.description} onChange={handleInputChange} required 
-                    variant="outlined" size="small" multiline rows={2} sx={{ minWidth: 250, flex: 1 }} />
-          
-          {editingSkillId ? (
-            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-              <Button type="submit" variant="contained" color="primary" sx={{ minWidth: 120 }} >
-                Edit Skill
-              </Button>
-              <Button type="button" onClick={clearForm} variant="outlined" color="error" sx={{ minWidth: 'auto', px: 1 }} >
-                ❌
-              </Button>
-            </Box>
-          ) : (
-            <Button type="submit" variant="contained" color="primary" sx={{ minWidth: 120, alignSelf: 'flex-start' }} > Add Skill </Button>
-          )}
-        </Box>
-      </Paper>
+      {showEditFunctionality && (
+        <Paper elevation={3} sx={{ p: 3, mb: 4, maxWidth: 800, mx: 'auto' }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+            <TextField label="Skill Name" name="name" value={formData.name} onChange={handleInputChange} required variant="outlined" size="small" sx={{ minWidth: 200, flex: 1 }} />
+            
+            <TextField select label="Skill Level" name="skillLevel" value={formData.skillLevel} onChange={handleInputChange} required variant="outlined" size="small" sx={{ minWidth: 150 }} >
+              <option value="0">Basic</option>
+              <option value="1">Novice</option>
+              <option value="2">Intermediate</option>
+              <option value="3">Advanced</option>
+              <option value="4">Expert</option>
+            </TextField>
+            
+            <TextField label="Hours Experience" name="hoursExperience" type="number" value={formData.hoursExperience} onChange={handleInputChange} required variant="outlined" size="small" />
+            
+            <TextField label="Skill Description" name="description" value={formData.description} onChange={handleInputChange} required 
+                      variant="outlined" size="small" multiline rows={2} sx={{ minWidth: 250, flex: 1 }} />
+            
+            {editingSkillId ? (
+              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                <Button type="submit" variant="contained" color="primary" sx={{ minWidth: 120 }} >
+                  Edit Skill
+                </Button>
+                <Button type="button" onClick={clearForm} variant="outlined" color="error" sx={{ minWidth: 'auto', px: 1 }} >
+                  ❌
+                </Button>
+              </Box>
+            ) : (
+              <Button type="submit" variant="contained" color="primary" sx={{ minWidth: 120, alignSelf: 'flex-start' }} > Add Skill </Button>
+            )}
+          </Box>
+        </Paper>
+      )}
         
       <div className="skill-card-list">
         {skills.map(skill => skillCard(skill))}
