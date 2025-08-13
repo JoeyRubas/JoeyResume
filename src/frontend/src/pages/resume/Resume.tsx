@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import api from '../../api/service';
 import {ResumeType, ResumeContact, ContactType, ResumeSection, ResumeEntry } from '../../types/resume';
 import { exampleResume } from './exampleResumeData';
 import './styles.css';

@@ -1,8 +1,11 @@
 import { Skill } from '../types/skill';
+import { mockApi } from './mockData';
 
 const apiUrl = import.meta.env.VITE_API_URL;
+const useMockData = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
-const api = {
+// Use mock data in development when VITE_USE_MOCK_DATA is true
+const apiService = useMockData ? mockApi : {
   getSkills: async (): Promise<Array<Skill>> => {
     const response = await fetch(`${apiUrl}/skill`);
     const skills = await response.json();
@@ -60,4 +63,4 @@ const api = {
   },
 };
 
-export default api;
+export default apiService;

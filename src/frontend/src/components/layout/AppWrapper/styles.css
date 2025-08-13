@@ -1,5 +1,7 @@
 .app_container {
     display: grid;
-    grid-template-rows: 1fr; /* Project */
-    min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+    grid-template-rows: 1fr;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
 }

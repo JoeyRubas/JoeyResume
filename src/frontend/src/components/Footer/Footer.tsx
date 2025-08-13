@@ -1,10 +1,9 @@
 import './styles.css';
-import CarMaxLogo from "./CarMaxLogo.tsx";
 
 const Footer = () => {
     return (
         <footer className="footer">
-            <CarMaxLogo />
+            <p>&copy; 2025 Joey Rubas. All rights reserved.</p>
         </footer>
     )
 }

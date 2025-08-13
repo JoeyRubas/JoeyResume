@@ -1,5 +1,6 @@
 .main_section {
-    display: grid;;
-    overflow: auto;
-    grid-template-rows: auto 1fr auto; /* Header, main, footer */
+    display: grid;
+    overflow-x: hidden;
+    grid-template-rows: auto 1fr auto;
+    width: 100%;
 }

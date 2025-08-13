@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Paper, TextField, Button, Typography, Card, CardContent, CardActions, Chip, IconButton } from '@mui/material';
-import api from '../../api/service';
+import apiService from '../../api/service';
 import { Skill } from '../../types/skill';
 import './styles.css';
 
@@ -20,7 +20,7 @@ const Skills: React.FC = () => {
 
   const loadSkills = async () => {
     try {
-      const skillsData = await api.getSkills();
+      const skillsData = await apiService.getSkills();
       setSkills(skillsData);
     } catch (error) { console.error(error); } 
   };
@@ -43,9 +43,9 @@ const Skills: React.FC = () => {
         };
         
         if (editingSkillId) {
-          await api.editSkill(skillData);
+          await apiService.editSkill(skillData);
         } else {
-          await api.createSkill(skillData);
+          await apiService.createSkill(skillData);
         }
         
         await loadSkills();
@@ -64,7 +64,7 @@ const Skills: React.FC = () => {
     const id = e.currentTarget.id?.replace("delete", "");
     if (!id) return;
     try {
-      await api.deleteSkill(id);
+      await apiService.deleteSkill(id);
       await loadSkills();
     } catch (error) { console.error(error); }
   };
@@ -89,10 +89,36 @@ const Skills: React.FC = () => {
     const getChipColor = (level: number) => chipColors[level] || 'default';
 
     return (
-      <Card elevation={2} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }} key={skill.id}>
-        <CardContent sx={{ flexGrow: 1 }}>
+      <Card 
+        elevation={2} 
+        sx={{ 
+          height: '100%', 
+          display: 'flex', 
+          flexDirection: 'column',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          cursor: 'pointer',
+          position: 'relative',
+          overflow: 'hidden',
+          border: '1px solid transparent',
+          '&:hover': {
+            transform: 'translateY(-4px)',
+            boxShadow: '0 12px 20px -5px rgb(0 0 0 / 0.15)',
+            borderColor: 'primary.main',
+          }
+        }} 
+        key={skill.id}
+      >
+        <CardContent sx={{ flexGrow: 1, position: 'relative', zIndex: 1 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
-            <Typography variant="h6" component="h2" sx={{ fontWeight: 'bold', mb: 1 }}>
+            <Typography 
+              variant="h6" 
+              component="h2" 
+              sx={{ 
+                fontWeight: 'bold', 
+                mb: 1,
+                color: 'text.primary'
+              }}
+            >
               {skill.name}
             </Typography>
             <Chip 
@@ -100,14 +126,23 @@ const Skills: React.FC = () => {
               color={getChipColor(skill.skillLevel) as any}
               size="small"
               variant="outlined"
+              sx={{
+                fontWeight: 600,
+                transition: 'all 0.2s ease',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                }
+              }}
             />
           </Box>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-            Hours Experience: {skill.hoursExperience}
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 1, fontWeight: 500 }}>
+            <strong>{skill.hoursExperience} hours</strong> of experience
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
             {skill.description}
           </Typography>
+          
+        
         </CardContent>
         <CardActions sx={{ justifyContent: 'flex-end', pt: 0 }}>
           <IconButton size="small" color="primary" id={`edit${skill.id}`} onClick={handleEdit} sx={{ mr: 1 }} >
@@ -123,8 +158,19 @@ const Skills: React.FC = () => {
 
   return (
     <div className="skills-container">
-      <Typography variant="h3" component="h1" className="skills-header" gutterBottom>
-        My Skills:
+      <Typography 
+        variant="h4" 
+        component="h1" 
+        sx={{
+          fontWeight: 600,
+          color: 'primary.main',
+          textAlign: 'center',
+          mb: 4,
+          mt: 3,
+          fontSize: { xs: '1.8rem', sm: '2.1rem', md: '2.4rem' }
+        }}
+      >
+        My Skills
       </Typography>
       
       <Paper elevation={3} sx={{ p: 3, mb: 4, maxWidth: 800, mx: 'auto' }}>
@@ -159,7 +205,7 @@ const Skills: React.FC = () => {
         </Box>
       </Paper>
         
-      <div className="skill-card-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', maxWidth: '1200px', }} >
+      <div className="skill-card-list">
         {skills.map(skill => skillCard(skill))}
       </div>
     </div>

@@ -5,16 +5,6 @@ export const exampleResume: ResumeType = {
   name: 'Joey Rubas',
   contacts: [
     {
-      id: 'contact-001',
-      contact_type: ContactType.EMAIL,
-      contact: 'joeymrubas@email.com'
-    },
-    {
-      id: 'contact-002',
-      contact_type: ContactType.PHONE,
-      contact: '(630) 219-9451'
-    },
-    {
       id: 'contact-003',
       contact_type: ContactType.LINKEDIN,
       contact: 'linkedin.com/in/joeyrubas'

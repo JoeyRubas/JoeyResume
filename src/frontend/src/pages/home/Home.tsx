@@ -1,48 +1,86 @@
 import React from 'react';
 import './styles.css';
-import { Typography } from "@mui/material";
+import { Typography, Paper, Avatar, Box, Stack } from "@mui/material";
 
 const Home = () => {
     return (
-        <>
-            <div className="container">
-                <div className="topHalf">
-                    <div className="leftHalf">
-                        <span className="header">
-                            <img src="/carmax2.jpg" className="logo" aria-hidden="true" />
-                            <Typography component='h1' variant='h4' data-testid='home-heading'>Joey Rubas</Typography>
-                        </span>
-                        <Typography component='h2' variant='h6' color='textSecondary' sx={{ mt: 1.5 }} data-testid='landing-subheading'>
-                            Full-stack web developer and 2025 CTA Student
+        <Box className="container">
+            <Paper elevation={2} className="content-card">
+                <Box className="profile-image-mobile">
+                    <Box className="profile-image-container-mobile">
+                        <Avatar
+                            src="/college-graduate.png"
+                            sx={{ width: 160, height: 160, mb: 2 }}
+                            variant="rounded"
+                            className="profile-image-mobile-avatar"
+                        />
+                    </Box>
+                </Box>
+                
+                <Box className="content-grid">
+                    <Box className="left-content">
+                        <Stack direction="row" spacing={2} alignItems="center" className="header">
+                            <Avatar
+                                src="/carmax2.jpg"
+                                sx={{ width: 80, height: 80 }}
+                                className="logo-avatar"
+                            />
+                            <Typography variant="h3" component="h1" fontWeight={700} color="primary.main">
+                                Joey Rubas
+                            </Typography>
+                        </Stack>
+                        
+                        <Typography 
+                            variant="h5" 
+                            component="h2"
+                            color="primary"
+                            sx={{ 
+                                fontWeight: 500,
+                                my: 2,
+                                fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' }
+                            }}
+                        >
+                            Full-stack Web Developer & 2025 CTA Student
                         </Typography>
-                        <Typography component='h6' variant='h6' color='textSecondary' sx={{ mt: 1.5 }} data-testid='landing-subheading'>
+                        
+                        <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.6, mb: 3 }}>
                             I graduated from UVA with a double major in Computer Science and Math this past May, and am excited
                             to join CarMax this Summer! I have experience through my 2024 internship with CarMax in building
-                            scalable, secure and reliable web applications using various frameworks and technologies. I enjoy
-                            solving complex problems and learning new skills. I am passionate about creating high-quality code
-                            that follows best practices and industry standards. I am always looking for new challenges and
-                            opportunities to grow as a developer.                        
+                            scalable, secure and reliable web applications using various frameworks and technologies.                      
                         </Typography>
-                        <aside className="socialLinks">
-                            <a target="_blank" href="https://x.com" rel="noopener noreferrer">
-                                <img src="/twitter.png" alt="link to twitter" className="socialLink" />
-                            </a>
-                            <a target="_blank" href="https://facebook.com" rel="noopener noreferrer">
-                                <img src="/facebook.png" alt="link to facebook" className="socialLink" />
-                            </a>
-                            <a target="_blank" href="https://linkedin.com" rel="noopener noreferrer">
-                                <img src="/linkedin.png" alt="link to linkedin" className="socialLink" />
-                            </a>
-                        </aside>
-                    </div>
-                    <div className="rightHalf">
-                        <figure>
-                            <img src="/college-graduate.png" className="largeImage" aria-hidden="true" />
-                        </figure>
-                    </div>
-                </div>
-            </div>
-        </>
+                        
+                        <Stack direction="row" spacing={2} className="social-links">
+                            {[
+                                { src: "/twitter.png", alt: "Twitter", href: "https://x.com" },
+                                { src: "/facebook.png", alt: "Facebook", href: "https://facebook.com" },
+                                { src: "/linkedin.png", alt: "LinkedIn", href: "https://linkedin.com" }
+                            ].map((social, index) => (
+                                <a key={index} href={social.href} target="_blank" rel="noopener noreferrer">
+                                    <Box 
+                                        component="img" 
+                                        src={social.src} 
+                                        alt={social.alt}
+                                        className="social-icon"
+                                        sx={{ width: 40, height: 40 }}
+                                    />
+                                </a>
+                            ))}
+                        </Stack>
+                    </Box>
+                    
+                    <Box className="right-content">
+                        <Box className="profile-image-container">
+                            <Avatar
+                                src="/college-graduate.png"
+                                variant="rounded"
+                                sx={{ width: 350, height: 350 }}
+                                className="profile-image"
+                            />
+                        </Box>
+                    </Box>
+                </Box>
+            </Paper>
+        </Box>
     );
 };
 

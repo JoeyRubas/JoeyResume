@@ -1,4 +1,6 @@
 .project_container {
     display: grid;
-    grid-template-rows: auto 1fr auto; /* Header, main, footer */
+    grid-template-rows: auto 1fr auto;
+    width: 100%;
+    overflow-x: hidden;
 }
