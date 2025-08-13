@@ -1,0 +1,102 @@
+# name for this workflow
+name: Deploy API to Azure App Service
+
+# trigger(s) for this workflow - how should it be initiated?
+on:
+  push:
+    branches: [ main ]
+    paths: 
+      - 'src/backend/**'
+  workflow_dispatch:  # Allow manual triggering
+
+# environment variables used in this workflow
+env:
+  DOTNET_VERSION: '8.0.x'
+  SOLUTION_PATH: 'src/backend/Cta.Exercise.sln'
+  PROJECT_PATH: 'src/backend/Cta.Exercise.Service/Cta.Exercise.Service.csproj'
+  AZURE_WEBAPP_PACKAGE_PATH: './publish'
+  AZURE_WEBAPP_NAME: ''
+  AZURE_WEBAPP_SLOT_NAME: 'production'
+
+# jobs that will run in this workflow
+jobs:
+  # job id
+  build-and-deploy:
+    # runs on the latest Ubuntu (Linux) environment
+    runs-on: ubuntu-latest
+    environment: production  # Use GitHub environment for additional protection
+    name: Build and Deploy
+
+    # steps that will be executed for the job
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Restore NuGet packages
+      run: dotnet restore ${{ env.SOLUTION_PATH }}
+
+    - name: Build solution
+      run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
+      
+    - name: Run tests
+      run: dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-build --verbosity normal --logger trx --results-directory ./test-results
+      continue-on-error: false  # Fail deployment if tests fail
+      
+    - name: Publish test results
+      uses: dorny/test-reporter@v1
+      # Run only if test results exist
+      if: always() && hashFiles('./test-results/*.trx') != ''
+      with:
+        name: .NET Tests
+        path: './test-results/*.trx'
+        reporter: dotnet-trx
+    
+    # Bundle the application for deployment
+    - name: Publish application
+      run: |
+        dotnet publish ${{ env.PROJECT_PATH }} \
+          --configuration Release \
+          --no-build \
+          --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: webapp-package
+        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        # REQUIRED: Set this in GitHub repository secrets
+        # This should be a JSON string with Azure credentials
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - name: Deploy to Azure App Service
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}  # Optional: use 'production' if no slots
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        
+    - name: Azure App Service Settings
+      uses: azure/appservice-settings@v1
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}  # Optional
+        app-settings-json: |
+          [
+            {
+              "name": "ASPNETCORE_ENVIRONMENT",
+              "value": "Production"
+            },
+            {
+              "name": "WEBSITE_RUN_FROM_PACKAGE",
+              "value": "1"
+            }
+          ]
