@@ -24,11 +24,27 @@ builder.Services.AddHttpClient<IRandomFactServiceClient, RandomFactServiceClient
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactLocalhost", policy =>
+    options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        if (builder.Environment.IsDevelopment())
+        {
+            // Allow any origin in development
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        }
+        else
+        {
+            // Specific origins in production
+            policy.WithOrigins(
+                    "http://localhost:5173",           
+                    "https://localhost:5173",        
+                    "https://yellow-sand-045d4620f.1.azurestaticapps.net/"    
+                  )
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();
+        }
     });
 });
 
@@ -41,7 +57,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowReactLocalhost");
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 
