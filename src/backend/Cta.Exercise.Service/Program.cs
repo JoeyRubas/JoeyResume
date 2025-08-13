@@ -39,7 +39,7 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(
                     "http://localhost:5173",           
                     "https://localhost:5173",        
-                    "https://yellow-sand-045d4620f.1.azurestaticapps.net/"    
+                    "https://yellow-sand-045d4620f.1.azurestaticapps.net"    
                   )
                   .AllowAnyHeader()
                   .AllowAnyMethod()
