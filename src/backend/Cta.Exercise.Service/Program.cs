@@ -22,6 +22,20 @@ builder.Services.AddHttpClient<IRandomFactServiceClient, RandomFactServiceClient
     client.BaseAddress = new Uri("https://uselessfacts.jsph.pl/");
 });
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowedOrigins", policy =>
+    {
+        policy.WithOrigins(
+            "http://localhost:3000",
+            "https://yellow-sand-045d4620f.1.azurestaticapps.net"
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +46,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Use CORS policy
+app.UseCors("AllowedOrigins");
 
 app.UseAuthorization();
 

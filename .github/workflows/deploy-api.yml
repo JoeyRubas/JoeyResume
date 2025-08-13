@@ -24,8 +24,12 @@ jobs:
   build-and-deploy:
     # runs on the latest Ubuntu (Linux) environment
     runs-on: ubuntu-latest
-    environment: production  # Use GitHub environment for additional protection
+    environment: production  
     name: Build and Deploy
+    permissions:
+      contents: read
+      actions: read
+      checks: write
 
     # steps that will be executed for the job
     steps:
@@ -51,6 +55,7 @@ jobs:
       uses: dorny/test-reporter@v1
       # Run only if test results exist
       if: always() && hashFiles('./test-results/*.trx') != ''
+      continue-on-error: true  
       with:
         name: .NET Tests
         path: './test-results/*.trx'
