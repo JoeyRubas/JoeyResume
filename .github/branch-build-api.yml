@@ -1,0 +1,43 @@
+# name of this workflow
+name: API Branch Build
+
+# trigger(s) for this workflow - how should it be initiated?
+on:
+  pull_request:
+    branches: [ main ]
+    paths: 
+      - 'src/backend/**'
+  workflow_dispatch:  # Allow manual triggering
+
+# environment variables used in this workflow
+env:
+  DOTNET_VERSION: '8.0.x'
+  SOLUTION_PATH: 'src/backend/Cta.Exercise.sln'
+
+# jobs that will run in this workflow
+jobs:
+  # job id
+  build:
+    # runs on the latest Ubuntu (Linux) environment
+    runs-on: ubuntu-latest
+    name: Build and Deploy
+    
+    # steps that will be executed for the job
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Restore NuGet packages
+      run: dotnet restore ${{ env.SOLUTION_PATH }}
+      
+    - name: Build solution
+      run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
+      
+    - name: Test solution (if tests exist)
+      run: dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-build --verbosity normal
+      continue-on-error: false  
