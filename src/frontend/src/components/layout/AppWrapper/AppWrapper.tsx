@@ -1,6 +1,5 @@
 import {ReactNode} from "react";
 import './styles.css';
-import { showInstructions } from "../../../utilities/envUtils.ts";
 
 interface Props {
     children: ReactNode;
@@ -8,7 +7,7 @@ interface Props {
 
 export default function AppWrapper({ children }: Props) {
     return (
-        <div data-testid='app_container' className={`app_container ${showInstructions && 'instructions'}`}>
+        <div data-testid='app_container' className='app_container'>
             {children}
         </div>
     );
