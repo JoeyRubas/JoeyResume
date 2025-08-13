@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from '@tanstack/react-router';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import {theme} from "@kmx/mui-resources";
+import theme from "../../common/theme.ts";
 import Footer from "../../components/Footer/Footer.tsx";
 import NavBar from "../../components/NavigationBar/NavigationBar.tsx";
 import MainWrapper from "../../components/layout/MainWrapper/MainWrapper.tsx";

@@ -38,18 +38,6 @@ jobs:
         cache: 'npm'
         cache-dependency-path: '${{ env.APP_LOCATION }}/package-lock.json'
         
-    - name: Configure npm authentication
-      run: |
-        # Add authentication to the existing .npmrc file in the frontend directory
-        cd ${{ env.APP_LOCATION }}
-        
-        # Create base64 encoded auth token for JFrog Artifactory
-        AUTH_TOKEN=$(echo -n "${{ secrets.ARTIFACTORY_USERNAME }}:${{ secrets.ARTIFACTORY_PASSWORD }}" | base64 -w 0)
-        echo "//carmax.jfrog.io/artifactory/api/npm/npm/:_auth=${AUTH_TOKEN}" >> .npmrc
-      env:
-        ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
-        ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
-        
     - name: Install dependencies
       run: npm ci
       working-directory: ${{ env.APP_LOCATION }}
