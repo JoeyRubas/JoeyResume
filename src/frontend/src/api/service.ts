@@ -1,17 +1,21 @@
 import { Skill } from '../types/skill';
 import { mockApi } from './mockData';
 
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL || 'https://wapp-joeytest2321.azurewebsites.net';
 const useMockData = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
-// If no API URL is configured, always use mock data
+// If no API URL is configured or if explicitly using mock data, use mock data
 const shouldUseMockData = useMockData || !apiUrl;
 
 console.log('API Configuration:', { 
   apiUrl, 
   useMockData, 
   shouldUseMockData,
-  environment: import.meta.env.MODE 
+  environment: import.meta.env.MODE,
+  envVars: {
+    VITE_API_URL: import.meta.env.VITE_API_URL,
+    VITE_USE_MOCK_DATA: import.meta.env.VITE_USE_MOCK_DATA
+  }
 });
 
 // Use mock data in development when VITE_USE_MOCK_DATA is true OR when no API URL is set

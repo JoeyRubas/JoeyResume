@@ -2,7 +2,7 @@ class AuthService {
   private readonly baseUrl: string;
 
   constructor() {
-    this.baseUrl = import.meta.env.VITE_API_URL || 'https://localhost:7231';
+    this.baseUrl = import.meta.env.VITE_API_URL || 'https://wapp-joeytest2321.azurewebsites.net';
   }
 
   async login(password: string): Promise<{ success: boolean; message?: string }> {
