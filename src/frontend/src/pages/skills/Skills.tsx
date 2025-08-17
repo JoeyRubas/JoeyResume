@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
-import { Box, Paper, TextField, Button, Typography, Card, CardContent, CardActions, Chip, IconButton } from '@mui/material';
+import { Box, Paper, TextField, Button, Typography, Card, CardContent, CardActions, Chip, IconButton, MenuItem } from '@mui/material';
 import apiService from '../../api/service';
 import { Skill } from '../../types/skill';
+import { useAuth } from '../../hooks/useAuth';
 import './styles.css';
 
 function levelToString(level: number): string {
@@ -13,13 +14,15 @@ function levelToString(level: number): string {
 
 const Skills: React.FC = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, logout, loading: authLoading } = useAuth();
   const [skills, setSkills] = useState<Skill[]>([]);
   const [editingSkillId, setEditingSkillId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '', skillLevel: '0', hoursExperience: '', description: ''
   });
 
-  const showEditFunctionality = import.meta.env.VITE_SHOW_EDIT_FUNCTIONALITY === 'true';
+  // Debug logging for auth state
+  console.log('Skills page - isAuthenticated:', isAuthenticated, 'authLoading:', authLoading);
 
   useEffect(() => { loadSkills(); }, []);
 
@@ -95,6 +98,24 @@ const Skills: React.FC = () => {
     setEditingSkillId(id);
   };
 
+  const handleLogin = () => {
+    // No longer needed since we use dedicated route
+  };
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
+  if (authLoading) {
+    return (
+      <div className="skills-container">
+        <Typography variant="h6" sx={{ textAlign: 'center', mt: 4 }}>
+          Loading...
+        </Typography>
+      </div>
+    );
+  }
+
   function skillCard(skill: Skill) {
     const chipColors = ['default', 'primary', 'secondary', 'success', 'error'];
     const getChipColor = (level: number) => chipColors[level] || 'default';
@@ -156,7 +177,7 @@ const Skills: React.FC = () => {
           
         
         </CardContent>
-        {showEditFunctionality && (
+        {isAuthenticated && (
           <CardActions sx={{ justifyContent: 'flex-end', pt: 0 }}>
             <IconButton size="small" color="primary" id={`edit${skill.id}`} onClick={handleEdit} sx={{ mr: 1 }} >
               ✏️
@@ -187,40 +208,56 @@ const Skills: React.FC = () => {
         My Skills
       </Typography>
       
-      {showEditFunctionality && (
-        <Paper elevation={3} sx={{ p: 3, mb: 4, maxWidth: 800, mx: 'auto' }}>
-          <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-            <TextField label="Skill Name" name="name" value={formData.name} onChange={handleInputChange} required variant="outlined" size="small" sx={{ minWidth: 200, flex: 1 }} />
-            
-            <TextField select label="Skill Level" name="skillLevel" value={formData.skillLevel} onChange={handleInputChange} required variant="outlined" size="small" sx={{ minWidth: 150 }} >
-              <option value="0">Basic</option>
-              <option value="1">Novice</option>
-              <option value="2">Intermediate</option>
-              <option value="3">Advanced</option>
-              <option value="4">Expert</option>
-            </TextField>
-            
-            <TextField label="Hours Experience" name="hoursExperience" type="number" value={formData.hoursExperience} onChange={handleInputChange} required variant="outlined" size="small" />
-            
-            <TextField label="Skill Description" name="description" value={formData.description} onChange={handleInputChange} required 
-                      variant="outlined" size="small" multiline rows={2} sx={{ minWidth: 250, flex: 1 }} />
-            
-            {editingSkillId ? (
-              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                <Button type="submit" variant="contained" color="primary" sx={{ minWidth: 120 }} >
-                  Edit Skill
-                </Button>
-                <Button type="button" onClick={clearForm} variant="outlined" color="error" sx={{ minWidth: 'auto', px: 1 }} >
-                  ❌
-                </Button>
-              </Box>
-            ) : (
-              <Button type="submit" variant="contained" color="primary" sx={{ minWidth: 120, alignSelf: 'flex-start' }} > Add Skill </Button>
-            )}
+      {isAuthenticated && (
+        <>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+            <Typography variant="h6" color="success.main">
+              ✅ Admin Mode - Edit functionality enabled
+            </Typography>
+            <Button 
+              variant="outlined" 
+              color="secondary" 
+              onClick={handleLogout}
+              size="small"
+            >
+              Logout
+            </Button>
           </Box>
-        </Paper>
+          
+          <Paper elevation={3} sx={{ p: 3, mb: 4, maxWidth: 800, mx: 'auto' }}>
+            <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+              <TextField label="Skill Name" name="name" value={formData.name} onChange={handleInputChange} required variant="outlined" size="small" sx={{ minWidth: 200, flex: 1 }} />
+              
+              <TextField select label="Skill Level" name="skillLevel" value={formData.skillLevel} onChange={handleInputChange} required variant="outlined" size="small" sx={{ minWidth: 150 }} >
+                <MenuItem value="0">Basic</MenuItem>
+                <MenuItem value="1">Novice</MenuItem>
+                <MenuItem value="2">Intermediate</MenuItem>
+                <MenuItem value="3">Advanced</MenuItem>
+                <MenuItem value="4">Expert</MenuItem>
+              </TextField>
+              
+              <TextField label="Hours Experience" name="hoursExperience" type="number" value={formData.hoursExperience} onChange={handleInputChange} required variant="outlined" size="small" />
+              
+              <TextField label="Skill Description" name="description" value={formData.description} onChange={handleInputChange} required 
+                        variant="outlined" size="small" multiline rows={2} sx={{ minWidth: 250, flex: 1 }} />
+              
+              {editingSkillId ? (
+                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                  <Button type="submit" variant="contained" color="primary" sx={{ minWidth: 120 }} >
+                    Edit Skill
+                  </Button>
+                  <Button type="button" onClick={clearForm} variant="outlined" color="error" sx={{ minWidth: 'auto', px: 1 }} >
+                    ❌
+                  </Button>
+                </Box>
+              ) : (
+                <Button type="submit" variant="contained" color="primary" sx={{ minWidth: 120, alignSelf: 'flex-start' }} > Add Skill </Button>
+              )}
+            </Box>
+          </Paper>
+        </>
       )}
-        
+
       <div className="skill-card-list">
         {skills.map(skill => skillCard(skill))}
       </div>

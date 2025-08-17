@@ -7,6 +7,16 @@
     align-items: center;
 }
 
+.nav-links {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-auth {
+    display: flex;
+    align-items: center;
+}
+
 .link {
     padding: 12px 20px;
     text-decoration: none;
@@ -34,5 +44,9 @@
     .link {
         padding: 8px 12px;
         font-size: 14px;
+    }
+    
+    .nav-links {
+        gap: 2px;
     }
 }

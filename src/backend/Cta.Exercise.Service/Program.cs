@@ -1,6 +1,7 @@
 using Cta.Exercise.Application.ServiceClients;
 using Cta.Exercise.Application.Services;
 using Cta.Exercise.Core.Repositories;
+using Cta.Exercise.Service.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,10 +29,18 @@ builder.Services.AddCors(options =>
     {
         if (builder.Environment.IsDevelopment())
         {
-            // Allow any origin in development
-            policy.AllowAnyOrigin()
+            // Allow specific origins in development for credentials support
+            policy.WithOrigins(
+                    "http://localhost:5173",           
+                    "https://localhost:5173",
+                    "http://127.0.0.1:5173",
+                    "https://127.0.0.1:5173",
+                    "http://localhost:3000",
+                    "http://localhost:5000"
+                  )
                   .AllowAnyHeader()
-                  .AllowAnyMethod();
+                  .AllowAnyMethod()
+                  .AllowCredentials();
         }
         else
         {
@@ -61,7 +70,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowFrontend");
 
-app.UseHttpsRedirection();
+app.UseMiddleware<AuthMiddleware>();
+
+// Only use HTTPS redirection in production
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 

@@ -103,5 +103,13 @@ jobs:
             {
               "name": "WEBSITE_RUN_FROM_PACKAGE",
               "value": "1"
+            },
+            {
+              "name": "ADMIN_PASSWORD",
+              "value": "${{ secrets.ADMIN_PASSWORD }}"
+            },
+            {
+              "name": "JWT_SECRET",
+              "value": "${{ secrets.JWT_SECRET }}"
             }
           ]
