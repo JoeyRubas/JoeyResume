@@ -10,6 +10,7 @@ function levelToString(level: number): string {
   return levels[level] || 'Unknown';
 }
 
+
 const Skills: React.FC = () => {
   const navigate = useNavigate();
   const [skills, setSkills] = useState<Skill[]>([]);

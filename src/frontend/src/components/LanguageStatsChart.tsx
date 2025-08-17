@@ -20,7 +20,7 @@ const LanguageStatsChart: React.FC<LanguageStatsChartProps> = ({ languageName })
     try {
       setLoading(true);
       const languageStats = await githubService.getLanguageStats(languageName);
-      setStats(languageStats.filter(stat => stat.totalLines > 0));
+      setStats(languageStats.filter(stat => stat.additions > 0 || stat.deletions > 0));
     } catch (error) {
       console.error('Error loading language stats:', error);
     } finally {
@@ -55,17 +55,40 @@ const LanguageStatsChart: React.FC<LanguageStatsChartProps> = ({ languageName })
       title: { text: 'Date' }
     },
     yAxis: {
-      title: { text: 'Total Lines of Code' },
+      title: { text: 'Cumulative Lines of Code' },
       min: 0
     },
-    series: [{
-      name: 'Lines of Code',
-      data: stats.map(stat => [new Date(stat.date).getTime(), stat.totalLines]),
-      type: 'spline',
-      color: '#2563eb'
-    }],
-    legend: { enabled: false },
-    credits: { enabled: false }
+    series: [
+      {
+        name: 'Additions',
+        data: stats.map(stat => [new Date(stat.date).getTime(), stat.additions]),
+        type: 'spline',
+        color: '#22c55e'
+      },
+      {
+        name: 'Deletions',
+        data: stats.map(stat => [new Date(stat.date).getTime(), stat.deletions]),
+        type: 'spline',
+        color: '#ef4444'
+      }
+    ],
+    legend: { 
+      enabled: true,
+      align: 'center',
+      verticalAlign: 'bottom'
+    },
+    credits: { enabled: false },
+    tooltip: {
+      shared: true,
+      formatter: function() {
+        const date = new Date(this.x as number).toLocaleDateString();
+        let tooltip = `<b>${date}</b><br/>`;
+        this.points?.forEach(point => {
+          tooltip += `<span style="color:${point.series.color}">${point.series.name}</span>: <b>${point.y}</b> lines<br/>`;
+        });
+        return tooltip;
+      }
+    }
   };
 
   return (

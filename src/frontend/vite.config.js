@@ -8,5 +8,4 @@ export default defineConfig({
     tanstackRouter({ target: 'react', autoCodeSplitting: true }),
     react(),
   ],
-  envDir: '.env',
 });

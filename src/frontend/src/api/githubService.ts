@@ -1,6 +1,7 @@
 export interface GitHubLanguageStats {
   date: string;
-  totalLines: number;
+  additions: number;
+  deletions: number;
 }
 
 class GitHubService {
@@ -47,20 +48,63 @@ class GitHubService {
       const languageKey = Object.keys(languages).find(lang => lang.toLowerCase() === languageName.toLowerCase());
       if (!languageKey) return [];
       
-      // Get commits
-      const commitsResponse = await fetch(`${this.baseUrl}/repos/${this.username}/${repoName}/commits?per_page=100`, { headers });
-      if (!commitsResponse.ok) return [];
+      // Use GraphQL to get commit stats in batches
+      return await this.getCommitStatsWithGraphQL(repoName);
+    } catch {
+      return [];
+    }
+  }
+
+  private async getCommitStatsWithGraphQL(repoName: string): Promise<GitHubLanguageStats[]> {
+    if (!this.token) return [];
+    
+    const query = `
+      query($owner: String!, $name: String!, $first: Int!) {
+        repository(owner: $owner, name: $name) {
+          defaultBranchRef {
+            target {
+              ... on Commit {
+                history(first: $first) {
+                  nodes {
+                    committedDate
+                    additions
+                    deletions
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    try {
+      const response = await fetch('https://api.github.com/graphql', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+          variables: {
+            owner: this.username,
+            name: repoName,
+            first: 50 // Get 50 most recent commits
+          }
+        })
+      });
+
+      if (!response.ok) return [];
       
-      const commits = await commitsResponse.json();
-      const totalLines = Math.round(languages[languageKey] / 50); // Estimate lines from bytes
+      const data = await response.json();
+      const commits = data?.data?.repository?.defaultBranchRef?.target?.history?.nodes || [];
       
-      // Create stats for each commit
-      return commits
-        .sort((a: any, b: any) => new Date(a.commit.author.date).getTime() - new Date(b.commit.author.date).getTime())
-        .map((commit: any, index: number) => ({
-          date: commit.commit.author.date.split('T')[0],
-          totalLines: Math.floor(totalLines * ((index + 1) / commits.length))
-        }));
+      return commits.map((commit: any) => ({
+        date: commit.committedDate.split('T')[0],
+        additions: commit.additions || 0,
+        deletions: commit.deletions || 0
+      }));
     } catch {
       return [];
     }
@@ -68,12 +112,21 @@ class GitHubService {
   
   private makeCumulative(stats: GitHubLanguageStats[]): GitHubLanguageStats[] {
     const sorted = stats.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    let cumulative = 0;
+    let cumulativeAdditions = 0;
+    let cumulativeDeletions = 0;
     
     return sorted.map(stat => {
-      const increment = Math.min(stat.totalLines - cumulative, this.MAX_LINES_PER_COMMIT);
-      cumulative += Math.max(increment, 0);
-      return { date: stat.date, totalLines: cumulative };
+      const additionIncrement = Math.min(stat.additions, this.MAX_LINES_PER_COMMIT);
+      const deletionIncrement = Math.min(stat.deletions, this.MAX_LINES_PER_COMMIT);
+      
+      cumulativeAdditions += Math.max(additionIncrement, 0);
+      cumulativeDeletions += Math.max(deletionIncrement, 0);
+      
+      return { 
+        date: stat.date, 
+        additions: cumulativeAdditions,
+        deletions: cumulativeDeletions
+      };
     });
   }
 }
