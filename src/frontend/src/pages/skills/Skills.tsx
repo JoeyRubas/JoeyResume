@@ -28,9 +28,13 @@ const Skills: React.FC = () => {
 
   const loadSkills = async () => {
     try {
+      console.log('Loading skills...');
       const skillsData = await apiService.getSkills();
+      console.log('Skills loaded successfully:', skillsData);
       setSkills(skillsData);
-    } catch (error) { console.error(error); } 
+    } catch (error) { 
+      console.error('Failed to load skills:', error); 
+    } 
   };
 
   const handleSkillClick = (skillId: string) => {
