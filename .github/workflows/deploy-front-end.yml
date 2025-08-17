@@ -48,6 +48,10 @@ jobs:
       env:
         # Add any environment variables needed for build here
         NODE_ENV: production
+        VITE_GITHUB_TOKEN: ${{ secrets.VITE_GITHUB_TOKEN }}
+        VITE_SHOW_EDIT_FUNCTIONALITY: false
+        VITE_USE_MOCK_DATA: false
+        VITE_API_URL: ${{ secrets.VITE_API_URL }}
         
     - name: Deploy to Azure Static Web App
       id: builddeploy

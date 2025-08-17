@@ -366,3 +366,11 @@ FodyWeavers.xsd
 
 # Frontend
 src/frontend/dist
+src/frontend/.env.local
+src/frontend/.env.development
+src/frontend/.env.production
+
+.env
+.env.local
+.env.development
+.env.production
