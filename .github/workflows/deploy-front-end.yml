@@ -3,19 +3,20 @@ name: Deploy Frontend to Azure Static Web App
 on:
   push:
     branches: [ main ]
-    paths: 
+    paths:
       - 'src/frontend/**'
   workflow_dispatch:
 
 env:
   NODE_VERSION: '20.x'
-  APP_LOCATION: 'src/frontend' 
-  OUTPUT_LOCATION: 'dist'
+  APP_LOCATION: 'src/frontend'  
+  DIST_DIR: 'src/frontend/dist'  
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     name: Build and Deploy
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -34,37 +35,45 @@ jobs:
         run: npm ci
         working-directory: ${{ env.APP_LOCATION }}
 
-      # 🔐 PUBLIC-ONLY build-time values (these end up in the JS bundle).
-      # Do NOT put real secrets here. Keep tokens/keys on the server/API.
-      - name: Export public Vite env vars for build
+      # Only put PUBLIC config in VITE_* (these end up in the bundle)
+      - name: Export public Vite env for build
         run: |
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> $GITHUB_ENV
-          echo "VITE_GITHUB_TOKEN=${{ secrets.VITE_GITHUB_TOKEN }}" >> $GITHUB_ENV
           echo "VITE_SHOW_EDIT_FUNCTIONALITY=false" >> $GITHUB_ENV
           echo "VITE_USE_MOCK_DATA=false" >> $GITHUB_ENV
-        # If VITE_API_URL is sensitive, don't expose it. Point to your API domain only.
 
       - name: Build (Vite)
         env:
-          # Ensure production mode so Vite loads the right defaults
           NODE_ENV: production
         run: npm run build
         working-directory: ${{ env.APP_LOCATION }}
 
-      - name: Deploy to Azure Static Web App (upload prebuilt artifacts)
+      # Ensure staticwebapp.config.json is inside the artifact root
+      # (SWA reads it from the folder we upload)
+      - name: Include staticwebapp.config.json in dist
+        run: |
+          if [ -f "${{ env.APP_LOCATION }}/staticwebapp.config.json" ]; then
+            cp "${{ env.APP_LOCATION }}/staticwebapp.config.json" "${{ env.DIST_DIR }}/"
+          fi
+
+      # Quick sanity checks to avoid uploading the dev HTML
+      - name: Validate build output
+        run: |
+          test -f "${{ env.DIST_DIR }}/index.html"
+          grep -q '<script type="module"' "${{ env.DIST_DIR }}/index.html"
+          ! grep -q '/src/main.' "${{ env.DIST_DIR }}/index.html" || (echo "ERROR: dev index.html detected"; exit 1)
+
+      - name: Deploy (upload prebuilt artifacts folder as site root)
         uses: Azure/static-web-apps-deploy@v1
         with:
-          # REQUIRED: set this in GitHub repo secrets
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
 
-          action: "upload"
-          # We already built; tell the action to skip building again
+          action: upload
+      
+          app_location: ${{ env.DIST_DIR }}
+          output_location: ''
+
           skip_app_build: true
           skip_api_build: true
 
-          # Where the app and output live
-          app_location: ${{ env.APP_LOCATION }}
-          output_location: ${{ env.OUTPUT_LOCATION }}
-
-          # repo_token can help with PR comments & checks (optional but typical)
           repo_token: ${{ secrets.GITHUB_TOKEN }}
