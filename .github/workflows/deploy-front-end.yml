@@ -9,34 +9,32 @@ on:
 
 env:
   NODE_VERSION: '20.x'
-  APP_LOCATION: 'src/frontend'  
-  DIST_DIR: 'src/frontend/dist'  
+  APP_DIR: 'src/frontend'        
+  DIST_DIR: 'src/frontend/dist'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    name: Build and Deploy
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-          cache-dependency-path: '${{ env.APP_LOCATION }}/package-lock.json'
+          cache: npm
+          cache-dependency-path: '${{ env.APP_DIR }}/package-lock.json'
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm ci
-        working-directory: ${{ env.APP_LOCATION }}
+        working-directory: ${{ env.APP_DIR }}
 
-      # Only put PUBLIC config in VITE_* (these end up in the bundle)
-      - name: Export public Vite env for build
+      - name: Export public build vars
         run: |
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> $GITHUB_ENV
           echo "VITE_SHOW_EDIT_FUNCTIONALITY=false" >> $GITHUB_ENV
@@ -46,34 +44,31 @@ jobs:
         env:
           NODE_ENV: production
         run: npm run build
-        working-directory: ${{ env.APP_LOCATION }}
+        working-directory: ${{ env.APP_DIR }}
 
-      # Ensure staticwebapp.config.json is inside the artifact root
-      # (SWA reads it from the folder we upload)
-      - name: Include staticwebapp.config.json in dist
+      
+      - name: Include staticwebapp.config.json
         run: |
-          if [ -f "${{ env.APP_LOCATION }}/staticwebapp.config.json" ]; then
-            cp "${{ env.APP_LOCATION }}/staticwebapp.config.json" "${{ env.DIST_DIR }}/"
+          if [ -f "${{ env.APP_DIR }}/staticwebapp.config.json" ]; then
+            cp "${{ env.APP_DIR }}/staticwebapp.config.json" "${{ env.DIST_DIR }}/"
           fi
 
-      # Quick sanity checks to avoid uploading the dev HTML
-      - name: Validate build output
+      
+      - name: Validate artifact
         run: |
           test -f "${{ env.DIST_DIR }}/index.html"
           grep -q '<script type="module"' "${{ env.DIST_DIR }}/index.html"
-          ! grep -q '/src/main.' "${{ env.DIST_DIR }}/index.html" || (echo "ERROR: dev index.html detected"; exit 1)
+          ! grep -q '/src/main\.' "${{ env.DIST_DIR }}/index.html" || (echo "ERROR: dev index.html detected"; exit 1)
 
-      - name: Deploy (upload prebuilt artifacts folder as site root)
+      - name: Deploy to Azure Static Web Apps (upload dist as site root)
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-
           action: upload
-      
+
           app_location: ${{ env.DIST_DIR }}
-          output_location: ''
+          output_location: ''         
 
-          skip_app_build: true
+          skip_app_build: true       
           skip_api_build: true
-
           repo_token: ${{ secrets.GITHUB_TOKEN }}
