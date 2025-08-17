@@ -40,13 +40,13 @@ const Home = () => {
                                 fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' }
                             }}
                         >
-                            Full-stack Web Developer & 2025 CTA Student
+                            Software Engineer I - CarMax
                         </Typography>
                         
                         <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.6, mb: 3 }}>
-                            I graduated from UVA with a double major in Computer Science and Math this past May, and am excited
-                            to join CarMax this Summer! I have experience through my 2024 internship with CarMax in building
-                            scalable, secure and reliable web applications using various frameworks and technologies.                      
+                            I'm a full stack developer passionate about building reliable, scalable websites for users. 
+                            I graduated from UVA with a double major in Computer Science and Math this past Spring, and 
+                            am now working as a software engineering intern at CarMax! Check out my resume to learn more!                     
                         </Typography>
                         
                         <Stack direction="row" spacing={2} className="social-links">

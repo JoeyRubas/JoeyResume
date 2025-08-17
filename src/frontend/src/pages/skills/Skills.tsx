@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from '@tanstack/react-router';
 import { Box, Paper, TextField, Button, Typography, Card, CardContent, CardActions, Chip, IconButton } from '@mui/material';
 import apiService from '../../api/service';
 import { Skill } from '../../types/skill';
@@ -10,6 +11,7 @@ function levelToString(level: number): string {
 }
 
 const Skills: React.FC = () => {
+  const navigate = useNavigate();
   const [skills, setSkills] = useState<Skill[]>([]);
   const [editingSkillId, setEditingSkillId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -25,6 +27,10 @@ const Skills: React.FC = () => {
       const skillsData = await apiService.getSkills();
       setSkills(skillsData);
     } catch (error) { console.error(error); } 
+  };
+
+  const handleSkillClick = (skillId: string) => {
+    navigate({ to: '/skill/$skillId', params: { skillId } });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -63,6 +69,7 @@ const Skills: React.FC = () => {
 
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    e.stopPropagation(); // Prevent card click
     const id = e.currentTarget.id?.replace("delete", "");
     if (!id) return;
     try {
@@ -73,6 +80,7 @@ const Skills: React.FC = () => {
     
   const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    e.stopPropagation(); // Prevent card click
     const id = e.currentTarget.id?.replace("edit", "");
     const curSkill = skills.find(skill => skill.id === id);
     if (!curSkill) return;
@@ -93,6 +101,7 @@ const Skills: React.FC = () => {
     return (
       <Card 
         elevation={2} 
+        onClick={() => handleSkillClick(skill.id)}
         sx={{ 
           height: '100%', 
           display: 'flex', 
