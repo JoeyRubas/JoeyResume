@@ -1,3 +1,70 @@
+/* Tablet/iPad Mini Responsive Styles */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .portfolio-background {
+        height: 350vh !important;
+    }
+
+    .big-text {
+        font-size: 10vw !important;
+        line-height: 1.2 !important;
+    }
+
+    .portfolio-header,
+    .second-portfolio-header, 
+    .third-portfolio-header {
+        position: absolute !important;
+        width: 80vw !important;
+        height: 50vh !important;
+        left: 10vw !important;
+        right: 10vw !important;
+        text-align: center !important;
+        justify-content: center !important;
+        display: flex !important;
+        align-items: center !important;
+        box-sizing: border-box !important;
+    }
+
+    .portfolio-header {
+        top: 0 !important;
+    }
+
+    .second-portfolio-header {
+        top: 100vh !important;
+    }
+
+    .third-portfolio-header {
+        top: 200vh !important;
+    }
+
+    .site-compare-widget,
+    .mock-ide {
+        position: absolute !important;
+        width: 80vw !important;
+        height: 50vh !important;
+        left: 10vw !important;
+        right: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    .mock-dashboard {
+        position: absolute !important;
+        width: 80vw !important;
+        height: 70vh !important;
+        left: 10vw !important;
+        right: auto !important;
+        box-sizing: border-box !important;
+        top: 250vh !important;
+    }
+
+    .site-compare-widget {
+        top: 40vh !important;
+    }
+
+    .mock-ide {
+        top: 150vh !important;
+    }
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
     .portfolio-background {
@@ -60,7 +127,7 @@
     }
 
     .site-compare-widget {
-        top: 50vh !important;
+        top: 35vh !important;
     }
 
     .mock-ide {
