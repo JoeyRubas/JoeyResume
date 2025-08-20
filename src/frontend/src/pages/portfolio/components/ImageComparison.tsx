@@ -15,7 +15,7 @@ export const ImageComparison: React.FC<ImageComparisonProps> = ({ onAnimationCom
   
   const [percentageLabel, setPercentageLabel] = React.useState(70);
   const [showShimmer, setShowShimmer] = React.useState(false);
-  const shimmerTimeoutRef = React.useRef<number>();
+  const shimmerTimeoutRef = React.useRef<number | undefined>(undefined);
   
   useMotionValueEvent(sliderPosition, "change", (value) => {
     setPercentageLabel(Math.round(value));
