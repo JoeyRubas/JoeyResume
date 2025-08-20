@@ -115,7 +115,7 @@ const Portfolio: React.FC = () => {
           setIdeVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 } // Lower threshold for mobile
     );
 
     if (ideRef.current) {
@@ -133,7 +133,7 @@ const Portfolio: React.FC = () => {
           setDashboardVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 } // Lower threshold for mobile
     );
 
     if (dashboardRef.current) {
@@ -151,7 +151,7 @@ const Portfolio: React.FC = () => {
           setSecondTextVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 } // Lower threshold for mobile
     );
 
     const secondTextElement = document.querySelector('.second-portfolio-header');
@@ -170,7 +170,7 @@ const Portfolio: React.FC = () => {
           setThirdTextVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 } // Lower threshold for mobile
     );
 
     const thirdTextElement = document.querySelector('.third-portfolio-header');
@@ -338,7 +338,7 @@ const Portfolio: React.FC = () => {
           repeat={0}
           sequence={[
             () => {
-              if (secondTextVisible) {
+              if (!secondTextVisible) {
                 return;
               }
             },
