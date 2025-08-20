@@ -25,6 +25,9 @@ const NavigationBar = () => {
                     <Link to="/resume" className={`link ${location.pathname === '/resume' ? 'active' : ''}`}>
                         Resume
                     </Link>
+                    <Link to="/portfolio" className={`link ${location.pathname === '/portfolio' ? 'active' : ''}`}>
+                        Portfolio
+                    </Link>
                 </div>
                 
                 <div className="nav-auth">

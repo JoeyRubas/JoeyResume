@@ -21,6 +21,7 @@
     "autoprefixer": "^10.4.20",
     "highcharts": "^12.3.0",
     "highcharts-react-official": "^3.2.2",
+    "motion": "^12.23.12",
     "postcss": "^8.5.1",
     "prettier": "^3.6.2",
     "react": "^19.0.0",
