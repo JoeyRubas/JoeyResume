@@ -1,5 +1,7 @@
 /* Image Comparison Component Styles */
-.site-compare-widget {
+
+/* Image Comparison Component Styles (updated for ImageComparison) */
+.image-comparison-widget {
     position: absolute;  
     top: 0;
     right: 2.5vw;
@@ -10,7 +12,7 @@
     justify-content: center;
 }
 
-.site-compare-inner {
+.image-comparison-inner {
     width: 90%;
     aspect-ratio: 16 / 9;
     position: relative;
@@ -36,7 +38,7 @@
   position: relative;
 }
 
-.site-compare-divider {
+.image-comparison-divider {
   position: absolute;
   top: 0;
   left: 50%;
@@ -52,7 +54,7 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-.site-compare-divider::before {
+.image-comparison-divider::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -61,7 +63,7 @@
   background: transparent;
 }
 
-.site-compare-divider .handle {
+.image-comparison-divider .handle {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -74,7 +76,7 @@
   border: 2px solid #ffffff;
 }
 
-.site-compare-label {
+.image-comparison-label {
   position: absolute;
   bottom: 16px;
   left: 16px;
