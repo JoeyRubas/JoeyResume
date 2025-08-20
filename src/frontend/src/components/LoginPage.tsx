@@ -70,7 +70,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, loginMethod }) =>
         >
           <Box sx={{ mb: 3 }}>
             <Typography variant="h1" sx={{ fontSize: 48, mb: 2 }}>
-              🔒
+              Login
             </Typography>
             <Typography variant="h4" component="h1" gutterBottom>
               Admin Login

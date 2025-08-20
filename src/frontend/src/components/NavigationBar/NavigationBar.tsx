@@ -13,7 +13,7 @@ const NavigationBar = () => {
     };
 
     return (
-        <Paper elevation={2} sx={{ borderRadius: '30px' }}>
+        <div className='nav-wrapper'>
             <nav className="navigation_container">
                 <div className="nav-links">
                     <Link to="/" className={`link ${location.pathname === '/' ? 'active' : ''}`}>
@@ -28,46 +28,18 @@ const NavigationBar = () => {
                     <Link to="/portfolio" className={`link ${location.pathname === '/portfolio' ? 'active' : ''}`}>
                         Portfolio
                     </Link>
-                </div>
-                
-                <div className="nav-auth">
                     {isAuthenticated ? (
-                        <Tooltip title="Admin Mode - Click to logout">
-                            <IconButton 
-                                onClick={handleLogout}
-                                size="small"
-                                sx={{ 
-                                    color: 'success.main',
-                                    '&:hover': { 
-                                        backgroundColor: 'success.light',
-                                        color: 'white'
-                                    }
-                                }}
-                            >
-                                ✓👤
-                            </IconButton>
-                        </Tooltip>
+                        <Link to="/login" className={`link auth-link`} onClick={async (e) => { e.preventDefault(); await handleLogout(); }}>
+                            Logout
+                        </Link>
                     ) : (
-                        <Tooltip title="Admin Login">
-                            <Link to="/login">
-                                <IconButton 
-                                    size="small"
-                                    sx={{ 
-                                        color: 'text.secondary',
-                                        '&:hover': { 
-                                            backgroundColor: 'primary.light',
-                                            color: 'white'
-                                        }
-                                    }}
-                                >
-                                    🔒
-                                </IconButton>
-                            </Link>
-                        </Tooltip>
+                        <Link to="/login" className={`link auth-link ${location.pathname === '/login' ? 'active' : ''}`}>
+                            Login
+                        </Link>
                     )}
-                </div>
+                    </div>
             </nav>
-        </Paper>
+        </div>
     );
 };
 

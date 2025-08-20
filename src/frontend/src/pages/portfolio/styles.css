@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-.frosted-background {
-  background: radial-gradient(circle at 50% 50%, rgba(243, 243, 243, 0.5), rgba(153, 153, 153, 0.7));
+.portfolio-background {
   width: 100vw;
-  height: 85vh;
+  height: 500vh;
   position: relative;
 }
 
@@ -12,7 +11,6 @@
   font-size: 8vw;
   font-weight: 900;
   line-height: 1;
-  margin-top: 0;
   text-transform: uppercase;
 }
 
@@ -31,16 +29,25 @@
   left: 1.5vw;
 }
 
+.second-portfolio-header {
+  width: 45vw;
+  height: 40vh;
+  margin-top: 5vh;
+  position: absolute;
+  top: 100vh;
+  right: 0;
+}
+
 .site-compare-widget {
     position: absolute;  
-    top: 5vh;
-    right: 8vw;
-    width: 45vw;
+    top: 10vh;
+    right: 5vw;
+    width: 50vw;
     aspect-ratio: 17 / 9;
-    border-radius: 20px;
+    border-radius: 40px;
     overflow: hidden;
     background: #0b0f14; 
-    box-shadow: 0 0 64px 24px rgba(255,255,255,0.75);
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.25);
     border: 2px solid #050505;
 }
 
@@ -108,4 +115,165 @@
   border-radius: 4px;
   z-index: 4;
   user-select: none;
+}
+
+.mock-ide {
+    position: absolute;  
+    top: 100vh;
+    left: 5vw;
+    width: 50vw;
+    height: 80vh;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #1e1e1e; 
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.25);
+    border: 2px solid #323233;
+    display: flex;
+    flex-direction: column;
+}
+
+.mockNav {
+    background: #2d2d30;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #3e3e42;
+}
+
+.ide-title-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 8px;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+    margin-right: 16px;
+}
+
+.control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.control.close { background: #ff5f57; }
+.control.minimize { background: #ffbd2e; }
+.control.maximize { background: #28ca42; }
+
+.file-tabs {
+    display: flex;
+    gap: 2px;
+}
+
+.tab {
+    background: #3c3c3c;
+    color: #cccccc;
+    padding: 6px 16px;
+    font-size: 12px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+    background: #1e1e1e;
+    border-bottom-color: #007acc;
+    color: #ffffff;
+}
+
+.ide-content {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+.mockSidebar {
+    background: #252526;
+    width: 200px;
+    padding: 8px;
+    border-right: 1px solid #3e3e42;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    color: #cccccc;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.file-tree {
+    font-size: 13px;
+}
+
+.folder, .file-item {
+    color: #cccccc;
+    padding: 2px 4px;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.folder.expanded {
+    color: #ffffff;
+}
+
+.file-item {
+    margin-left: 12px;
+    color: #a9a9a9;
+}
+
+.folder:hover, .file-item:hover {
+    background: #37373d;
+}
+
+.mockEditorBody {
+    flex: 1;
+    background: #1e1e1e;
+    display: flex;
+    overflow: hidden;
+}
+
+.line-numbers {
+    background: #1e1e1e;
+    color: #858585;
+    padding: 12px 8px;
+    font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: right;
+    min-width: 40px;
+    border-right: 1px solid #3e3e42;
+    user-select: none;
+}
+
+.line-number {
+    height: 18.2px;
+}
+
+.code-content {
+    flex: 1;
+    background: #1e1e1e;
+    overflow-x: auto;
+}
+
+/* Syntax highlighting simulation */
+.code-content .react-type-animation-cursor::after {
+    background: #ffffff;
+    width: 2px;
+}
+
+.typing-cursor {
+    color: #ffffff;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
