@@ -19,13 +19,15 @@
     "@tanstack/react-router-devtools": "^1.127.9",
     "@tanstack/router-plugin": "^1.127.9",
     "autoprefixer": "^10.4.20",
+    "framer-motion": "^12.23.12",
     "highcharts": "^12.3.0",
     "highcharts-react-official": "^3.2.2",
     "motion": "^12.23.12",
     "postcss": "^8.5.1",
     "prettier": "^3.6.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-type-animation": "^3.2.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.8",

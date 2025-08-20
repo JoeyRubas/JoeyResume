@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 .frosted-background {
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.8), rgba(170,174,184,.7));
+  background: radial-gradient(circle at 50% 50%, rgba(243, 243, 243, 0.5), rgba(153, 153, 153, 0.7));
   width: 100vw;
   height: 85vh;
   position: relative;
@@ -16,28 +16,11 @@
   text-transform: uppercase;
 }
 
-.typing {
-  overflow: hidden;
-  white-space: pre-line;
+.typing-smooth {
   display: inline-block;
+  white-space: pre-line;        
+  font-variant-ligatures: none; 
 }
-
-.typing-line {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid #222;
-  width: 0;
-  animation:
-    typing var(--duration) steps(var(--steps), end) forwards,
-    blink .75s step-end infinite;
-  font-variant-ligatures: none;
-}
-
-.done-line { white-space: nowrap; border-right: none; }
-
-@keyframes typing { from { width: 0; } to { width: var(--target-width); } }
-@keyframes blink { 50% { border-color: transparent; } }
 
 .portfolio-header {
   width: 50vw;
@@ -45,27 +28,26 @@
   margin-top: 5vh;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 1.5vw;
 }
 
-/* Widget shell */
 .site-compare-widget {
-  position: absolute;
-  top: 15vh;
-  right: 8vw;
-  width: 50vw;
-  aspect-ratio: 17 / 9;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #0b0f14;
-  box-shadow: 0 8px 30px rgba(0,0,0,.15);
+    position: absolute;  
+    top: 5vh;
+    right: 8vw;
+    width: 45vw;
+    aspect-ratio: 17 / 9;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #0b0f14; 
+    box-shadow: 0 0 64px 24px rgba(255,255,255,0.75);
+    border: 2px solid #050505;
 }
 
-/* Images stacked; modern on top */
 .old-site-image,
 .modern-site-image {
   position: absolute;
-  inset: 0;
+  inset: 0;       
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -75,25 +57,30 @@
 .old-site-image { z-index: 1; }
 .modern-site-image { z-index: 2; }
 
-/* Divider uses left% + margin-left to center 2px line (no transform!) */
 .site-compare-divider {
   position: absolute;
   top: 0;
   left: 50%;
-  margin-left: -1px; /* center a 2px line */
+  margin-left: -1px; 
   height: 100%;
   width: 2px;
-  background: rgba(255,255,255,.85);
+  background: rgba(0, 0, 0, 0.85);
   cursor: col-resize;
   z-index: 3;
+}
+
+.react-type-animation-cursor {
+  font-weight: 100;
+  font-size: 0.9em;
+  border-right: 1px solid #222;
 }
 
 .site-compare-divider::before {
   content: "";
   position: absolute;
   inset: 0;
-  width: 28px; /* easier to grab */
-  margin-left: -13px; /* center the hit area */
+  width: 28px;         
+  margin-left: -13px;  
   background: transparent;
 }
 
@@ -104,10 +91,11 @@
   width: 18px;
   height: 18px;
   border-radius: 999px;
-  background: white;
+  background: rgb(0, 0, 0);
   box-shadow: 0 2px 8px rgba(0,0,0,.25);
   transform: translate(-50%, -50%);
 }
+
 
 .site-compare-label {
   position: absolute;
@@ -121,7 +109,3 @@
   z-index: 4;
   user-select: none;
 }
-
-/* Typing keyframes kept */
-@keyframes typing { from { width: 0; } to { width: var(--target-width); } }
-@keyframes blink { 50% { border-color: transparent; } }
