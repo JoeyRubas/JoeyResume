@@ -14,10 +14,36 @@ export const ImageComparison: React.FC<ImageComparisonProps> = ({ onAnimationCom
   const dividerPosition = useTransform(sliderPosition, v => `${v}%`);
   
   const [percentageLabel, setPercentageLabel] = React.useState(70);
+  const [showShimmer, setShowShimmer] = React.useState(false);
+  const shimmerTimeoutRef = React.useRef<number>();
   
   useMotionValueEvent(sliderPosition, "change", (value) => {
     setPercentageLabel(Math.round(value));
+    
+    // Trigger shimmer effect on slider movement
+    setShowShimmer(true);
+    console.log("Shimmer triggered!"); // Debug log
+    
+    // Clear existing timeout
+    if (shimmerTimeoutRef.current) {
+      clearTimeout(shimmerTimeoutRef.current);
+    }
+    
+    // Remove shimmer after animation completes
+    shimmerTimeoutRef.current = setTimeout(() => {
+      setShowShimmer(false);
+      console.log("Shimmer removed!"); // Debug log
+    }, 800);
   });
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (shimmerTimeoutRef.current) {
+        clearTimeout(shimmerTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const updateSliderPosition = (clientX: number) => {
     const rect = widgetRef.current?.getBoundingClientRect();
@@ -57,7 +83,7 @@ export const ImageComparison: React.FC<ImageComparisonProps> = ({ onAnimationCom
       <motion.img
         src="modern-site.jpg"
         alt="Modernized application interface"
-        className="modern-site-image"
+        className={`modern-site-image ${showShimmer ? 'shimmer-effect' : ''}`}
         style={{ clipPath: modernImageClip }}
         draggable={false}
       />
