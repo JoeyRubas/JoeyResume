@@ -156,4 +156,5 @@
   .cta-row, .social-row { justify-content: center; }
   .hero-photo { width: min(80vw, 420px); }
   .quick-facts { grid-template-columns: 1fr; gap: 10px; }
+  .home-hero::before, .home-hero::after {display : none;}
 }

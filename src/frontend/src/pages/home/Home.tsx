@@ -50,7 +50,6 @@ const Home: React.FC = () => {
 
         <div className="hero-right">
           <div className="photo-wrap">
-            {/* Rounded + tilted image stays! */}
             <img
               src="/college-graduate.png"
               alt="Joey portrait"

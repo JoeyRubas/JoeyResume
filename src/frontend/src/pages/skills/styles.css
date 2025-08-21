@@ -159,3 +159,47 @@
   font-family: 'Inter', sans-serif; 
 }
 .loading { padding: 48px; font-weight: 700; font-family: 'Inter', sans-serif; }
+
+@media (max-width: 968px) {
+  .skills-hero {
+    gap: 0;
+    max-width: 98vw;
+    grid-template-columns: 1fr;
+  }
+  .skills-hero {
+    flex-direction: row;
+    display: flex;
+    gap: 0;
+    max-width: 98vw;
+  }
+
+  .headline-side,
+  .editor-panel {
+    width: 50%;
+    height: auto;
+    position: static;
+    top: auto;
+  }
+  .editor-panel
+  .code-block
+  {font-size: 8px;}
+
+  .headline-side .headline {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    height: auto;
+    font-size:14vw;
+    text-align: center;
+  }
+  .headline-side .subhead
+  {
+    font-size : 3vw;
+    text-align: center;
+  }
+
+  .skills-hero::before,
+  .skills-hero::after {
+    display: none;
+  }
+}
