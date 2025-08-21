@@ -1,4 +1,3 @@
-@import './components/image-comparison.css';
 @import './mobile.css';
 
 .portfolio-background {
@@ -12,7 +11,16 @@
   font-weight: 900;
   line-height: 1;
   text-transform: uppercase;
-  
+}
+
+.animated-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-line {
+  display: block;
+  line-height: 1;
 }
 
 .typing-smooth {
@@ -22,36 +30,46 @@
 }
 
 .portfolio-header {
+  position: absolute;
   width: 45vw;
   height: 100vh;
   margin-top: 0;
-  position: absolute;
-  top: 0;
-  left: 2.5vw;
   display: flex;
   align-items: center;
 }
 
 .second-portfolio-header {
+  position: absolute;
   width: 45vw;
   height: 100vh;
   margin-top: 0;
-  position: absolute;
-  top: 100vh;
-  right: 2.5vw;
   display: flex;
   align-items: center;
 }
 
 .third-portfolio-header {
-    width: 45vw;
-    height: 100vh;
-    margin-top: 0;
-    position: absolute;
-    top: 200vh;
-    left: 2.5vw;
-    display: flex;
-    align-items: center;
+  position: absolute;
+  width: 45vw;
+  height: 100vh;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Header positioning within each minipage */
+.portfolio-minipage:nth-child(1) .portfolio-header {
+  top: 0;
+  left: 2.5vw;
+}
+
+.portfolio-minipage:nth-child(2) .second-portfolio-header {
+  top: 0;
+  right: 2.5vw;
+}
+
+.portfolio-minipage:nth-child(3) .third-portfolio-header {
+  top: 0;
+  left: 2.5vw;
 }
 
 .react-type-animation-cursor {
@@ -63,4 +81,37 @@
 @keyframes blink {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
+}
+
+.portfolio-minipage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.minipage-visual {
+  position: absolute;
+  width: 45vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* First section - visual on the right */
+.portfolio-minipage:nth-child(1) .minipage-visual {
+  top: 0;
+  right: 2.5vw;
+}
+
+/* Second section - visual on the left */
+.portfolio-minipage:nth-child(2) .minipage-visual {
+  top: 0;
+  left: 2.5vw;
+}
+
+/* Third section - visual on the right */
+.portfolio-minipage:nth-child(3) .minipage-visual {
+  top: 0;
+  right: 2.5vw;
 }

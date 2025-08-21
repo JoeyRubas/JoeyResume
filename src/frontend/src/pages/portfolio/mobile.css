@@ -4,43 +4,14 @@
     .portfolio-background { height: 300vh !important; }
     .big-text { font-size: 8vw !important; line-height: 1 !important; }
     
-    .portfolio-header {
-        width: 45vw !important;
+    .portfolio-minipage {
+        position: relative !important;
+        width: 100vw !important;
         height: 100vh !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 2.5vw !important;
-        display: flex !important;
-        align-items: center !important;
-        margin-top: 0 !important;
     }
     
-    .second-portfolio-header {
-        width: 45vw !important;
-        height: 100vh !important;
+    .minipage-visual {
         position: absolute !important;
-        top: 100vh !important;
-        right: 2.5vw !important;
-        display: flex !important;
-        align-items: center !important;
-        margin-top: 0 !important;
-    }
-    
-    .third-portfolio-header {
-        width: 45vw !important;
-        height: 100vh !important;
-        position: absolute !important;
-        top: 200vh !important;
-        left: 2.5vw !important;
-        display: flex !important;
-        align-items: center !important;
-        margin-top: 0 !important;
-    }
-    
-    .image-comparison-widget {
-        position: absolute !important;
-        top: 0 !important;
-        right: 2.5vw !important;
         width: 45vw !important;
         height: 100vh !important;
         display: flex !important;
@@ -48,24 +19,45 @@
         justify-content: center !important;
     }
     
-    .mock-ide {
-        position: absolute !important;
-        top: 100vh !important;
-        left: 2.5vw !important;
-        width: 45vw !important;
-        height: 100vh !important;
+    .portfolio-minipage:nth-child(1) .minipage-visual {
+        top: 0 !important;
+        right: 2.5vw !important;
     }
     
-    .mock-dashboard {
-        position: absolute !important;
-        top: 200vh !important;
+    .portfolio-minipage:nth-child(2) .minipage-visual {
+        top: 0 !important;
+        left: 2.5vw !important;
+    }
+    
+    .portfolio-minipage:nth-child(3) .minipage-visual {
+        top: 0 !important;
         right: 2.5vw !important;
+    }
+    
+    .portfolio-header, .second-portfolio-header, .third-portfolio-header {
+        position: absolute !important;
         width: 45vw !important;
         height: 100vh !important;
         display: flex !important;
         align-items: center !important;
-        justify-content: center !important;
+        margin-top: 0 !important;
     }
+    
+    .portfolio-minipage:nth-child(1) .portfolio-header {
+        top: 0 !important;
+        left: 2.5vw !important;
+    }
+    
+    .portfolio-minipage:nth-child(2) .second-portfolio-header {
+        top: 0 !important;
+        right: 2.5vw !important;
+    }
+    
+    .portfolio-minipage:nth-child(3) .third-portfolio-header {
+        top: 0 !important;
+        left: 2.5vw !important;
+    }
+    
 }
 
 /* Tablet landscape: side-by-side layout */
@@ -73,12 +65,36 @@
     .portfolio-background { height: 100vh !important; }
     .big-text { font-size: 6vw !important; line-height: 1.1 !important; }
     
+    .portfolio-minipage {
+        position: absolute !important;
+        width: 33.33vw !important;
+        height: 100vh !important;
+        top: 0 !important;
+    }
+    
+    .portfolio-minipage:nth-child(1) { left: 0 !important; }
+    .portfolio-minipage:nth-child(2) { left: 33.33vw !important; }
+    .portfolio-minipage:nth-child(3) { left: 66.66vw !important; }
+    
+    .minipage-visual {
+        position: absolute !important;
+        width: 100% !important;
+        height: calc((100vh - 48px) / 2) !important;
+        top: calc(48px + (100vh - 48px) / 2) !important;
+        left: 0 !important;
+        right: auto !important;
+        box-sizing: border-box !important;
+        padding: 1vw !important;
+    }
+    
     /* Three sections side by side - accounting for header */
     .portfolio-header, .second-portfolio-header, .third-portfolio-header {
         position: absolute !important;
-        width: 33.33vw !important;
+        width: 100% !important;
         height: calc((100vh - 48px) / 2) !important;
         top: 48px !important;
+        left: 0 !important;
+        right: auto !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -87,22 +103,6 @@
         padding: 2vw !important;
         margin-top: 0 !important;
     }
-    .portfolio-header { left: 0 !important; }
-    .second-portfolio-header { left: 33.33vw !important; }
-    .third-portfolio-header { left: 66.66vw !important; }
-    
-    /* Widgets positioned in bottom half of their sections */
-    .image-comparison-widget, .mock-ide, .mock-dashboard {
-        position: absolute !important;
-        width: 33.33vw !important;
-        height: calc((100vh - 48px) / 2) !important;
-        top: calc(48px + (100vh - 48px) / 2) !important;
-        box-sizing: border-box !important;
-        padding: 1vw !important;
-    }
-    .image-comparison-widget { left: 0 !important; }
-    .mock-ide { left: 33.33vw !important; }
-    .mock-dashboard { left: 66.66vw !important; }
     
     .image-comparison-inner { width: 95% !important; height: auto !important; max-height: calc((100vh - 48px) / 2 * 0.7) !important; }
 }
@@ -112,11 +112,33 @@
     .portfolio-background { height: 300vh !important; }
     .big-text { font-size: 8vw !important; line-height: 1.2 !important; }
     
+    .portfolio-minipage {
+        position: absolute !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        left: 0 !important;
+    }
+    
+    .portfolio-minipage:nth-child(1) { top: 0 !important; }
+    .portfolio-minipage:nth-child(2) { top: 100vh !important; }
+    .portfolio-minipage:nth-child(3) { top: 200vh !important; }
+    
+    .minipage-visual {
+        position: absolute !important;
+        width: 90vw !important;
+        height: calc((100vh - 48px) / 2) !important;
+        top: calc(48px + (100vh - 48px) / 2) !important;
+        left: 5vw !important;
+        right: auto !important;
+        box-sizing: border-box !important;
+    }
+    
     /* Three sections stacked vertically - accounting for header height */
     .portfolio-header, .second-portfolio-header, .third-portfolio-header {
         position: absolute !important;
-        width: 100vw !important;
+        width: 100% !important;
         height: calc((100vh - 48px) / 2) !important;
+        top: 48px !important;
         left: 0 !important;
         display: flex !important;
         align-items: center !important;
@@ -126,21 +148,6 @@
         padding: 5vw !important;
         margin-top: 0 !important;
     }
-    .portfolio-header { top: 48px !important; }
-    .second-portfolio-header { top: calc(100vh + 48px) !important; }
-    .third-portfolio-header { top: calc(200vh + 48px) !important; }
-    
-    /* Widgets in bottom half of each section - accounting for header */
-    .image-comparison-widget, .mock-ide, .mock-dashboard {
-        position: absolute !important;
-        width: 90vw !important;
-        height: calc((100vh - 48px) / 2) !important;
-        left: 5vw !important;
-        box-sizing: border-box !important;
-    }
-    .image-comparison-widget { top: calc(48px + (100vh - 48px) / 2) !important; }
-    .mock-ide { top: calc(100vh + 48px + (100vh - 48px) / 2) !important; }
-    .mock-dashboard { top: calc(200vh + 48px + (100vh - 48px) / 2) !important; }
     
     .image-comparison-inner { width: 95% !important; height: auto !important; max-height: calc((100vh - 48px) / 2 * 0.8) !important; }
 }
@@ -149,5 +156,5 @@
 @media (max-width: 480px) {
     .big-text { font-size: 12vw !important; }
     .portfolio-header, .second-portfolio-header, .third-portfolio-header { padding: 8vw !important; }
-    .image-comparison-widget, .mock-ide, .mock-dashboard { width: 95vw !important; left: 2.5vw !important; }
+    .minipage-visual { width: 95vw !important; left: 2.5vw !important; }
 }

@@ -1,4 +1,9 @@
-.skills-page { min-height: 100%; font-family: 'IBM Plex Sans', sans-serif; color: var(--ink); }
+.skills-page { 
+  min-height: 100%; 
+  font-family: 'IBM Plex Sans', sans-serif; 
+  color: var(--ink); 
+  scroll-behavior: smooth;
+}
 
 .skills-hero {
   display: grid;
@@ -6,9 +11,20 @@
   gap: 4rem;
   align-items: center;
   max-width: 80vw;
-  margin: 6vh auto 4rem;
-  padding: 0 2rem;
+  margin: 6vh auto 2rem;
+  padding: 0 2rem 4rem;
   position: relative; 
+  scroll-margin-top: 2rem;
+}
+
+.hero-scroll-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  grid-column: 1 / -1;
 }
 .skills-hero::before, .skills-hero::after {
   content: "";
@@ -94,9 +110,10 @@
 
 .group-section {
   max-width: var(--container-max-width);
-  margin: 28px auto;
-  padding: 3rem 2rem 0;
+  margin: 16px auto;
+  padding: 1.5rem 2rem 2rem;
   position: relative;
+  scroll-margin-top: 2rem;
 }
 .group-section::before {
   content: "";
@@ -107,7 +124,7 @@
   height: 1px;
   background: linear-gradient(to right, transparent, #b4b4b4, transparent);
 }
-.group-section.last { padding-bottom: 56px; }
+.group-section.last { padding-bottom: 3rem; }
 .group-title {
   font-family: 'Inter', sans-serif;
   font-weight: 900; letter-spacing: .08em; font-size: 12px; color: var(--muted);

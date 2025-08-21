@@ -1,7 +1,7 @@
 
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
-import "./ide.css";
+import "./styles.css";
 
 const CodeTyper: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
   const codeRef = React.useRef<HTMLDivElement>(null);
@@ -48,7 +48,7 @@ const CodeTyper: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
   );
 };
 
-export const MockIDE: React.FC<{ ideVisible: boolean }> = ({ ideVisible }) => {
+export const MockCode: React.FC<{ ideVisible: boolean }> = ({ ideVisible }) => {
   const ideRef = React.useRef<HTMLDivElement>(null);
   return (
     <div className="mock-ide" ref={ideRef}>
@@ -124,4 +124,4 @@ export const MockIDE: React.FC<{ ideVisible: boolean }> = ({ ideVisible }) => {
   );
 };
 
-export default MockIDE;
+export default MockCode;

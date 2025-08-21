@@ -1,5 +1,5 @@
 import React from "react";
-import "./dashboard.css";
+import "./styles.css";
 import { motion } from "framer-motion";
 
 interface MockDashboardProps {

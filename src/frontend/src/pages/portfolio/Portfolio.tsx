@@ -1,9 +1,61 @@
 import "./styles.css";
 import React from "react";
-import { TypeAnimation } from "react-type-animation";
-import MockIDE from "./components/mockIde";
-import MockDashboard from "./components/mockDashboard";
-import ImageComparison from "./components/ImageComparison";
+import { motion } from "framer-motion";
+import MockCode from "../../components/MockIDE/MockCode";
+import MockDashboard from "../../components/MockDashboard/mockDashboard";
+import ImageComparison from "../../components/ImageCompare/ImageComparison";
+
+const textVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 40,
+    filter: "blur(8px)"
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 1.5,
+      ease: "easeOut" as const
+    }
+  }
+};
+
+const AnimatedText: React.FC<{ 
+  lines: string[], 
+  visible: boolean, 
+  onComplete?: () => void 
+}> = ({ lines, visible, onComplete }) => {
+  const [hasAnimated, setHasAnimated] = React.useState(false);
+  const [shouldStayVisible, setShouldStayVisible] = React.useState(false);
+  
+  React.useEffect(() => {
+    if (visible && !hasAnimated) {
+      setHasAnimated(true);
+      setShouldStayVisible(true);
+      if (onComplete) {
+        const timer = setTimeout(onComplete, 1500);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [visible, hasAnimated, onComplete]);
+
+  return (
+    <motion.div
+      className="big-text animated-text"
+      variants={textVariants}
+      initial="hidden"
+      animate={shouldStayVisible ? "visible" : "hidden"}
+    >
+      {lines.map((line, index) => (
+        <div key={index} className="text-line">
+          {line}
+        </div>
+      ))}
+    </motion.div>
+  );
+};
 
 
 const Portfolio: React.FC = () => {
@@ -18,6 +70,10 @@ const Portfolio: React.FC = () => {
   const [firstTextFinished, setFirstTextFinished] = React.useState(false);
   const [secondTextFinished, setSecondTextFinished] = React.useState(false);
   const [thirdTextFinished, setThirdTextFinished] = React.useState(false);
+
+  const [firstTriggered, setFirstTriggered] = React.useState(false);
+  const [secondTriggered, setSecondTriggered] = React.useState(false);
+  const [thirdTriggered, setThirdTriggered] = React.useState(false);
 
   const [isLandscapeTablet, setIsLandscapeTablet] = React.useState(false);
 
@@ -39,18 +95,33 @@ const Portfolio: React.FC = () => {
 
   React.useEffect(() => {
     if (isLandscapeTablet) {
-      setFirstTextVisible(true);
-      const timer1 = setTimeout(() => setSecondTextVisible(true), 2000);
-      const timer2 = setTimeout(() => setThirdTextVisible(true), 4000);
+      if (!firstTriggered) {
+        setFirstTextVisible(true);
+        setFirstTriggered(true);
+      }
+      const timer1 = setTimeout(() => {
+        if (!secondTriggered) {
+          setSecondTextVisible(true);
+          setSecondTriggered(true);
+        }
+      }, 2000);
+      const timer2 = setTimeout(() => {
+        if (!thirdTriggered) {
+          setThirdTextVisible(true);
+          setThirdTriggered(true);
+        }
+      }, 4000);
       return () => {
         clearTimeout(timer1);
         clearTimeout(timer2);
       };
-    } else {
+    } else if (!firstTriggered) {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
             setFirstTextVisible(true);
+            setFirstTriggered(true);
+            observer.disconnect(); 
           }
         },
         { threshold: 0.3 }
@@ -62,10 +133,10 @@ const Portfolio: React.FC = () => {
 
       return () => observer.disconnect();
     }
-  }, [isLandscapeTablet]);
+  }, [isLandscapeTablet, firstTriggered]);
 
   React.useEffect(() => {
-    if (isLandscapeTablet) {
+    if (isLandscapeTablet || secondTriggered) {
       return;
     }
 
@@ -73,6 +144,8 @@ const Portfolio: React.FC = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setSecondTextVisible(true);
+          setSecondTriggered(true);
+          observer.disconnect(); 
         }
       },
       { threshold: 0.3 }
@@ -83,10 +156,10 @@ const Portfolio: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, [isLandscapeTablet]);
+  }, [isLandscapeTablet, secondTriggered]);
 
   React.useEffect(() => {
-    if (isLandscapeTablet) {
+    if (isLandscapeTablet || thirdTriggered) {
       return;
     }
 
@@ -94,6 +167,8 @@ const Portfolio: React.FC = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setThirdTextVisible(true);
+          setThirdTriggered(true);
+          observer.disconnect(); // Disconnect immediately after triggering
         }
       },
       { threshold: 0.3 }
@@ -104,93 +179,49 @@ const Portfolio: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, [isLandscapeTablet]);
+  }, [isLandscapeTablet, thirdTriggered]);
 
   return (
     <div className="portfolio-background">
+      <div className="portfolio-minipage">
       <div className="portfolio-header" ref={firstSectionRef}>
-        {firstTextVisible && (
-          <TypeAnimation
-            className="big-text typing-smooth"
-            speed={35}          
-            cursor={false}
-            repeat={0}
-            sequence={[
-              "Bringing", 100,  
-              "Bringing\nLegacy", 100,
-              "Bringing\nLegacy\nApplications", 100,
-              "Bringing\nLegacy\nApplications\nBack to Life", 100,
-              () => setFirstTextFinished(true),
-            ]}
-          />
-        )}
-        <div className="big-text typing-smooth" style={{ 
-          visibility: 'hidden', 
-          position: 'absolute',
-          pointerEvents: 'none',
-          whiteSpace: 'pre-line'
-        }}>
-          Bringing<br />Legacy<br />Applications<br />Back to Life
+        <AnimatedText 
+          lines={["Bringing", "Legacy", "Applications", "Back to Life"]}
+          visible={firstTextVisible}
+          onComplete={() => setFirstTextFinished(true)}
+        />
         </div>
-      </div>
-
+      <div className="minipage-visual">
       <ImageComparison startPct={98} animateOnFinish={firstTextFinished} />
-
+        </div>
+        </div>
+      
+      <div className="portfolio-minipage">
       <div className="second-portfolio-header big-text" ref={secondSectionRef}>
-        {secondTextVisible && (
-          <TypeAnimation
-            className="typing-smooth"
-            speed={35}          
-            cursor={false}
-            repeat={0}
-            sequence={[
-              "Scaling", 100,
-              "Scaling\nServices", 100,
-              "Scaling\nServices\nto Enterprise", 100,
-              "Scaling\nServices\nto Enterprise\nDemands", 100,
-              () => setSecondTextFinished(true),
-            ]}
-          />
-        )}
-        <div className="typing-smooth" style={{ 
-          visibility: 'hidden', 
-          position: 'absolute',
-          pointerEvents: 'none',
-          whiteSpace: 'pre-line'
-        }}>
-          Scaling<br />Services<br />to Enterprise<br />Demands
-        </div>
+        <AnimatedText 
+          lines={["Scaling", "Services", "to Enterprise", "Demands"]}
+          visible={secondTextVisible}
+          onComplete={() => setSecondTextFinished(true)}
+        />
       </div>
+        <div className="minipage-visual">
+      {secondTextVisible && <MockCode ideVisible={secondTextVisible} />}
+      </div>
+        </div>
 
-      {secondTextVisible && <MockIDE ideVisible={secondTextVisible} />}
-
+      <div className="portfolio-minipage">
       <div className="third-portfolio-header big-text" ref={thirdSectionRef}>
-        {thirdTextVisible && (
-          <TypeAnimation
-            className="typing-smooth"
-            speed={35}          
-            cursor={false}
-            repeat={0}
-            sequence={[
-              "Data-Driven", 100,
-              "Data-Driven\nOptimization", 100,
-              "Data-Driven\nOptimization\nDelivers", 100,
-              "Data-Driven\nOptimization\nDelivers\nResults", 100,
-              () => setThirdTextFinished(true),
-            ]}
-          />
-        )}
-        <div className="typing-smooth" style={{ 
-          visibility: 'hidden', 
-          position: 'absolute',
-          pointerEvents: 'none',
-          whiteSpace: 'pre-line'
-        }}>
-          Data-Driven<br />Optimization<br />Delivers<br />Results
-        </div>
+        <AnimatedText 
+          lines={["Data-Driven", "Optimization", "Delivers", "Results"]}
+          visible={thirdTextVisible}
+          onComplete={() => setThirdTextFinished(true)}
+        />
       </div>
 
+      <div className="minipage-visual">
       {thirdTextVisible && <MockDashboard dashboardVisible={thirdTextVisible} />}
+      </div>
+      </div>
     </div>
   );
 };

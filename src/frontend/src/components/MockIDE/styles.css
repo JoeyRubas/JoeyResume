@@ -1,9 +1,6 @@
 .mock-ide {
-    position: absolute;  
-    top: 100vh;
-    left: 2.5vw;
-    width: 45vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: #1e1e1e; 

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useMotionValue, useTransform, animate, useMotionValueEvent } from "framer-motion";
-import "./image-comparison.css";
+import "./styles.css";
 
 interface ImageComparisonProps {
   startPct?: number;

@@ -4,6 +4,7 @@ import { useNavigate } from "@tanstack/react-router";
 import apiService from "../../api/service";
 import { Skill } from "../../types/skill";
 import { useAuth } from "../../hooks/useAuth";
+import ScrollIndicator from "../../components/Scroll/ScrollIndicator";
 import "./styles.css";
 
 function levelToString(level: number): string {
@@ -195,7 +196,7 @@ const Skills: React.FC = () => {
 
   return (
     <div className="skills-page">
-      <section className="skills-hero">
+      <section id="skills-hero" className="skills-hero">
         <div className="editor-panel">
           <div className="editor-chrome">
             <span className="dot red" />
@@ -211,6 +212,10 @@ const Skills: React.FC = () => {
         <div className="headline-side">
           <h1 className="headline">SKILLS ON THE CUTTING EDGE</h1>
           <p className="subhead">What I use to ship at scale</p>
+        </div>
+        
+        <div className="hero-scroll-container">
+          <ScrollIndicator targetId="skills-core" bottom="20px" />
         </div>
       </section>
 
@@ -236,17 +241,17 @@ const Skills: React.FC = () => {
       )}
 
       {/* Grouped grids */}
-      <section className="group-section">
+      <section id="skills-core" className="group-section">
         <h2 className="group-title">Core</h2>
         <div className="skills-grid">{grouped.Core.map(SkillCard)}</div>
       </section>
 
-      <section className="group-section">
+      <section id="skills-use" className="group-section">
         <h2 className="group-title">Use</h2>
         <div className="skills-grid">{grouped.Use.map(SkillCard)}</div>
       </section>
 
-      <section className="group-section last">
+      <section id="skills-learning" className="group-section last">
         <h2 className="group-title">Learning</h2>
         <div className="skills-grid">{grouped.Learning.map(SkillCard)}</div>
       </section>
