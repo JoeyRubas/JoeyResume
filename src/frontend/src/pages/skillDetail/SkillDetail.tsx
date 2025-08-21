@@ -166,8 +166,6 @@ const SkillDetail: React.FC = () => {
                     </Typography>
                 </Box>
             </Paper>
-            
-            {/* GitHub Language Statistics Chart */}
             <LanguageStatsChart languageName={skill.name} />
         </Box>
     );

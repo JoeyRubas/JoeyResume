@@ -1,64 +1,138 @@
+/* Use your existing font imports globally (Inter recommended for UI labels) */
+
 .nav-wrapper {
-    display: flex;
-    margin-top : 2vh;
-    justify-content: center;
-    align-items: center;
+  position: sticky; /* sticks on scroll */
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  background:
+    linear-gradient(to right, transparent, #b4b4b4, transparent) top / 100% 1px no-repeat,
+    linear-gradient(to right, transparent, #b4b4b4, transparent) bottom / 100% 1px no-repeat,
+    transparent;
+  z-index: 100;
 }
+
+/* blueprint vertical rails hugging the nav region */
+.nav-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #e0e6ef,
+    #e0e6ef 22px,
+    transparent 22px,
+    transparent 44px
+  );
+  opacity: .8;
+  pointer-events: none;
+}
+.nav-rail-left { left: clamp(8px, 4vw, 48px); }
+.nav-rail-right { right: clamp(8px, 4vw, 48px); }
 
 .navigation_container {
-    background : white;
-    top: 1 vh;
-    left : 25 vw;
-    width : 50vw;
-    height : 10vh;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 8px 32px 0 rgba(60, 60, 120, 0.25);
-    color : black;
+  position: relative;
+  width: clamp(280px, 54vw, 820px);
+  height: 52px;
+  border-radius: 999px;
+  color: #0d1623;
+
+  /* glassy capsule */
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: saturate(150%) blur(10px);
+  border: 1px solid rgba(210, 220, 235, 0.9);
+  box-shadow: 0 10px 30px rgba(60, 60, 120, 0.18);
 }
 
+.nav-inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  /* subtle inner hairlines */
+  background:
+    linear-gradient(to right, transparent, rgba(0,0,0,.06), transparent) top / 100% 1px no-repeat,
+    linear-gradient(to right, transparent, rgba(0,0,0,.06), transparent) bottom / 100% 1px no-repeat;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+/* horizontally scrollable on small screens with fade edges */
 .nav-links {
-    display: flex;
-    gap: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
 }
+.nav-links::-webkit-scrollbar { display: none; }
 
-.nav-auth {
-    display: flex;
-    align-items: center;
+/* animated active pill */
+.active-indicator {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: calc(100% - 12px);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #17263a, #2a3e59);
+  box-shadow: 0 6px 18px rgba(23, 38, 58, 0.25);
+  transform: translateX(0);
+  width: 0;
+  opacity: 0;
+  transition:
+    transform 220ms cubic-bezier(.2,.8,.2,1),
+    width 220ms cubic-bezier(.2,.8,.2,1),
+    opacity 180ms ease;
 }
+.active-indicator.show { opacity: 1; }
 
 .link {
-    padding: 12px 20px;
-    text-decoration: none;
-    color: inherit;
-    font-weight: 600;
-    border-radius: 4px;
-    transition: all 0.2s ease-in-out;
+  position: relative;
+  z-index: 1; /* stay above indicator */
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #0d1623;
+  font-weight: 800;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 14px;
+  border-radius: 999px;
+  transition: color .15s ease, transform .15s ease;
+  white-space: nowrap;
+}
+.link:hover { transform: translateY(-1px); }
+.link.active { color: #ffffff; }
+
+/* subtle hover background when not covered by pill */
+.link:not(.active):hover {
+  background: rgba(13,22,35,0.06);
 }
 
-.link:hover {
-    background-color: #f1f5f9;
+/* auth link styled as ghost if not active */
+.auth-link:not(.active) {
+  color: #2a3646;
+  font-weight: 700;
+  border: 1px solid rgba(210, 220, 235, 0.8);
+  background: rgba(255,255,255,.65);
 }
 
-.link.active {
-    color: white;
-    background-color: black;
+/* Focus visible (keyboard a11y) */
+.link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(23,38,58,.25);
 }
 
+/* Mobile tweaks */
 @media (max-width: 768px) {
-    .navigation_container {
-        width: 95%;
-        padding: 6px 12px;
-    }
-    
-    .link {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-    
-    .nav-links {
-        gap: 2px;
-    }
+  .navigation_container {
+    width: calc(100vw - 24px);
+    height: 48px;
+  }
+  .link { padding: 9px 12px; font-size: 13px; }
 }

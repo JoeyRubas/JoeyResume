@@ -31,7 +31,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, loginMethod }) =>
     setError('');
 
     try {
-      // Use the passed loginMethod if available, otherwise fall back to authService
       const result = loginMethod 
         ? await loginMethod(password)
         : await authService.login(password);

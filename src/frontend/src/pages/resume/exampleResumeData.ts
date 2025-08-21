@@ -108,5 +108,17 @@ export const exampleResume: ResumeType = {
         },
       ]
     }
-  ]
+  ],
+  quickFacts: [
+  "Software Engineer I at CarMax (.NET + Azure)",
+  "UVA CS & Math double major (recent grad)",
+  "Lead dev for APDA (Debate Software) — ~2,000+ users/yr",
+  "Modernized legacy apps: React migration, CI/CD, logging/monitoring",
+  "Shipped production services with Python/Django & TypeScript/React",
+  "Deployed to Azure and Google Cloud Run; Docker-first workflows",
+  "Strengths: Python/Django, TypeScript/React, SQL/Postgres",
+  "Focus areas: reliability, scalability, and developer experience",
+  "APDA Tech Committee contributor & open-source maintainer"
+]
+
 };

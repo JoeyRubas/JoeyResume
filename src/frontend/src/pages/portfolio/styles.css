@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import './components/image-comparison.css';
 @import './mobile.css';
 
 .portfolio-background {
-  width: 100vw;
   height: 300vh;
   position: relative;
 }
@@ -14,6 +12,7 @@
   font-weight: 900;
   line-height: 1;
   text-transform: uppercase;
+  
 }
 
 .typing-smooth {

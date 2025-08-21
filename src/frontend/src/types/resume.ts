@@ -11,6 +11,7 @@ export type ResumeType = {
     name : string;
     contacts : ResumeContact[];
     sections : ResumeSection[];
+    quickFacts?: string[];
 }
 
 export type ResumeContact = {

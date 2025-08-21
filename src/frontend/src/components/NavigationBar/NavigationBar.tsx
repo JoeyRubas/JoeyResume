@@ -1,46 +1,131 @@
-import React from 'react';
-import './styles.css';
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, Link } from "@tanstack/react-router";
-import { Paper, IconButton, Tooltip } from '@mui/material';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from "../../hooks/useAuth";
+import "./styles.css";
 
-const NavigationBar = () => {
-    const location = useLocation();
-    const { isAuthenticated, logout } = useAuth();
+type NavItem = { to: string; label: string; match?: "exact" | "startsWith" };
 
-    const handleLogout = async () => {
-        await logout();
+const NAV_ITEMS: NavItem[] = [
+  { to: "/", label: "Home", match: "exact" },
+  { to: "/skills", label: "Skills", match: "startsWith" },
+  { to: "/resume", label: "Resume", match: "startsWith" },
+  { to: "/portfolio", label: "Portfolio", match: "startsWith" },
+];
+
+const NavigationBar: React.FC = () => {
+  const location = useLocation();
+  const { isAuthenticated, logout } = useAuth();
+
+  const linksRef = useRef<HTMLDivElement | null>(null);
+  const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [indicator, setIndicator] = useState<{ left: number; width: number; visible: boolean }>({
+    left: 0,
+    width: 0,
+    visible: false,
+  });
+
+  const activePath = useMemo(() => {
+    const path = location.pathname;
+    for (const item of NAV_ITEMS) {
+      if (item.match === "startsWith") {
+        if (path.startsWith(item.to)) return item.to;
+      } else {
+        if (path === item.to) return item.to;
+      }
+    }
+    return path; // fallback
+  }, [location.pathname]);
+
+  const updateIndicator = () => {
+    const container = linksRef.current;
+    const activeEl = itemRefs.current[activePath];
+    if (!container || !activeEl) {
+      setIndicator((s) => ({ ...s, visible: false }));
+      return;
+    }
+    const cRect = container.getBoundingClientRect();
+    const aRect = activeEl.getBoundingClientRect();
+    const left = aRect.left - cRect.left + container.scrollLeft;
+    const width = aRect.width;
+    setIndicator({ left, width, visible: true });
+  };
+
+  useEffect(() => {
+    updateIndicator();
+    const handle = () => updateIndicator();
+    window.addEventListener("resize", handle, { passive: true });
+    // Recompute on font load / images / route change
+    const t = setTimeout(handle, 50);
+    return () => {
+      window.removeEventListener("resize", handle);
+      clearTimeout(t);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePath]);
 
-    return (
-        <div className='nav-wrapper'>
-            <nav className="navigation_container">
-                <div className="nav-links">
-                    <Link to="/" className={`link ${location.pathname === '/' ? 'active' : ''}`}>
-                        Home
-                    </Link>
-                    <Link to="/skills" className={`link ${location.pathname === '/skills' ? 'active' : ''}`}>
-                        Skills
-                    </Link>
-                    <Link to="/resume" className={`link ${location.pathname === '/resume' ? 'active' : ''}`}>
-                        Resume
-                    </Link>
-                    <Link to="/portfolio" className={`link ${location.pathname === '/portfolio' ? 'active' : ''}`}>
-                        Portfolio
-                    </Link>
-                    {isAuthenticated ? (
-                        <Link to="/login" className={`link auth-link`} onClick={async (e) => { e.preventDefault(); await handleLogout(); }}>
-                            Logout
-                        </Link>
-                    ) : (
-                        <Link to="/login" className={`link auth-link ${location.pathname === '/login' ? 'active' : ''}`}>
-                            Login
-                        </Link>
-                    )}
-                    </div>
-            </nav>
+  const handleLogout = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await logout();
+  };
+
+  return (
+    <div className="nav-wrapper">
+      
+      <div className="nav-rail nav-rail-left" aria-hidden="true" />
+      <div className="nav-rail nav-rail-right" aria-hidden="true" />
+
+      <nav className="navigation_container" aria-label="Primary">
+        
+        <div className="nav-inner">
+          <div className="nav-links" ref={linksRef}>
+            
+            <span
+              className={`active-indicator ${indicator.visible ? "show" : ""}`}
+              style={{ transform: `translateX(${indicator.left}px)`, width: indicator.width }}
+              aria-hidden="true"
+            />
+            {NAV_ITEMS.map((item) => {
+              const isActive =
+                item.match === "startsWith"
+                  ? location.pathname.startsWith(item.to)
+                  : location.pathname === item.to;
+              return (
+                <span
+                  key={item.to}
+                  ref={(el) => (itemRefs.current[item.to] = el)}
+                  style={{ display: "inline-block" }}
+                >
+                  <Link
+                    to={item.to}
+                    className={`link ${isActive ? "active" : ""}`}
+                  >
+                    {item.label}
+                  </Link>
+                </span>
+              );
+            })}
+            {isAuthenticated ? (
+              <a href="/logout" className="link auth-link" onClick={handleLogout}>
+                Logout
+              </a>
+            ) : (
+              <span
+                ref={(el) => (itemRefs.current["/login"] = el)}
+                style={{ display: "inline-block" }}
+              >
+                <Link
+                  to="/login"
+                  className={`link auth-link ${location.pathname === "/login" ? "active" : ""}`}
+                >
+                  Login
+                </Link>
+              </span>
+            )}
+          </div>
         </div>
-    );
+      </nav>
+    </div>
+  );
 };
 
 export default NavigationBar;
