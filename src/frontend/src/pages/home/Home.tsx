@@ -27,7 +27,7 @@ const Home: React.FC = () => {
           </p>
 
           <div className="cta-row">
-            <a className="btn primary" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a className="btn primary" href="/resume" target="_blank" rel="noopener noreferrer">
               View Resume
             </a>
             <a className="btn ghost" href="/contact">
