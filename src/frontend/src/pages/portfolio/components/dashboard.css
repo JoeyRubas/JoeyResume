@@ -1,14 +1,13 @@
-/*  */
 .mock-dashboard {
     position: absolute;  
     top: 200vh;
     right: 2.5vw;
     width: 45vw;
     height: 100vh;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     background: #0f1419; 
-    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.25);
+    box-shadow: var(--shadow-2xl);
     border: 2px solid #21262d;
     display: flex;
     flex-direction: column;

@@ -1,254 +1,153 @@
-/* Tablet/iPad Mini Responsive Styles */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .portfolio-background {
-        height: 350vh !important;
-    }
-
-    .big-text {
-        font-size: 10vw !important;
-        line-height: 1.2 !important;
-    }
-
-    .portfolio-header,
-    .second-portfolio-header, 
-    .third-portfolio-header {
+/* Desktop and large screens: keep original layout */
+@media (min-width: 1025px) {
+    /* Desktop styles - maintain original layout */
+    .portfolio-background { height: 300vh !important; }
+    .big-text { font-size: 8vw !important; line-height: 1 !important; }
+    
+    .portfolio-header {
+        width: 45vw !important;
+        height: 100vh !important;
         position: absolute !important;
-        width: 80vw !important;
-        height: 50vh !important;
-        left: 10vw !important;
-        right: 10vw !important;
-        text-align: center !important;
-        justify-content: center !important;
+        top: 0 !important;
+        left: 2.5vw !important;
         display: flex !important;
         align-items: center !important;
-        box-sizing: border-box !important;
+        margin-top: 0 !important;
     }
-
-    .portfolio-header {
-        top: 0 !important;
-    }
-
+    
     .second-portfolio-header {
+        width: 45vw !important;
+        height: 100vh !important;
+        position: absolute !important;
         top: 100vh !important;
+        right: 2.5vw !important;
+        display: flex !important;
+        align-items: center !important;
+        margin-top: 0 !important;
     }
-
+    
     .third-portfolio-header {
+        width: 45vw !important;
+        height: 100vh !important;
+        position: absolute !important;
         top: 200vh !important;
+        left: 2.5vw !important;
+        display: flex !important;
+        align-items: center !important;
+        margin-top: 0 !important;
     }
-
-    .site-compare-widget,
+    
+    .image-comparison-widget {
+        position: absolute !important;
+        top: 0 !important;
+        right: 2.5vw !important;
+        width: 45vw !important;
+        height: 100vh !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
     .mock-ide {
         position: absolute !important;
-        width: 80vw !important;
-        height: 50vh !important;
-        left: 10vw !important;
-        right: auto !important;
-        box-sizing: border-box !important;
+        top: 100vh !important;
+        left: 2.5vw !important;
+        width: 45vw !important;
+        height: 100vh !important;
     }
-
+    
     .mock-dashboard {
         position: absolute !important;
-        width: 80vw !important;
-        height: 70vh !important;
-        left: 10vw !important;
-        right: auto !important;
-        box-sizing: border-box !important;
-        top: 250vh !important;
-    }
-
-    .site-compare-widget {
-        top: 40vh !important;
-    }
-
-    .mock-ide {
-        top: 150vh !important;
+        top: 200vh !important;
+        right: 2.5vw !important;
+        width: 45vw !important;
+        height: 100vh !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 }
 
-/* Mobile Responsive Styles */
-@media (max-width: 768px) {
-    .portfolio-background {
-        height: 350vh !important;
+/* Tablet landscape: side-by-side layout */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .portfolio-background { height: 100vh !important; }
+    .big-text { font-size: 6vw !important; line-height: 1.1 !important; }
+    
+    /* Three sections side by side - accounting for header */
+    .portfolio-header, .second-portfolio-header, .third-portfolio-header {
+        position: absolute !important;
+        width: 33.33vw !important;
+        height: calc((100vh - 48px) / 2) !important;
+        top: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+        padding: 2vw !important;
+        margin-top: 0 !important;
     }
-
-    .big-text {
-        font-size: 12vw !important;
-        line-height: 1.2 !important;
+    .portfolio-header { left: 0 !important; }
+    .second-portfolio-header { left: 33.33vw !important; }
+    .third-portfolio-header { left: 66.66vw !important; }
+    
+    /* Widgets positioned in bottom half of their sections */
+    .image-comparison-widget, .mock-ide, .mock-dashboard {
+        position: absolute !important;
+        width: 33.33vw !important;
+        height: calc((100vh - 48px) / 2) !important;
+        top: calc(48px + (100vh - 48px) / 2) !important;
+        box-sizing: border-box !important;
+        padding: 1vw !important;
     }
+    .image-comparison-widget { left: 0 !important; }
+    .mock-ide { left: 33.33vw !important; }
+    .mock-dashboard { left: 66.66vw !important; }
+    
+    .image-comparison-inner { width: 95% !important; height: auto !important; max-height: calc((100vh - 48px) / 2 * 0.7) !important; }
+}
 
-    /* Reset all positioning for mobile - simple stacked layout */
-    .portfolio-header,
-    .second-portfolio-header, 
-    .third-portfolio-header {
+/* Mobile portrait: vertical stacked layout */
+@media (max-width: 1024px) and (orientation: portrait) {
+    .portfolio-background { height: 300vh !important; }
+    .big-text { font-size: 8vw !important; line-height: 1.2 !important; }
+    
+    /* Three sections stacked vertically - accounting for header height */
+    .portfolio-header, .second-portfolio-header, .third-portfolio-header {
         position: absolute !important;
         width: 100vw !important;
-        height: 50vh !important;
+        height: calc((100vh - 48px) / 2) !important;
         left: 0 !important;
-        right: 0 !important;
-        margin-top: 0 !important;
-        padding: 0 5vw !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
         box-sizing: border-box !important;
+        padding: 5vw !important;
+        margin-top: 0 !important;
     }
-
-    .portfolio-header {
-        top: 0 !important;
-    }
-
-    .second-portfolio-header {
-        top: 100vh !important;
-    }
-
-    .third-portfolio-header {
-        top: 200vh !important;
-    }
-
-    .site-compare-widget,
-    .mock-ide {
+    .portfolio-header { top: 48px !important; }
+    .second-portfolio-header { top: calc(100vh + 48px) !important; }
+    .third-portfolio-header { top: calc(200vh + 48px) !important; }
+    
+    /* Widgets in bottom half of each section - accounting for header */
+    .image-comparison-widget, .mock-ide, .mock-dashboard {
         position: absolute !important;
         width: 90vw !important;
-        height: 50vh !important;
+        height: calc((100vh - 48px) / 2) !important;
         left: 5vw !important;
-        right: auto !important;
         box-sizing: border-box !important;
     }
-
-    .mock-dashboard {
-        position: absolute !important;
-        width: 90vw !important;
-        height: 70vh !important;
-        left: 5vw !important;
-        right: auto !important;
-        box-sizing: border-box !important;
-        top: 250vh !important;
-    }
-
-    .site-compare-widget {
-        top: 35vh !important;
-    }
-
-    .mock-ide {
-        top: 150vh !important;
-    }
-
-    /* Dashboard Mobile Fixes */
-    .mock-dashboard .dashboard-content {
-        padding: 12px !important;
-        gap: 12px !important;
-        flex: 1 !important;
-        overflow: visible !important;
-    }
-
-    .mock-dashboard .dashboard-header {
-        height: 40px !important;
-        padding: 0 12px !important;
-        flex-shrink: 0 !important;
-    }
-
-    .mock-dashboard .dashboard-title {
-        font-size: 14px !important;
-    }
-
-    .mock-dashboard .dashboard-time {
-        font-size: 11px !important;
-    }
-
-    .mock-dashboard .metric-cards { 
-        grid-template-columns: 1fr !important; 
-        gap: 10px !important; 
-    }
-
-    .mock-dashboard .metric-card { 
-        padding: 12px !important; 
-        min-height: 65px !important; 
-    }
-
-    .mock-dashboard .metric-value { 
-        font-size: 22px !important; 
-        margin-bottom: 4px !important;
-    }
-
-    .mock-dashboard .metric-label {
-        font-size: 10px !important;
-    }
-
-    .mock-dashboard .metric-icon {
-        margin-bottom: 6px !important;
-    }
-
-    .mock-dashboard .charts-section {
-        grid-template-columns: 1fr !important;
-        gap: 12px !important;
-        min-height: 0 !important;
-    }
-
-    .mock-dashboard .chart-container, 
-    .mock-dashboard .gauge-container {
-        padding: 12px !important;
-        min-height: 80px !important;
-    }
-
-    .mock-dashboard .chart-title {
-        font-size: 12px !important;
-        margin-bottom: 8px !important;
-    }
-
-    .mock-dashboard .gauge-value {
-        font-size: 16px !important;
-        bottom: 8px !important;
-    }
-
-    .mock-dashboard .line-chart {
-        min-height: 70px !important;
-        height: 70px !important;
-    }
-
-    /* IDE Mobile Fixes */
-    .mock-ide .mockSidebar { 
-        width: 100px !important; 
-        font-size: 9px !important;
-    }
-
-    .mock-ide .sidebar-header { 
-        font-size: 9px !important; 
-    }
-
-    .mock-ide .file-tree { 
-        font-size: 10px !important; 
-    }
-
-    .mock-ide .tab { 
-        padding: 3px 6px !important; 
-        font-size: 9px !important; 
-    }
-
-    .mock-ide .line-numbers { 
-        min-width: 25px !important; 
-        font-size: 10px !important; 
-    }
-
-    .mock-ide .mockNav {
-        height: 30px !important;
-    }
-
-    .mock-ide .ide-title-bar {
-        padding: 0 6px !important;
-    }
+    .image-comparison-widget { top: calc(48px + (100vh - 48px) / 2) !important; }
+    .mock-ide { top: calc(100vh + 48px + (100vh - 48px) / 2) !important; }
+    .mock-dashboard { top: calc(200vh + 48px + (100vh - 48px) / 2) !important; }
+    
+    .image-comparison-inner { width: 95% !important; height: auto !important; max-height: calc((100vh - 48px) / 2 * 0.8) !important; }
 }
 
+/* Small screens: optimize further */
 @media (max-width: 480px) {
-    .big-text {
-        font-size: 14vw !important;
-    }
-
-    .mockSidebar { 
-        width: 100px !important; 
-    }
-
-    .metric-value { 
-        font-size: 18px !important; 
-    }
+    .big-text { font-size: 12vw !important; }
+    .portfolio-header, .second-portfolio-header, .third-portfolio-header { padding: 8vw !important; }
+    .image-comparison-widget, .mock-ide, .mock-dashboard { width: 95vw !important; left: 2.5vw !important; }
 }

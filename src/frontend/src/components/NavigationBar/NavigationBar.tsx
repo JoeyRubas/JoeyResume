@@ -69,53 +69,62 @@ const NavigationBar: React.FC = () => {
   };
 
   return (
-    <div className="nav-wrapper">
-      
-      <div className="nav-rail nav-rail-left" aria-hidden="true" />
-      <div className="nav-rail nav-rail-right" aria-hidden="true" />
-
-      <nav className="navigation_container" aria-label="Primary">
+    <>
+      {/* need to keep, empty spacer for nav bar */}
+      <div className="nav-wrapper">
         
-        <div className="nav-inner">
-          <div className="nav-links" ref={linksRef}>
-            
-            <span
-              className={`active-indicator ${indicator.visible ? "show" : ""}`}
-              style={{ transform: `translateX(${indicator.left}px)`, width: indicator.width }}
-              aria-hidden="true"
-            />
-            {NAV_ITEMS.map((item) => {
-              const isActive =
-                item.match === "startsWith"
-                  ? location.pathname.startsWith(item.to)
-                  : location.pathname === item.to;
-              return (
+        <div className="nav-rail nav-rail-left" aria-hidden="true" />
+        <div className="nav-rail nav-rail-right" aria-hidden="true" />
+
+        <nav className="navigation_container" aria-label="Primary">
+          
+          <div className="nav-inner">
+            <div className="nav-links" ref={linksRef}>
+              
+              <span
+                className={`active-indicator ${indicator.visible ? "show" : ""}`}
+                style={{ transform: `translateX(${indicator.left}px)`, width: indicator.width }}
+                aria-hidden="true"
+              />
+              {NAV_ITEMS.map((item) => {
+                const isActive =
+                  item.match === "startsWith"
+                    ? location.pathname.startsWith(item.to)
+                    : location.pathname === item.to;
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className={`link ${isActive ? "active" : ""}`}
+                    ref={(el) => { itemRefs.current[item.to] = el; }}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              {isAuthenticated ? (
+                <a href="/logout" className="link auth-link" onClick={handleLogout}>
+                  Logout
+                </a>
+              ) : (
                 <Link
-                  to={item.to}
-                  className={`link ${isActive ? "active" : ""}`}
-                  ref={(el) => { itemRefs.current[item.to] = el; }}
+                  to="/login"
+                  className={`link auth-link ${location.pathname === "/login" ? "active" : ""}`}
+                  ref={(el) => { itemRefs.current["/login"] = el; }}
                 >
-                  {item.label}
+                  Login
                 </Link>
-              );
-            })}
-            {isAuthenticated ? (
-              <a href="/logout" className="link auth-link" onClick={handleLogout}>
-                Logout
-              </a>
-            ) : (
-              <Link
-                to="/login"
-                className={`link auth-link ${location.pathname === "/login" ? "active" : ""}`}
-                ref={(el) => { itemRefs.current["/login"] = el; }}
-              >
-                Login
-              </Link>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      </nav>
-    </div>
+        </nav>
+      </div>
+      
+      {/* Sticky elements that move with content */}
+      <div className="nav-sticky-line" aria-hidden="true" />
+      <div className="nav-sticky-rail nav-sticky-rail-left" aria-hidden="true" />
+      <div className="nav-sticky-rail nav-sticky-rail-right" aria-hidden="true" />
+    </>
   );
 };
 

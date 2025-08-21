@@ -7,161 +7,190 @@ import ImageComparison from "./components/ImageComparison";
 
 
 const Portfolio: React.FC = () => {
-  const ideRef = React.useRef<HTMLDivElement>(null);
-  const dashboardRef = React.useRef<HTMLDivElement>(null);
-  const [finished, setFinished] = React.useState(false);
-  const [ideVisible, setIdeVisible] = React.useState(false);
-  const [dashboardVisible, setDashboardVisible] = React.useState(false);
+  const firstSectionRef = React.useRef<HTMLDivElement>(null);
+  const secondSectionRef = React.useRef<HTMLDivElement>(null);
+  const thirdSectionRef = React.useRef<HTMLDivElement>(null);
+  
+  const [firstTextVisible, setFirstTextVisible] = React.useState(false);
   const [secondTextVisible, setSecondTextVisible] = React.useState(false);
   const [thirdTextVisible, setThirdTextVisible] = React.useState(false);
+  
+  const [firstTextFinished, setFirstTextFinished] = React.useState(false);
   const [secondTextFinished, setSecondTextFinished] = React.useState(false);
+  const [thirdTextFinished, setThirdTextFinished] = React.useState(false);
 
-  // Intersection Observer for IDE visibility
+  const [isLandscapeTablet, setIsLandscapeTablet] = React.useState(false);
+
   React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIdeVisible(true);
-        }
-      },
-      { threshold: 0.1 } // Lower threshold for mobile
-    );
+    const checkLayout = () => {
+      const isLandscape = window.matchMedia('(max-width: 1024px) and (orientation: landscape)').matches;
+      setIsLandscapeTablet(isLandscape);
+    };
 
-    if (ideRef.current) {
-      observer.observe(ideRef.current);
-    }
+    checkLayout();
+    window.addEventListener('resize', checkLayout);
+    window.addEventListener('orientationchange', checkLayout);
 
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener('resize', checkLayout);
+      window.removeEventListener('orientationchange', checkLayout);
+    };
   }, []);
 
-  // Intersection Observer for dashboard visibility
   React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setDashboardVisible(true);
-        }
-      },
-      { threshold: 0.1 } // Lower threshold for mobile
-    );
+    if (isLandscapeTablet) {
+      setFirstTextVisible(true);
+      const timer1 = setTimeout(() => setSecondTextVisible(true), 2000);
+      const timer2 = setTimeout(() => setThirdTextVisible(true), 4000);
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    } else {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setFirstTextVisible(true);
+          }
+        },
+        { threshold: 0.3 }
+      );
 
-    if (dashboardRef.current) {
-      observer.observe(dashboardRef.current);
+      if (firstSectionRef.current) {
+        observer.observe(firstSectionRef.current);
+      }
+
+      return () => observer.disconnect();
+    }
+  }, [isLandscapeTablet]);
+
+  React.useEffect(() => {
+    if (isLandscapeTablet) {
+      return;
     }
 
-    return () => observer.disconnect();
-  }, []);
-
-  // Intersection Observer for second text visibility
-  React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setSecondTextVisible(true);
         }
       },
-      { threshold: 0.1 } // Lower threshold for mobile
+      { threshold: 0.3 }
     );
 
-    const secondTextElement = document.querySelector('.second-portfolio-header');
-    if (secondTextElement) {
-      observer.observe(secondTextElement);
+    if (secondSectionRef.current) {
+      observer.observe(secondSectionRef.current);
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [isLandscapeTablet]);
 
   React.useEffect(() => {
+    if (isLandscapeTablet) {
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setThirdTextVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.3 }
     );
 
-    const thirdTextElement = document.querySelector('.third-portfolio-header');
-    if (thirdTextElement) {
-      observer.observe(thirdTextElement);
+    if (thirdSectionRef.current) {
+      observer.observe(thirdSectionRef.current);
     }
 
     return () => observer.disconnect();
-  }, []);
-
-  // ...existing code...
+  }, [isLandscapeTablet]);
 
   return (
     <div className="portfolio-background">
-      <div className="portfolio-header">
-        <TypeAnimation
-          className="big-text typing-smooth"
-          speed={35}          
-          cursor={false}
-          repeat={0}
-          sequence={[
-            "Bringing", 100,  
-            "Bringing\nLegacy", 100,
-            "Bringing\nLegacy\nApplications", 100,
-            "Bringing\nLegacy\nApplications\nBack to Life", 100,
-            () => setFinished(true),
-          ]}
-        />
-
-
+      <div className="portfolio-header" ref={firstSectionRef}>
+        {firstTextVisible && (
+          <TypeAnimation
+            className="big-text typing-smooth"
+            speed={35}          
+            cursor={false}
+            repeat={0}
+            sequence={[
+              "Bringing", 100,  
+              "Bringing\nLegacy", 100,
+              "Bringing\nLegacy\nApplications", 100,
+              "Bringing\nLegacy\nApplications\nBack to Life", 100,
+              () => setFirstTextFinished(true),
+            ]}
+          />
+        )}
+        <div className="big-text typing-smooth" style={{ 
+          visibility: 'hidden', 
+          position: 'absolute',
+          pointerEvents: 'none',
+          whiteSpace: 'pre-line'
+        }}>
+          Bringing<br />Legacy<br />Applications<br />Back to Life
+        </div>
       </div>
 
-      <ImageComparison startPct={98} animateOnFinish={finished} />
+      <ImageComparison startPct={98} animateOnFinish={firstTextFinished} />
 
-      {/* ...existing code... */}
-      <div ref={ideRef}>
-        {ideVisible && <MockIDE ideVisible={ideVisible} />}
+      <div className="second-portfolio-header big-text" ref={secondSectionRef}>
+        {secondTextVisible && (
+          <TypeAnimation
+            className="typing-smooth"
+            speed={35}          
+            cursor={false}
+            repeat={0}
+            sequence={[
+              "Scaling", 100,
+              "Scaling\nServices", 100,
+              "Scaling\nServices\nto Enterprise", 100,
+              "Scaling\nServices\nto Enterprise\nDemands", 100,
+              () => setSecondTextFinished(true),
+            ]}
+          />
+        )}
+        <div className="typing-smooth" style={{ 
+          visibility: 'hidden', 
+          position: 'absolute',
+          pointerEvents: 'none',
+          whiteSpace: 'pre-line'
+        }}>
+          Scaling<br />Services<br />to Enterprise<br />Demands
+        </div>
       </div>
 
-      <div className="second-portfolio-header big-text">
-        <TypeAnimation
-          className="typing-smooth"
-          speed={35}          
-          cursor={false}
-          repeat={0}
-          sequence={[
-            () => {
-              if (!secondTextVisible) {
-                return;
-              }
-            },
-            "Scaling\n\n\n", 100,
-            "Scaling\nServices", 100,
-            "Scaling\nServices\nto Enterprise", 100,
-            "Scaling\nServices\nto Enterprise\nDemands", 100,
-            () => setSecondTextFinished(true),
-          ]}
-        />
+      {secondTextVisible && <MockIDE ideVisible={secondTextVisible} />}
+
+      <div className="third-portfolio-header big-text" ref={thirdSectionRef}>
+        {thirdTextVisible && (
+          <TypeAnimation
+            className="typing-smooth"
+            speed={35}          
+            cursor={false}
+            repeat={0}
+            sequence={[
+              "Data-Driven", 100,
+              "Data-Driven\nOptimization", 100,
+              "Data-Driven\nOptimization\nDelivers", 100,
+              "Data-Driven\nOptimization\nDelivers\nResults", 100,
+              () => setThirdTextFinished(true),
+            ]}
+          />
+        )}
+        <div className="typing-smooth" style={{ 
+          visibility: 'hidden', 
+          position: 'absolute',
+          pointerEvents: 'none',
+          whiteSpace: 'pre-line'
+        }}>
+          Data-Driven<br />Optimization<br />Delivers<br />Results
+        </div>
       </div>
 
-      <div className="third-portfolio-header big-text">
-        <TypeAnimation
-          className="typing-smooth"
-          speed={35}          
-          cursor={false}
-          repeat={0}
-          sequence={[
-            () => {
-              if (!thirdTextVisible) {
-                return;
-              }
-            },
-            "Data-Driven", 100,
-            "Data-Driven\nOptimization", 100,
-            "Data-Driven\nOptimization\nDelivers", 100,
-            "Data-Driven\nOptimization\nDelivers\nResults", 100,
-          ]}
-        />
-      </div>
-
-      <div ref={dashboardRef}>
-        {dashboardVisible && <MockDashboard dashboardVisible={dashboardVisible} />}
-      </div>
+      {thirdTextVisible && <MockDashboard dashboardVisible={thirdTextVisible} />}
     </div>
   );
 };
