@@ -90,18 +90,13 @@ const NavigationBar: React.FC = () => {
                   ? location.pathname.startsWith(item.to)
                   : location.pathname === item.to;
               return (
-                <span
-                  key={item.to}
-                  ref={(el) => (itemRefs.current[item.to] = el)}
-                  style={{ display: "inline-block" }}
+                <Link
+                  to={item.to}
+                  className={`link ${isActive ? "active" : ""}`}
+                  ref={(el) => { itemRefs.current[item.to] = el; }}
                 >
-                  <Link
-                    to={item.to}
-                    className={`link ${isActive ? "active" : ""}`}
-                  >
-                    {item.label}
-                  </Link>
-                </span>
+                  {item.label}
+                </Link>
               );
             })}
             {isAuthenticated ? (
@@ -109,17 +104,13 @@ const NavigationBar: React.FC = () => {
                 Logout
               </a>
             ) : (
-              <span
-                ref={(el) => (itemRefs.current["/login"] = el)}
-                style={{ display: "inline-block" }}
+              <Link
+                to="/login"
+                className={`link auth-link ${location.pathname === "/login" ? "active" : ""}`}
+                ref={(el) => { itemRefs.current["/login"] = el; }}
               >
-                <Link
-                  to="/login"
-                  className={`link auth-link ${location.pathname === "/login" ? "active" : ""}`}
-                >
-                  Login
-                </Link>
-              </span>
+                Login
+              </Link>
             )}
           </div>
         </div>
