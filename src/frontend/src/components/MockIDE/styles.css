@@ -1,8 +1,7 @@
 .mock-ide {
     width: 100%;
-    height: 80%;
+    height: 90%;
     border-radius: var(--radius-lg);
-    overflow: hidden;
     background: #1e1e1e; 
     box-shadow: var(--shadow-2xl);
     border: 2px solid #323233;
@@ -15,12 +14,14 @@
     height: 35px;
     display: flex;
     align-items: center;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     border-bottom: 1px solid #3e3e42;
 }
 
 .ide-title-bar {
     display: flex;
     align-items: center;
+    border-radius: var(--radius-lg);
     width: 100%;
     padding: 0 8px;
 }
@@ -72,7 +73,7 @@
 
 .mockSidebar {
     background: #252526;
-    width: 200px;
+    width: 30%;
     padding: 8px;
     border-right: 1px solid #3e3e42;
     overflow-y: auto;
@@ -158,6 +159,7 @@
     background: #1e1e1e;
     overflow-x: auto;
     min-width: 0;
+    overflow: hidden;
 }
 
 .code-content .react-type-animation-cursor::after {

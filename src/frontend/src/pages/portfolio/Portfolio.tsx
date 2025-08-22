@@ -185,7 +185,7 @@ const Portfolio: React.FC = () => {
   return (
     <div className="portfolio-background">
       <div className="portfolio-minipage">
-      <div className="portfolio-header" ref={firstSectionRef}>
+      <div className="portfolio-header big-text" ref={firstSectionRef}>
         <AnimatedText 
           lines={["Bringing", "Legacy", "Applications", "Back to Life"]}
           visible={firstTextVisible}
@@ -198,7 +198,7 @@ const Portfolio: React.FC = () => {
         </div>
       
       <div className="portfolio-minipage">
-      <div className="second-portfolio-header big-text" ref={secondSectionRef}>
+      <div className="portfolio-header big-text" ref={secondSectionRef}>
         <AnimatedText 
           lines={["Scaling", "Services", "to Enterprise", "Demands"]}
           visible={secondTextVisible}
@@ -211,9 +211,9 @@ const Portfolio: React.FC = () => {
         </div>
 
       <div className="portfolio-minipage">
-      <div className="third-portfolio-header big-text" ref={thirdSectionRef}>
+      <div className="portfolio-header big-text" ref={thirdSectionRef}>
         <AnimatedText 
-          lines={["Data-Driven", "Optimization", "Delivers", "Results"]}
+          lines={["Leading", "Optimization", "That Delivers", "Real Results"]}
           visible={thirdTextVisible}
           onComplete={() => setThirdTextFinished(true)}
         />
