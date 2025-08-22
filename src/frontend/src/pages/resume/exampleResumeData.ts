@@ -45,7 +45,7 @@ export const exampleResume: ResumeType = {
           endDate: 'Present',
           location: 'Richmond, VA',
           bulletpoints: [
-            'Incoming Software Engineer I at CarMax in the CarMax Tech Academy program'
+            'Incoming Software Engineer I on the Assessment Platform team.'
           ]
         },
         {
@@ -72,7 +72,7 @@ export const exampleResume: ResumeType = {
             'Developed a .NET API to simulate the legacy system, enabling dependent teams to test integrations without relying on external creditor APIs',
             'Designed a configurable interface allowing teams to specify request/response pairs for flexible QA testing',
             'Provisioned Azure infrastructure using Bicep and deployed the service from scratch',
-            'Improved testing reliability and reduced dependency on legacy BizTalk-based systems'
+            'Improved testing reliability and reduced dependency on legacy BizTalk-based systems in QA'
           ]
         },
         {
@@ -83,9 +83,9 @@ export const exampleResume: ResumeType = {
           endDate: '2020-08',
           location: 'Remote',
           bulletpoints: [
-        'Matched different college names and abbreviations for over 900 universities using string pattern matching in Python',
-        'Automated synchronization of highschool data with common application for over 100,000 students with Django routing',
-        'Improved university search by including location and size as additional sorting fields on university search page'
+          'Improved search efficiency 10% by matching different college names and abbreviations for over 900 universities using string pattern matching in Python',
+          'Automated synchronization of highschool data with common application for over 100,000 students with Django routing',
+          'Improved university search by including location and size as additional sorting fields on university search page'
           ]
         }
       ]
@@ -96,14 +96,27 @@ export const exampleResume: ResumeType = {
       entries: [
         {
           id: 'entry-005',
+          title: 'Lead Open Source Contributor to APDA Standings (black-rod)',
+          startDate: '2024-10',
+          endDate: 'Present',
+          location: 'Side Project',
+          bulletpoints: [
+              'Accomplished improved accessibility and usability for 1000+ annual users, as measured by positive feedback and reduced support requests, by adding disability accommodation tags, room dropdowns, and fixing long-standing bugs.',
+              'Delivered faster tournament operations, as measured by reduced page loads and check-in times, by eliminating N+1 query issues, centralizing check-in processes, and reconfiguring deployment to minimize cross-region delays.',
+              'Modernized mit-tab’s tech stack, as measured by successful upgrades to Python, Django, and other dependencies, by auditing dependencies, resolving compatibility issues, and updating deployment scripts.',
+              'Improved tournament administrator experience by patching over 10 critical long standing bugs, reducing >1 hour delays by 80% and increasing tournament admin satisfaction by 25%'
+          ]
+        },
+        {
+          id: 'entry-005',
           title: 'Open Source Contributor at Mit-Tab',
           startDate: '2024-10',
           endDate: 'Present',
           location: 'Side Project',
           bulletpoints: [
-              'Accomplished modernization of mit-tab’s tech stack, as measured by successful upgrades to Python 3.12 and Django 4.2, by auditing dependencies, resolving compatibility issues, and updating deployment scripts.',
-              'Accomplished improved accessibility and usability for 1000+ annual users, as measured by positive feedback and reduced support requests, by adding disability accommodation tags, room dropdowns, and fixing long-standing bugs.',
-              'Accomplished faster tournament operations, as measured by reduced database query times and deployment latency, by eliminating N+1 query issues, optimizing exports, and reconfiguring deployment to minimize cross-region delays.'
+              'Implemented modern CI/CD and code validation pipelines using GitHub Actions, reducing manual deployment time by 75% and downtime from human error by 90%',
+              'Modernized tech stack by upgrading Python, Django, Node reducing security vulnerabilities by 90% and improving performance by 15%',
+              'Patched long-standing bugs in result accuracy and administrator access reducing admin support requests by 50%',
           ]
         },
       ]
@@ -113,12 +126,11 @@ export const exampleResume: ResumeType = {
   "Software Engineer I at CarMax (.NET + Azure)",
   "UVA CS & Math double major (recent grad)",
   "Lead dev for APDA (Debate Software) — ~2,000+ users/yr",
-  "Modernized legacy apps: React migration, CI/CD, logging/monitoring",
   "Shipped production services with Python/Django & TypeScript/React",
-  "Deployed to Azure and Google Cloud Run; Docker-first workflows",
-  "Strengths: Python/Django, TypeScript/React, SQL/Postgres",
+  "Deployed to Azure, AWS and Google Cloud Run; Docker-first workflows",
+  "Strengths: Python/Django, DotNET/C#, CI/CD",
+  "Learning Targets: AWS, React, TypeScript",
   "Focus areas: reliability, scalability, and developer experience",
-  "APDA Tech Committee contributor & open-source maintainer"
 ]
 
 };

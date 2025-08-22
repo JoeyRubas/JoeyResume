@@ -64,11 +64,11 @@ const Home: React.FC = () => {
       <section className="quick-facts">
         <div className="fact">
           <span className="fact-kicker">Core</span>
-          <span className="fact-text">Python • TypeScript • React • Django • SQL</span>
+          <span className="fact-text">Python • Django • DotNET • TypeScript</span>
         </div>
         <div className="fact">
           <span className="fact-kicker">Cloud</span>
-          <span className="fact-text">Azure • AWS (learning) • CI/CD</span>
+          <span className="fact-text">Azure • AWS • CI/CD</span>
         </div>
         <div className="fact">
           <span className="fact-kicker">Focus</span>
