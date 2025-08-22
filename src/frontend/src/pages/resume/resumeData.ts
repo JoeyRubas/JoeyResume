@@ -1,6 +1,6 @@
 import {ResumeType, ContactType } from '../../types/resume';
 
-export const exampleResume: ResumeType = {
+export const resume: ResumeType = {
   id: 'resume-001',
   name: 'Joey Rubas',
   contacts: [

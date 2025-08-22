@@ -6,7 +6,7 @@ import {
   ResumeSection,
   ResumeEntry,
 } from "../../types/resume";
-import { exampleResume } from "./exampleResumeData";
+import { resume } from "./resumeData";
 import "./styles.css";
 
 const contactEmojis: Record<ContactType, string> = {
@@ -124,7 +124,7 @@ const ResumeDocument: React.FC<{ resume: ResumeType }> = ({ resume }) => {
 const Resume: React.FC = () => {
   return (
     <div className="resume-page">
-      <ResumeDocument resume={exampleResume} />
+      <ResumeDocument resume={resume} />
     </div>
   );
 };
