@@ -5,6 +5,8 @@ import apiService from "../../api/service";
 import { Skill } from "../../types/skill";
 import { useAuth } from "../../hooks/useAuth";
 import ScrollIndicator from "../../components/Scroll/ScrollIndicator";
+import SkillCard from "../../components/SkillCard/SkillCard";
+import styles from "../../components/SkillCard/SkillCard.module.css";
 import "./styles.css";
 
 function levelToString(level: number): string {
@@ -161,39 +163,6 @@ const Skills: React.FC = () => {
     );
   }
 
-  const SkillCard = (skill: Skill) => (
-    <div
-      className="skill-card-v2"
-      key={skill.id}
-      onClick={() => handleSkillClick(skill.id)}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => e.key === "Enter" && handleSkillClick(skill.id)}
-    >
-      <div className="skill-card-top">
-        <h3 className="skill-name">{skill.name}</h3>
-        <span className={`badge level-${skill.skillLevel}`}>{levelToString(skill.skillLevel)}</span>
-      </div>
-      <div className="skill-meta">
-        <strong>{skill.hoursExperience} hours</strong>
-      </div>
-      <div className="progress">
-        <div className="progress-bar" style={{ width: `${(skill.skillLevel / 3) * 100}%` }} />
-      </div>
-
-      {isAuthenticated && (
-        <div className="admin-actions">
-          <button id={`edit${skill.id}`} className="btn ghost" onClick={handleEdit}>
-            ✏️
-          </button>
-          <button id={`delete${skill.id}`} className="btn danger" onClick={handleDelete}>
-            ❌
-          </button>
-        </div>
-      )}
-    </div>
-  );
-
   return (
     <div className="skills-page">
       <section id="skills-hero" className="skills-hero">
@@ -240,20 +209,55 @@ const Skills: React.FC = () => {
         </section>
       )}
 
-      {/* Grouped grids */}
       <section id="skills-core" className="group-section">
         <h2 className="group-title">Core</h2>
-        <div className="skills-grid">{grouped.Core.map(SkillCard)}</div>
+        <div className="skills-grid">
+          {grouped.Core.map((skill) => (
+            <SkillCard
+              key={skill.id}
+              skill={skill}
+              isAuthenticated={isAuthenticated}
+              levelToString={levelToString}
+              handleSkillClick={handleSkillClick}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            />
+          ))}
+        </div>
       </section>
 
       <section id="skills-use" className="group-section">
         <h2 className="group-title">Use</h2>
-        <div className="skills-grid">{grouped.Use.map(SkillCard)}</div>
+        <div className="skills-grid">
+          {grouped.Use.map((skill) => (
+            <SkillCard
+              key={skill.id}
+              skill={skill}
+              isAuthenticated={isAuthenticated}
+              levelToString={levelToString}
+              handleSkillClick={handleSkillClick}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            />
+          ))}
+        </div>
       </section>
 
       <section id="skills-learning" className="group-section last">
         <h2 className="group-title">Learning</h2>
-        <div className="skills-grid">{grouped.Learning.map(SkillCard)}</div>
+        <div className="skills-grid">
+          {grouped.Learning.map((skill) => (
+            <SkillCard
+              key={skill.id}
+              skill={skill}
+              isAuthenticated={isAuthenticated}
+              levelToString={levelToString}
+              handleSkillClick={handleSkillClick}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            />
+          ))}
+        </div>
       </section>
     </div>
   );

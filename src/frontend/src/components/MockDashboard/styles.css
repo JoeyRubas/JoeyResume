@@ -1,6 +1,6 @@
 .mock-dashboard {
     width: 100%;
-    height: 100%;
+    height: 80%;
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: #0f1419; 
