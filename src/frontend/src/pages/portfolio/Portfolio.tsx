@@ -34,12 +34,8 @@ const AnimatedText: React.FC<{
     if (visible && !hasAnimated) {
       setHasAnimated(true);
       setShouldStayVisible(true);
-      if (onComplete) {
-        const timer = setTimeout(onComplete, 1500);
-        return () => clearTimeout(timer);
-      }
     }
-  }, [visible, hasAnimated, onComplete]);
+  }, [visible, hasAnimated]);
 
   return (
     <motion.div
@@ -47,6 +43,11 @@ const AnimatedText: React.FC<{
       variants={textVariants}
       initial="hidden"
       animate={shouldStayVisible ? "visible" : "hidden"}
+      onAnimationComplete={() => {
+        if (shouldStayVisible && onComplete) {
+          onComplete();
+        }
+      }}
     >
       {lines.map((line, index) => (
         <div key={index} className="text-line">

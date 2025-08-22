@@ -8,15 +8,37 @@ interface ImageComparisonProps {
 }
 
 const ImageComparison: React.FC<ImageComparisonProps> = ({ startPct = 98, animateOnFinish }) => {
+  const [isAnimating, setIsAnimating] = React.useState(false);
+  const animationRef = React.useRef<any>(null);
+
+  // Start animation when animateOnFinish is true
   React.useEffect(() => {
     if (!animateOnFinish) return;
-    const start = split.get();
-    animate(split, [start, 2], {
-      duration: 1.6,
-      times: [0, 0.65, 1],
-      ease: ["easeOut", "easeOut"],
-    });
+    setIsAnimating(true);
   }, [animateOnFinish]);
+
+  // Looping animation effect
+  React.useEffect(() => {
+    if (!isAnimating) return;
+    let running = true;
+    function loop() {
+      if (!running) return;
+      const start = split.get();
+      const end = start < 50 ? 98 : 2;
+      animationRef.current = animate(split, [start, end], {
+        duration: 2.5,
+        ease: "easeInOut",
+        onComplete: () => {
+          setTimeout(loop, 2500);
+        }
+      });
+    }
+    loop();
+    return () => {
+      running = false;
+      if (animationRef.current) animationRef.current.stop();
+    };
+  }, [isAnimating]);
   const widgetRef = React.useRef<HTMLDivElement>(null);
   const split = useMotionValue(startPct);
 
@@ -31,6 +53,9 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ startPct = 98, animat
     const rect = widgetRef.current?.querySelector('.image-comparison-inner')?.getBoundingClientRect();
     if (!rect) return;
     const pct = ((clientX - rect.left) / rect.width) * 100;
+    // If user interacts, stop animation
+    setIsAnimating(false);
+    if (animationRef.current) animationRef.current.stop();
     split.set(Math.max(0, Math.min(100, pct)));
   }
   const onPointerDown = (e: React.PointerEvent) => {
