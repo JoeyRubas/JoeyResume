@@ -149,7 +149,7 @@
 }
 
 @media (max-width: 968px) {
-  .home-hero { grid-template-columns: 1fr; gap: 24px; margin-top: 5vh; }
+  .home-hero { grid-template-columns: 1fr; gap: px; margin-top: 5vh; margin-left:0; margin-right: 0;}
   .home-hero::before, .home-hero::after { top: -2vh; bottom: -2vh; }
   .hero-name { text-align: center; }
   .hero-title, .hero-subhead, .hero-body { text-align: center; }
