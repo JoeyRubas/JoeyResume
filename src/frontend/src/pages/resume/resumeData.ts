@@ -101,10 +101,9 @@ export const resume: ResumeType = {
           endDate: 'Present',
           location: 'Side Project',
           bulletpoints: [
-              'Accomplished improved accessibility and usability for 1000+ annual users, as measured by positive feedback and reduced support requests, by adding disability accommodation tags, room dropdowns, and fixing long-standing bugs.',
-              'Delivered faster tournament operations, as measured by reduced page loads and check-in times, by eliminating N+1 query issues, centralizing check-in processes, and reconfiguring deployment to minimize cross-region delays.',
-              'Modernized mit-tab’s tech stack, as measured by successful upgrades to Python, Django, and other dependencies, by auditing dependencies, resolving compatibility issues, and updating deployment scripts.',
-              'Improved tournament administrator experience by patching over 10 critical long standing bugs, reducing >1 hour delays by 80% and increasing tournament admin satisfaction by 25%'
+              'Implemented modern CI/CD and code validation pipelines using GitHub Actions, reducing manual deployment time by 75% and downtime from human error by 90%',
+              'Modernized tech stack by upgrading Python, Django, Node reducing security vulnerabilities by 90% and improving performance by 15%',
+              'Patched long-standing bugs in result accuracy and administrator access reducing admin support requests by 50%',
           ]
         },
         {
@@ -114,11 +113,11 @@ export const resume: ResumeType = {
           endDate: 'Present',
           location: 'Side Project',
           bulletpoints: [
-              'Implemented modern CI/CD and code validation pipelines using GitHub Actions, reducing manual deployment time by 75% and downtime from human error by 90%',
-              'Modernized tech stack by upgrading Python, Django, Node reducing security vulnerabilities by 90% and improving performance by 15%',
-              'Patched long-standing bugs in result accuracy and administrator access reducing admin support requests by 50%',
+              'Delivered faster tournament operations by eliminating N+1 query issues, centralizing check-in processes, and reconfiguring deployment to minimize cross-region delays.',
+              'Modernized mit-tab’s tech stack by upgrading Python, Django and 10+ dependencies, resolving compatibility issues, and updating deployment scripts.',
+              'Improved tournament administrator experience by patching over 10 critical long standing bugs, reducing >1 hour delays by 80% and increasing tournament admin satisfaction by 25%'
           ]
-        },
+        }
       ]
     }
   ],
