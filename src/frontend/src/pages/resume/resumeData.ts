@@ -28,7 +28,7 @@ export const resume: ResumeType = {
           endDate: '2025-05',
           location: 'Charlottesville, MA',
           bulletpoints: [
-            'Relevant Coursework: Data Structures and Algorithms, Software Development, Web Development, Cloud Computing, Programming Lanugages'
+            'Relevant Coursework: Data Structures and Algorithms, Software Development, Web Development, Cloud Computing, Programming Languages'
           ]
         }
       ]
@@ -45,7 +45,7 @@ export const resume: ResumeType = {
           endDate: 'Present',
           location: 'Richmond, VA',
           bulletpoints: [
-            'Incoming Software Engineer I on the Assessment Platform team.'
+            'Incoming Software Engineer I on the Assessment Platform team'
           ]
         },
         {
@@ -62,7 +62,7 @@ export const resume: ResumeType = {
           ]
         },
         {
-          id: 'entry-002',
+          id: 'entry-003',
           title: 'Summer Intern I',
           subtitle: 'CarMax',
           startDate: '2023-06',
@@ -76,9 +76,9 @@ export const resume: ResumeType = {
           ]
         },
         {
-          id: 'entry-002',
-          title: 'SchooLinks',
-          subtitle: 'CarMax',
+          id: 'entry-004',
+          title: 'Summer Intern',
+          subtitle: 'SchooLinks',
           startDate: '2020-06',
           endDate: '2020-08',
           location: 'Remote',
@@ -107,14 +107,14 @@ export const resume: ResumeType = {
           ]
         },
         {
-          id: 'entry-005',
+          id: 'entry-006',
           title: 'Open Source Contributor at Mit-Tab',
           startDate: '2024-10',
           endDate: 'Present',
           location: 'Side Project',
           bulletpoints: [
-              'Delivered faster tournament operations by eliminating N+1 query issues, centralizing check-in processes, and reconfiguring deployment to minimize cross-region delays.',
-              'Modernized mit-tab’s tech stack by upgrading Python, Django and 10+ dependencies, resolving compatibility issues, and updating deployment scripts.',
+              'Delivered faster tournament operations by eliminating N+1 query issues, centralizing check-in processes, and reconfiguring deployment to minimize cross-region delays',
+              'Modernized mit-tab’s tech stack by upgrading Python, Django and 10+ dependencies, resolving compatibility issues, and updating deployment scripts',
               'Improved tournament administrator experience by patching over 10 critical long standing bugs, reducing >1 hour delays by 80% and increasing tournament admin satisfaction by 25%'
           ]
         }
