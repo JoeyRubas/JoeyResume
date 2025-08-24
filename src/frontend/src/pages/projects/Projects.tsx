@@ -198,8 +198,8 @@ const Projects: React.FC = () => {
     padding: "0 2vw",
   }}
 >
-  <h1 className="headline projectHeadline">Projects on the Cutting Edge</h1>
-  <p className="subhead projectSubhead">What I build and ship</p>
+  <h1 className="headline projectHeadline">What I've Built</h1>
+<p className="subhead projectSubhead">A showcase of my favorite projects.</p>
 </div>
 
 
