@@ -252,9 +252,8 @@ html {
     }
 }
 
-/* Mobile navigation bar spacing adjustment */
 @media (max-width: 768px) {
     body {
-        padding-top: 68px; /* Space for smaller mobile navigation bar (48px + 20px padding) */
+        padding-top: 68px;
     }
 }
