@@ -74,7 +74,27 @@
 .nav-links::-webkit-scrollbar { display: none; }
 
 
-.nav-wrapper .active-indicator {
+/* Renamed to .nav-active-indicator to avoid global conflicts */
+.nav-wrapper .nav-active-indicator {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: calc(100% - 12px);
+  border-radius: var(--radius-full);
+  background: linear-gradient(180deg, var(--accent), #2a3e59);
+  box-shadow: 0 6px 18px rgba(23, 38, 58, 0.25);
+  transform: translateX(0);
+  width: 0;
+  opacity: 0;
+  transition:
+    transform 220ms cubic-bezier(.2,.8,.2,1),
+    width 220ms cubic-bezier(.2,.8,.2,1),
+    opacity 180ms ease;
+}
+.nav-wrapper .nav-active-indicator.show { opacity: 1; }
+
+
+.nav-wrapper .nav-active-indicator {
   position: absolute;
   top: 6px;
   left: 0;
@@ -91,25 +111,6 @@
     opacity 180ms ease;
 }
 .nav-wrapper .active-indicator.show { opacity: 1; }
-
-/* Default .active-indicator elsewhere (skills header, etc) gets a neutral style */
-.active-indicator {
-  position: absolute;
-  top: 6px;
-  left: 0;
-  height: calc(100% - 12px);
-  border-radius: var(--radius-full);
-  background: var(--accent, #e0e6ef);
-  box-shadow: none;
-  transform: translateX(0);
-  width: 0;
-  opacity: 0;
-  transition:
-    transform 220ms cubic-bezier(.2,.8,.2,1),
-    width 220ms cubic-bezier(.2,.8,.2,1),
-    opacity 180ms ease;
-}
-.active-indicator.show { opacity: 1; }
 
 .link {
   position: relative;
@@ -149,8 +150,45 @@
 
 @media (max-width: 768px) {
   .navigation_container {
-    width: calc(100vw - 24px);
+    width: 100vw;
+    min-width: 0;
+    max-width: 100vw;
+    margin: 0;
+
     height: 48px;
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
   }
-  .link { padding: 9px 12px; font-size: 13px; }
+  .nav-wrapper {
+    left: 0;
+    right: 0;
+    padding: 0;
+  }
+  .nav-rail-left, .nav-rail-right {
+    display: none;
+  }
+  .nav-links {
+    gap: 2px;
+    padding: 4px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .link { 
+    padding: 8px 10px; 
+    font-size: 12px; 
+    min-width: 60px;
+  }
+}
+@media (max-width: 480px) {
+  .navigation_container {
+    height: 44px;
+  }
+  .link {
+    padding: 7px 8px;
+    font-size: 11px;
+    min-width: 48px;
+  }
 }

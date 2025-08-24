@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Masonry from "react-masonry-css";
 import { useNavigate } from "@tanstack/react-router";
 import apiService from "../../api/service";
 import { Project } from "../../types/project.ts";
@@ -106,10 +107,9 @@ function buildPlacements(projects: Project[], COLS: number, ROWS: number) {
     return false;
   };
 
-  // reserve header row space
-    const carveFrom = Math.max(COLS - 4, 0);
-    for (let c = carveFrom; c < COLS; c++) taken[0][c] = true;
-
+  // reserve header area (top-right)
+  const carveFrom = Math.max(COLS - 4, 0);
+  for (let c = carveFrom; c < COLS; c++) taken[0][c] = true;
 
   let pi = 0;
   for (; pi < Math.min(3, projects.length); pi++) {
@@ -145,15 +145,6 @@ const Projects: React.FC = () => {
   const { isAuthenticated, loading: authLoading } = useAuth();
   const [projects, setProjects] = useState<Project[]>([]);
   const [editingProjectId, setEditingProjectId] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    projectMaturity: 1,
-    githubUrl: "",
-    liveUrl: "",
-    showNumberCommits: false,
-    skillsUsed: [],
-  });
 
   const [width, height] = useWindowSize();
 
@@ -173,70 +164,111 @@ const Projects: React.FC = () => {
 
   const { COLS, ROWS } = getGridDimensions(width, projects.length);
   const placements = buildPlacements(projects, COLS, ROWS);
-
-  // row height scales with viewport height
   const rowHeight = Math.max(180, Math.floor(height / 4));
+
+  // Masonry breakpoints (force 2 cols on mobile)
+  const masonryBreakpoints = {
+    default: 3,
+    900: 3,
+    600: 2,
+  };
 
   return (
     <div className="projects-page">
       <section id="projects-list" className="project-group-section">
-        <div
-          className="projects-grid l-mosaic"
-          style={{
-            gridTemplateColumns: `repeat(${COLS}, 1fr)`,
-            gridAutoRows: `${rowHeight}px`,
-          }}
-        >
-<div
-  style={{
-    gridColumn: `${Math.max(COLS - 4, 1)} / -1`, 
-    gridRow: "1 / span 1",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-end",
-    alignItems: "flex-start",
-    padding: "0 2vw",
-  }}
->
-  <h1 className="headline projectHeadline">What I've Built</h1>
-<p className="subhead projectSubhead">A showcase of my favorite projects.</p>
-</div>
-
-
-
-
-          {placements.map((p) => {
-            const proj = projects[p.projectIdx];
-            return (
-              <ProjectCard
-                key={proj.id}
-                project={proj}
-                isAuthenticated={isAuthenticated}
-                handleProjectClick={() =>
-                  navigate({
-                    to: "/project/$projectId",
-                    params: { projectId: proj.id },
-                  })
-                }
-                handleEdit={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                 
-                  setEditingProjectId(proj.id);
-                }}
-                handleDelete={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
-                mosaicSize={Math.max(p.colSpan, p.rowSpan)}
-                style={{
-                  gridColumn: `${p.col + 1} / span ${p.colSpan}`,
-                  gridRow: `${p.row + 1} / span ${p.rowSpan}`,
-                }}
-              />
-            );
-          })}
-        </div>
+        {width < 600 ? (
+          <>
+            <div style={{ padding: "0 2vw", marginBottom: "1rem" }}>
+              <h1 className="project-headline">What I've Built</h1>
+              <p className="project-subhead">
+                A showcase of my favorite projects.
+              </p>
+            </div>
+            <Masonry
+              breakpointCols={masonryBreakpoints}
+              className="masonry-grid"
+              columnClassName="masonry-grid_column"
+            >
+              {projects.map((proj) => (
+                <ProjectCard
+                  key={proj.id}
+                  project={proj}
+                  isAuthenticated={isAuthenticated}
+                  handleProjectClick={() =>
+                    navigate({
+                      to: "/project/$projectId",
+                      params: { projectId: proj.id },
+                    })
+                  }
+                  handleEdit={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setEditingProjectId(proj.id);
+                  }}
+                  handleDelete={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                />
+              ))}
+            </Masonry>
+          </>
+        ) : (
+          <div
+            className="projects-grid l-mosaic"
+            style={{
+              gridTemplateColumns: `repeat(${COLS}, 1fr)`,
+              gridAutoRows: `${rowHeight}px`,
+            }}
+          >
+            <div
+              style={{
+                gridColumn: `${Math.max(COLS - 4, 1)} / -1`,
+                gridRow: "1 / span 1",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: "flex-start",
+                padding: "0 2vw",
+              }}
+            >
+              <h1 className="project-headline">What I've Built</h1>
+              <p className="project-subhead">
+                A showcase of my favorite projects.
+              </p>
+            </div>
+            {placements.map((p) => {
+              const proj = projects[p.projectIdx];
+              return (
+                <ProjectCard
+                  key={proj.id}
+                  project={proj}
+                  isAuthenticated={isAuthenticated}
+                  handleProjectClick={() =>
+                    navigate({
+                      to: "/project/$projectId",
+                      params: { projectId: proj.id },
+                    })
+                  }
+                  handleEdit={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setEditingProjectId(proj.id);
+                  }}
+                  handleDelete={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  mosaicSize={Math.max(p.colSpan, p.rowSpan)}
+                  style={{
+                    gridColumn: `${p.col + 1} / span ${p.colSpan}`,
+                    gridRow: `${p.row + 1} / span ${p.rowSpan}`,
+                  }}
+                />
+              );
+            })}
+          </div>
+        )}
       </section>
     </div>
   );

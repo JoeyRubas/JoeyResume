@@ -83,7 +83,7 @@ const NavigationBar: React.FC = () => {
             <div className="nav-links" ref={linksRef}>
               
               <span
-                className={`active-indicator ${indicator.visible ? "show" : ""}`}
+                className={`nav-active-indicator ${indicator.visible ? "show" : ""}`}
                 style={{ transform: `translateX(${indicator.left}px)`, width: indicator.width }}
                 aria-hidden="true"
               />
