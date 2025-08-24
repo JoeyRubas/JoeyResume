@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ProjectFormProps {
   formData: {
@@ -8,12 +8,22 @@ interface ProjectFormProps {
     description: string;
   };
   editingProjectId: string | null;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+  handleInputChange: (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   clearForm: () => void;
 }
 
-const ProjectForm: React.FC<ProjectFormProps> = ({ formData, editingProjectId, handleInputChange, handleSubmit, clearForm }) => (
+const ProjectForm: React.FC<ProjectFormProps> = ({
+  formData,
+  editingProjectId,
+  handleInputChange,
+  handleSubmit,
+  clearForm,
+}) => (
   <form className="horizontal-form" onSubmit={handleSubmit}>
     <div className="form-item">
       <label htmlFor="name">Project Name</label>
@@ -68,7 +78,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ formData, editingProjectId, h
     </div>
     <div className="form-actions">
       <button type="submit" className="btn-primary">
-        {editingProjectId ? "Update Project" : "Add Project"}
+        {editingProjectId ? 'Update Project' : 'Add Project'}
       </button>
       <button type="button" className="btn-secondary" onClick={clearForm}>
         Clear

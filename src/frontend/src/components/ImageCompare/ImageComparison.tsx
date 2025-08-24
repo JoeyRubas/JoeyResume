@@ -1,13 +1,22 @@
-import React from "react";
-import { motion, useMotionValue, useTransform, animate, useMotionValueEvent } from "framer-motion";
-import "./styles.css";
+import React from 'react';
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  animate,
+  useMotionValueEvent,
+} from 'framer-motion';
+import './styles.css';
 
 interface ImageComparisonProps {
   startPct?: number;
   animateOnFinish?: boolean;
 }
 
-const ImageComparison: React.FC<ImageComparisonProps> = ({ startPct = 98, animateOnFinish }) => {
+const ImageComparison: React.FC<ImageComparisonProps> = ({
+  startPct = 98,
+  animateOnFinish,
+}) => {
   const [isAnimating, setIsAnimating] = React.useState(false);
   const animationRef = React.useRef<any>(null);
 
@@ -27,10 +36,10 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ startPct = 98, animat
       const end = start < 50 ? 98 : 2;
       animationRef.current = animate(split, [start, end], {
         duration: 2.5,
-        ease: "easeInOut",
+        ease: 'easeInOut',
         onComplete: () => {
           setTimeout(loop, 2500);
-        }
+        },
       });
     }
     loop();
@@ -42,15 +51,17 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ startPct = 98, animat
   const widgetRef = React.useRef<HTMLDivElement>(null);
   const split = useMotionValue(startPct);
 
-  const oldClip     = useTransform(split, v => `inset(0 ${100 - v}% 0 0)`); 
-  const modernClip  = useTransform(split, v => `inset(0 0 0 ${v}%)`);      
+  const oldClip = useTransform(split, v => `inset(0 ${100 - v}% 0 0)`);
+  const modernClip = useTransform(split, v => `inset(0 0 0 ${v}%)`);
   const dividerLeft = useTransform(split, v => `${v}%`);
 
   const [labelPct, setLabelPct] = React.useState(startPct);
-  useMotionValueEvent(split, "change", (v) => setLabelPct(Math.round(v)));
+  useMotionValueEvent(split, 'change', v => setLabelPct(Math.round(v)));
 
   function moveTo(clientX: number) {
-    const rect = widgetRef.current?.querySelector('.image-comparison-inner')?.getBoundingClientRect();
+    const rect = widgetRef.current
+      ?.querySelector('.image-comparison-inner')
+      ?.getBoundingClientRect();
     if (!rect) return;
     const pct = ((clientX - rect.left) / rect.width) * 100;
     // If user interacts, stop animation

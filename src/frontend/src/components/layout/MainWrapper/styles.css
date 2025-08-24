@@ -1,6 +1,6 @@
 .main_section {
-    display: grid;
-    overflow-x: hidden;
-    grid-template-rows: auto 1fr auto;
-    width: 100%;
+  display: grid;
+  overflow-x: hidden;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
 }

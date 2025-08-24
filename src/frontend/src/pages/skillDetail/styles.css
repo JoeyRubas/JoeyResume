@@ -1,22 +1,22 @@
 .skill-detail-container {
-    width: 95%;
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 24px;
+  width: 95%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 24px;
 }
 
 .skill-detail-card {
-    border-radius: var(--radius-xl) !important;
-    box-shadow: var(--shadow-lg) !important;
-    transition: all 0.3s ease;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-lg) !important;
+  transition: all 0.3s ease;
 }
 
 .skill-detail-card:hover {
-    box-shadow: var(--shadow-xl) !important;
+  box-shadow: var(--shadow-xl) !important;
 }
 
 @media (max-width: 768px) {
-    .skill-detail-container {
-        padding: 16px;
-    }
+  .skill-detail-container {
+    padding: 16px;
+  }
 }

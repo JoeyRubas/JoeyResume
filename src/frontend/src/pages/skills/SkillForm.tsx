@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface SkillFormProps {
   formData: {
@@ -8,12 +8,22 @@ interface SkillFormProps {
     description: string;
   };
   editingSkillId: string | null;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+  handleInputChange: (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   clearForm: () => void;
 }
 
-const SkillForm: React.FC<SkillFormProps> = ({ formData, editingSkillId, handleInputChange, handleSubmit, clearForm }) => (
+const SkillForm: React.FC<SkillFormProps> = ({
+  formData,
+  editingSkillId,
+  handleInputChange,
+  handleSubmit,
+  clearForm,
+}) => (
   <form className="horizontal-form" onSubmit={handleSubmit}>
     <div className="form-item">
       <label htmlFor="name">Skill Name</label>
@@ -69,11 +79,22 @@ const SkillForm: React.FC<SkillFormProps> = ({ formData, editingSkillId, handleI
     </div>
     {editingSkillId ? (
       <div className="edit-buttons">
-        <button className="submit-button" type="submit">Save</button>
-        <button className="cancel-button" type="button" onClick={clearForm} title="Cancel">×</button>
+        <button className="submit-button" type="submit">
+          Save
+        </button>
+        <button
+          className="cancel-button"
+          type="button"
+          onClick={clearForm}
+          title="Cancel"
+        >
+          ×
+        </button>
       </div>
     ) : (
-      <button className="submit-button" type="submit">Add Skill</button>
+      <button className="submit-button" type="submit">
+        Add Skill
+      </button>
     )}
   </form>
 );

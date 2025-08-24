@@ -8,7 +8,9 @@ interface LanguageStatsChartProps {
   languageName: string;
 }
 
-const LanguageStatsChart: React.FC<LanguageStatsChartProps> = ({ languageName }) => {
+const LanguageStatsChart: React.FC<LanguageStatsChartProps> = ({
+  languageName,
+}) => {
   const [stats, setStats] = useState<GitHubLanguageStats[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +22,9 @@ const LanguageStatsChart: React.FC<LanguageStatsChartProps> = ({ languageName })
     try {
       setLoading(true);
       const languageStats = await githubService.getLanguageStats(languageName);
-      setStats(languageStats.filter(stat => stat.additions > 0 || stat.deletions > 0));
+      setStats(
+        languageStats.filter(stat => stat.additions > 0 || stat.deletions > 0)
+      );
     } catch (error) {
       console.error('Error loading language stats:', error);
     } finally {
@@ -31,9 +35,18 @@ const LanguageStatsChart: React.FC<LanguageStatsChartProps> = ({ languageName })
   if (loading) {
     return (
       <Paper sx={{ p: 4, mt: 3 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 4 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            py: 4,
+          }}
+        >
           <CircularProgress />
-          <Typography sx={{ mt: 2 }}>Loading {languageName} statistics...</Typography>
+          <Typography sx={{ mt: 2 }}>
+            Loading {languageName} statistics...
+          </Typography>
         </Box>
       </Paper>
     );
@@ -52,43 +65,49 @@ const LanguageStatsChart: React.FC<LanguageStatsChartProps> = ({ languageName })
     title: { text: `${languageName} Development Progress` },
     xAxis: {
       type: 'datetime',
-      title: { text: 'Date' }
+      title: { text: 'Date' },
     },
     yAxis: {
       title: { text: 'Cumulative Lines of Code' },
-      min: 0
+      min: 0,
     },
     series: [
       {
         name: 'Additions',
-        data: stats.map(stat => [new Date(stat.date).getTime(), stat.additions]),
+        data: stats.map(stat => [
+          new Date(stat.date).getTime(),
+          stat.additions,
+        ]),
         type: 'spline',
-        color: '#22c55e'
+        color: '#22c55e',
       },
       {
         name: 'Deletions',
-        data: stats.map(stat => [new Date(stat.date).getTime(), stat.deletions]),
+        data: stats.map(stat => [
+          new Date(stat.date).getTime(),
+          stat.deletions,
+        ]),
         type: 'spline',
-        color: '#ef4444'
-      }
+        color: '#ef4444',
+      },
     ],
-    legend: { 
+    legend: {
       enabled: true,
       align: 'center',
-      verticalAlign: 'bottom'
+      verticalAlign: 'bottom',
     },
     credits: { enabled: false },
     tooltip: {
       shared: true,
-      formatter: function() {
+      formatter: function () {
         const date = new Date(this.x as number).toLocaleDateString();
         let tooltip = `<b>${date}</b><br/>`;
         this.points?.forEach(point => {
           tooltip += `<span style="color:${point.series.color}">${point.series.name}</span>: <b>${point.y}</b> lines<br/>`;
         });
         return tooltip;
-      }
-    }
+      },
+    },
   };
 
   return (
@@ -96,7 +115,11 @@ const LanguageStatsChart: React.FC<LanguageStatsChartProps> = ({ languageName })
       <Box sx={{ height: '400px' }}>
         <HighchartsReact highcharts={Highcharts} options={chartOptions} />
       </Box>
-      <Typography variant="caption" color="text.secondary" sx={{ mt: 2, display: 'block', textAlign: 'center' }}>
+      <Typography
+        variant="caption"
+        color="text.secondary"
+        sx={{ mt: 2, display: 'block', textAlign: 'center' }}
+      >
         Data from public GitHub repositories
       </Typography>
     </Paper>

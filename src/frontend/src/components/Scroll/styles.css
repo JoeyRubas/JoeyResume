@@ -32,7 +32,7 @@
 
 .scroll-down::before,
 .scroll-down::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 20%;
   left: 50%;

@@ -1,7 +1,7 @@
-.skills-page { 
-  min-height: 100%; 
-  font-family: 'IBM Plex Sans', sans-serif; 
-  color: var(--ink); 
+.skills-page {
+  min-height: 100%;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--ink);
   scroll-behavior: smooth;
 }
 
@@ -13,7 +13,7 @@
   max-width: 80vw;
   margin: 6vh auto 2rem;
   padding: 0 2rem 4rem;
-  position: relative; 
+  position: relative;
   scroll-margin-top: 2rem;
 }
 
@@ -26,18 +26,28 @@
   justify-content: center;
   grid-column: 1 / -1;
 }
-.skills-hero::before, .skills-hero::after {
-  content: "";
+.skills-hero::before,
+.skills-hero::after {
+  content: '';
   position: absolute;
   top: -4vh;
   bottom: -4vh;
   width: 1px;
   background: #b4b4b4;
 }
-.skills-hero::before { left: 0; }
-.skills-hero::after { right: 0; }
+.skills-hero::before {
+  left: 0;
+}
+.skills-hero::after {
+  right: 0;
+}
 
-.editor-panel { background: var(--panel); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); overflow: hidden; }
+.editor-panel {
+  background: var(--panel);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
 .editor-chrome {
   display: flex;
   align-items: center;
@@ -45,20 +55,35 @@
   height: 38px;
   padding: 0 12px;
   background: var(--panel-2);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   color: #94a3b8;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
 }
-.editor-chrome .dot { width: 10px; height: 10px; border-radius: var(--radius-full); display: inline-block; }
-.editor-chrome .red { background: #ff5f56; }
-.editor-chrome .yellow { background: #ffbd2e; }
-.editor-chrome .green { background: #27c93f; }
-.editor-chrome .filename { margin-left: auto; opacity: .9; }
+.editor-chrome .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+.editor-chrome .red {
+  background: #ff5f56;
+}
+.editor-chrome .yellow {
+  background: #ffbd2e;
+}
+.editor-chrome .green {
+  background: #27c93f;
+}
+.editor-chrome .filename {
+  margin-left: auto;
+  opacity: 0.9;
+}
 
 .code-block {
-  margin: 0; padding: 18px 20px 22px;
+  margin: 0;
+  padding: 18px 20px 22px;
   color: #e5e7eb;
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
@@ -69,7 +94,7 @@
 .headline-side .headline {
   font-family: 'Anton', sans-serif;
   font-size: 7vw;
-  line-height: .95;
+  line-height: 0.95;
   text-transform: uppercase;
   color: var(--accent);
   margin: 0 0 12px;
@@ -95,18 +120,44 @@
   font-family: 'Inter', sans-serif;
   font-weight: 600;
 }
-.banner-left { opacity: .9; }
+.banner-left {
+  opacity: 0.9;
+}
 
-.editor-form { max-width: var(--container-max-width); margin: 0 auto 1.5rem; padding: 0 2rem; }
+.editor-form {
+  max-width: var(--container-max-width);
+  margin: 0 auto 1.5rem;
+  padding: 0 2rem;
+}
 .horizontal-form {
-  display: flex; flex-wrap: wrap; gap: 16px; padding: 14px;
-  border-radius: 14px; background: #f3f6fb; border: 1px solid #e6ebf2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #f3f6fb;
+  border: 1px solid #e6ebf2;
   font-family: 'Inter', sans-serif;
 }
-.form-item { display: flex; flex-direction: column; min-width: 200px; }
-.form-item.grow { flex: 1 1 360px; }
-.form-item label { margin-bottom: 6px; font-weight: 700; color: var(--ink); font-family: 'Inter', sans-serif; }
-.textarea { min-height: 76px; height: auto; padding: 10px; }
+.form-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+.form-item.grow {
+  flex: 1 1 360px;
+}
+.form-item label {
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+}
+.textarea {
+  min-height: 76px;
+  height: auto;
+  padding: 10px;
+}
 
 .group-section {
   max-width: var(--container-max-width);
@@ -116,7 +167,7 @@
   scroll-margin-top: 2rem;
 }
 .group-section::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -124,13 +175,23 @@
   height: 1px;
   background: linear-gradient(to right, transparent, #b4b4b4, transparent);
 }
-.group-section.last { padding-bottom: 3rem; }
+.group-section.last {
+  padding-bottom: 3rem;
+}
 .group-title {
   font-family: 'Inter', sans-serif;
-  font-weight: 900; letter-spacing: .08em; font-size: 12px; color: var(--muted);
-  text-transform: uppercase; margin: 10px 0 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 10px 0 12px;
 }
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
 
 .skill-card-v2 {
   background: var(--card);
@@ -138,44 +199,99 @@
   border-radius: var(--radius-xl);
   padding: 14px 14px 12px;
   box-shadow: var(--shadow-sm);
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
   cursor: pointer;
   font-family: 'IBM Plex Sans', sans-serif;
 }
-.skill-card-v2:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: #d4dbe8; }
-.skill-card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.skill-name { margin: 0; font-weight: 800; color: var(--ink); font-size: 18px; }
-.skill-meta { color: var(--muted); margin-top: 4px; margin-bottom: 8px; }
-
-.level-0 { background:#eef9f0; border-color:#daefe0; }
-.level-1 { background:#eef6ff; border-color:#dceaFF; }
-.level-2 { background:#fff7e7; border-color:#f3e4c5; }
-.level-3 { background:#edf3ff; border-color:#d6e1ff; }
-.level-4 { background:#ffeef0; border-color:#ffd7db; }
-
-.progress { height: 6px; background: #edf1f7; border-radius: var(--radius-full); overflow: hidden; }
-.progress-bar { height: 100%; background: #243447; }
-
-.edit-buttons { display: flex; gap: 10px; align-items: center; }
-.submit-button { 
-  border-radius: var(--radius-lg); 
-  border: none; 
-  background: var(--accent); 
-  color:#fff; 
-  font-family: 'Inter', sans-serif; 
-  font-weight: 800; 
-  padding: 8px 12px; 
+.skill-card-v2:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: #d4dbe8;
 }
-.submit-button:hover { filter: brightness(1.08); }
-.cancel-button { 
-  height: 36px; width: 36px; 
-  border-radius: var(--radius-lg); 
-  border: none; 
-  background: #cb444a; 
-  color: #fff; 
-  font-family: 'Inter', sans-serif; 
+.skill-card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
 }
-.loading { padding: 48px; font-weight: 700; font-family: 'Inter', sans-serif; }
+.skill-name {
+  margin: 0;
+  font-weight: 800;
+  color: var(--ink);
+  font-size: 18px;
+}
+.skill-meta {
+  color: var(--muted);
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.level-0 {
+  background: #eef9f0;
+  border-color: #daefe0;
+}
+.level-1 {
+  background: #eef6ff;
+  border-color: #dceaff;
+}
+.level-2 {
+  background: #fff7e7;
+  border-color: #f3e4c5;
+}
+.level-3 {
+  background: #edf3ff;
+  border-color: #d6e1ff;
+}
+.level-4 {
+  background: #ffeef0;
+  border-color: #ffd7db;
+}
+
+.progress {
+  height: 6px;
+  background: #edf1f7;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: #243447;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.submit-button {
+  border-radius: var(--radius-lg);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  padding: 8px 12px;
+}
+.submit-button:hover {
+  filter: brightness(1.08);
+}
+.cancel-button {
+  height: 36px;
+  width: 36px;
+  border-radius: var(--radius-lg);
+  border: none;
+  background: #cb444a;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+.loading {
+  padding: 48px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+}
 
 @media (max-width: 968px) {
   .skills-hero {
@@ -197,21 +313,20 @@
     position: static;
     top: auto;
   }
-  .editor-panel
-  .code-block
-  {font-size: 8px;}
+  .editor-panel .code-block {
+    font-size: 8px;
+  }
 
   .headline-side .headline {
     width: 100%;
     margin-right: 0;
     margin-left: 0;
     height: auto;
-    font-size:14vw;
+    font-size: 14vw;
     text-align: center;
   }
-  .headline-side .subhead
-  {
-    font-size : 3vw;
+  .headline-side .subhead {
+    font-size: 3vw;
     text-align: center;
   }
 

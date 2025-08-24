@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback } from "react";
-import Masonry from "react-masonry-css";
-import { useNavigate } from "@tanstack/react-router";
-import apiService from "../../api/service";
-import { Project } from "../../types/project.ts";
-import { useAuth } from "../../hooks/useAuth";
-import ProjectCard from "../../components/ProjectCard/ProjectCard.tsx";
-import "./styles.css";
+import React, { useEffect, useState, useCallback } from 'react';
+import Masonry from 'react-masonry-css';
+import { useNavigate } from '@tanstack/react-router';
+import apiService from '../../api/service';
+import { Project } from '../../types/project.ts';
+import { useAuth } from '../../hooks/useAuth';
+import ProjectCard from '../../components/ProjectCard/ProjectCard.tsx';
+import './styles.css';
 
 type Placement = {
   projectIdx: number;
@@ -15,8 +15,18 @@ type Placement = {
   colSpan: number;
 };
 
-const SHAPES: [number, number][] = [[2, 2], [2, 1], [3, 2], [1, 2], [2, 3]];
-const TOP_SHAPES: [number, number][] = [[2, 2], [1, 2], [2, 1]];
+const SHAPES: [number, number][] = [
+  [2, 2],
+  [2, 1],
+  [3, 2],
+  [1, 2],
+  [2, 3],
+];
+const TOP_SHAPES: [number, number][] = [
+  [2, 2],
+  [1, 2],
+  [2, 1],
+];
 const masonryBreakpoints = { default: 3, 900: 3, 600: 2 };
 
 function useWindowSize() {
@@ -26,8 +36,8 @@ function useWindowSize() {
   ]);
   useEffect(() => {
     const onResize = () => setSize([window.innerWidth, window.innerHeight]);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
   return size;
 }
@@ -51,14 +61,17 @@ function buildPlacements(projects: Project[], COLS: number, ROWS: number) {
       }
   };
 
-  const placeOne = (projectIdx: number, prefRow: number, [w, h]: [number, number]) => {
+  const placeOne = (
+    projectIdx: number,
+    prefRow: number,
+    [w, h]: [number, number]
+  ) => {
     for (let row = prefRow; row < ROWS; row++) {
       for (let col = 0; col < COLS; col++) {
         if (row + h > ROWS || col + w > COLS) continue;
         let fits = true;
         for (let r = 0; r < h && fits; r++)
-          for (let c = 0; c < w; c++)
-            if (taken[row + r][col + c]) fits = false;
+          for (let c = 0; c < w; c++) if (taken[row + r][col + c]) fits = false;
         if (!fits) continue;
         const p: Placement = { projectIdx, row, col, rowSpan: h, colSpan: w };
         occupy(p, placements.length);
@@ -94,8 +107,10 @@ function buildPlacements(projects: Project[], COLS: number, ROWS: number) {
       if (leftId != null) {
         const p = placements[leftId];
         const newCol = p.col + p.colSpan;
-        if (newCol < COLS &&
-            [...Array(p.rowSpan)].every((_, i) => !taken[p.row + i][newCol])) {
+        if (
+          newCol < COLS &&
+          [...Array(p.rowSpan)].every((_, i) => !taken[p.row + i][newCol])
+        ) {
           for (let i = 0; i < p.rowSpan; i++) {
             taken[p.row + i][newCol] = true;
             owner[p.row + i][newCol] = leftId;
@@ -106,8 +121,10 @@ function buildPlacements(projects: Project[], COLS: number, ROWS: number) {
       } else if (upId != null) {
         const p = placements[upId];
         const newRow = p.row + p.rowSpan;
-        if (newRow < ROWS &&
-            [...Array(p.colSpan)].every((_, i) => !taken[newRow][p.col + i])) {
+        if (
+          newRow < ROWS &&
+          [...Array(p.colSpan)].every((_, i) => !taken[newRow][p.col + i])
+        ) {
           for (let i = 0; i < p.colSpan; i++) {
             taken[newRow][p.col + i] = true;
             owner[newRow][p.col + i] = upId;
@@ -130,18 +147,25 @@ const Projects: React.FC = () => {
   const [width, height] = useWindowSize();
 
   useEffect(() => {
-    apiService.getProjects().then(setProjects).catch((e) => console.error("Failed to load projects:", e));
+    apiService
+      .getProjects()
+      .then(setProjects)
+      .catch(e => console.error('Failed to load projects:', e));
   }, []);
 
   const handleProjectClick = useCallback(
-    (id: string) => navigate({ to: "/project/$projectId", params: { projectId: id } }),
+    (id: string) =>
+      navigate({ to: '/project/$projectId', params: { projectId: id } }),
     [navigate]
   );
   const handleEdit = useCallback((id: string, e: React.MouseEvent) => {
-    e.preventDefault(); e.stopPropagation(); setEditingProjectId(id);
+    e.preventDefault();
+    e.stopPropagation();
+    setEditingProjectId(id);
   }, []);
   const handleDelete = useCallback((e: React.MouseEvent) => {
-    e.preventDefault(); e.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
   }, []);
 
   if (authLoading)
@@ -155,15 +179,26 @@ const Projects: React.FC = () => {
     return (
       <div className="projects-page">
         <section id="projects-list" className="project-group-section">
-          <div style={{ padding: "0 2vw", marginBottom: "1rem" }}>
+          <div style={{ padding: '0 2vw', marginBottom: '1rem' }}>
             <h1 className="project-headline">What I've Built</h1>
-            <p className="project-subhead">A showcase of my favorite projects.</p>
+            <p className="project-subhead">
+              A showcase of my favorite projects.
+            </p>
           </div>
-          <Masonry breakpointCols={masonryBreakpoints} className="masonry-grid" columnClassName="masonry-grid_column">
+          <Masonry
+            breakpointCols={masonryBreakpoints}
+            className="masonry-grid"
+            columnClassName="masonry-grid_column"
+          >
             {projects.map((proj, idx) => (
-              <ProjectCard key={proj.id} project={proj} isAuthenticated={isAuthenticated}
+              <ProjectCard
+                key={proj.id}
+                project={proj}
+                isAuthenticated={isAuthenticated}
                 handleProjectClick={() => handleProjectClick(proj.id)}
-                handleEdit={(e) => handleEdit(proj.id, e)} handleDelete={handleDelete} />
+                handleEdit={e => handleEdit(proj.id, e)}
+                handleDelete={handleDelete}
+              />
             ))}
           </Masonry>
         </section>
@@ -178,33 +213,45 @@ const Projects: React.FC = () => {
   return (
     <div className="projects-page">
       <section id="projects-list" className="project-group-section">
-        <div className="projects-grid l-mosaic"
-          style={{ gridTemplateColumns: `repeat(${COLS}, 1fr)`, gridAutoRows: `${rowHeight}px` }}>
+        <div
+          className="projects-grid l-mosaic"
+          style={{
+            gridTemplateColumns: `repeat(${COLS}, 1fr)`,
+            gridAutoRows: `${rowHeight}px`,
+          }}
+        >
           <div
             style={{
               gridColumn: `${Math.max(COLS - 4, 1)} / -1`,
-              gridRow: "1 / span 1",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              alignItems: "flex-start",
-              padding: "0 2vw",
+              gridRow: '1 / span 1',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
+              alignItems: 'flex-start',
+              padding: '0 2vw',
             }}
           >
             <h1 className="project-headline">What I've Built</h1>
-            <p className="project-subhead">A showcase of my favorite projects</p>
+            <p className="project-subhead">
+              A showcase of my favorite projects
+            </p>
           </div>
           {placements.map(p => {
             const proj = projects[p.projectIdx];
             return (
-              <ProjectCard key={proj.id} project={proj} isAuthenticated={isAuthenticated}
+              <ProjectCard
+                key={proj.id}
+                project={proj}
+                isAuthenticated={isAuthenticated}
                 handleProjectClick={() => handleProjectClick(proj.id)}
-                handleEdit={(e) => handleEdit(proj.id, e)} handleDelete={handleDelete}
+                handleEdit={e => handleEdit(proj.id, e)}
+                handleDelete={handleDelete}
                 mosaicSize={Math.max(p.colSpan, p.rowSpan)}
                 style={{
                   gridColumn: `${p.col + 1} / span ${p.colSpan}`,
-                  gridRow: `${p.row + 1} / span ${p.rowSpan}`
-                }} />
+                  gridRow: `${p.row + 1} / span ${p.rowSpan}`,
+                }}
+              />
             );
           })}
         </div>

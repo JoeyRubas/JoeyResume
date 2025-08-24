@@ -1,23 +1,23 @@
-import React, { useEffect, useMemo, useState } from "react";
-import SkillForm from "./SkillForm";
-import { useNavigate } from "@tanstack/react-router";
-import apiService from "../../api/service";
-import { Skill } from "../../types/skill";
-import { useAuth } from "../../hooks/useAuth";
-import ScrollIndicator from "../../components/Scroll/ScrollIndicator";
-import SkillCard from "../../components/SkillCard/SkillCard";
-import styles from "../../components/SkillCard/SkillCard.module.css";
-import "./styles.css";
+import React, { useEffect, useMemo, useState } from 'react';
+import SkillForm from './SkillForm';
+import { useNavigate } from '@tanstack/react-router';
+import apiService from '../../api/service';
+import { Skill } from '../../types/skill';
+import { useAuth } from '../../hooks/useAuth';
+import ScrollIndicator from '../../components/Scroll/ScrollIndicator';
+import SkillCard from '../../components/SkillCard/SkillCard';
+import styles from '../../components/SkillCard/SkillCard.module.css';
+import './styles.css';
 
 function levelToString(level: number): string {
-  const levels = ["Basic", "Novice", "Intermediate", "Advanced", "Expert"];
-  return levels[level] || "Unknown";
+  const levels = ['Basic', 'Novice', 'Intermediate', 'Advanced', 'Expert'];
+  return levels[level] || 'Unknown';
 }
 
-function deriveBand(s: Skill): "Core" | "Use" | "Learning" {
-  if (s.skillLevel >= 4 || s.hoursExperience >= 800) return "Core";
-  if (s.skillLevel >= 2 || s.hoursExperience >= 300) return "Use";
-  return "Learning";
+function deriveBand(s: Skill): 'Core' | 'Use' | 'Learning' {
+  if (s.skillLevel >= 4 || s.hoursExperience >= 800) return 'Core';
+  if (s.skillLevel >= 2 || s.hoursExperience >= 300) return 'Use';
+  return 'Learning';
 }
 
 const Skills: React.FC = () => {
@@ -27,10 +27,10 @@ const Skills: React.FC = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [editingSkillId, setEditingSkillId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    name: "",
-    skillLevel: "0",
-    hoursExperience: "",
-    description: "",
+    name: '',
+    skillLevel: '0',
+    hoursExperience: '',
+    description: '',
   });
 
   useEffect(() => {
@@ -42,19 +42,21 @@ const Skills: React.FC = () => {
       const skillsData = await apiService.getSkills();
       setSkills(skillsData);
     } catch (error) {
-      console.error("Failed to load skills:", error);
+      console.error('Failed to load skills:', error);
     }
   };
 
   const handleSkillClick = (skillId: string) => {
-    navigate({ to: "/skill/$skillId", params: { skillId } });
+    navigate({ to: '/skill/$skillId', params: { skillId } });
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -66,7 +68,7 @@ const Skills: React.FC = () => {
     ) {
       try {
         const skillData: Skill = {
-          id: editingSkillId || "",
+          id: editingSkillId || '',
           name: formData.name.trim(),
           skillLevel: parseInt(formData.skillLevel, 10),
           hoursExperience: parseInt(formData.hoursExperience, 10),
@@ -89,10 +91,10 @@ const Skills: React.FC = () => {
 
   const clearForm = () => {
     setFormData({
-      name: "",
-      skillLevel: "0",
-      hoursExperience: "",
-      description: "",
+      name: '',
+      skillLevel: '0',
+      hoursExperience: '',
+      description: '',
     });
     setEditingSkillId(null);
   };
@@ -100,7 +102,7 @@ const Skills: React.FC = () => {
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    const id = e.currentTarget.id?.replace("delete", "");
+    const id = e.currentTarget.id?.replace('delete', '');
     if (!id) return;
     try {
       await apiService.deleteSkill(id);
@@ -113,8 +115,8 @@ const Skills: React.FC = () => {
   const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    const id = e.currentTarget.id?.replace("edit", "");
-    const curSkill = skills.find((s) => s.id === id);
+    const id = e.currentTarget.id?.replace('edit', '');
+    const curSkill = skills.find(s => s.id === id);
     if (!curSkill) return;
 
     setFormData({
@@ -131,28 +133,31 @@ const Skills: React.FC = () => {
   };
 
   const grouped = useMemo(() => {
-    const by: Record<"Core" | "Use" | "Learning", Skill[]> = {
+    const by: Record<'Core' | 'Use' | 'Learning', Skill[]> = {
       Core: [],
       Use: [],
       Learning: [],
     };
-    skills.forEach((s) => by[deriveBand(s)].push(s));
-    (Object.keys(by) as Array<keyof typeof by>).forEach((k) =>
-      by[k].sort((a, b) => b.skillLevel - a.skillLevel || b.hoursExperience - a.hoursExperience)
+    skills.forEach(s => by[deriveBand(s)].push(s));
+    (Object.keys(by) as Array<keyof typeof by>).forEach(k =>
+      by[k].sort(
+        (a, b) =>
+          b.skillLevel - a.skillLevel || b.hoursExperience - a.hoursExperience
+      )
     );
     return by;
   }, [skills]);
 
   const yaml = useMemo(() => {
     const mk = (arr: Skill[]) =>
-      arr.map((s) => s.name.toLowerCase().replace(/\s+/g, "_")).join(", ");
+      arr.map(s => s.name.toLowerCase().replace(/\s+/g, '_')).join(', ');
     return [
-      "skills.yaml:",
-      "  groups:",
+      'skills.yaml:',
+      '  groups:',
       `    Core: [${mk(grouped.Core)}]`,
       `    use: [${mk(grouped.Use)}]`,
       `    learning: [${mk(grouped.Learning)}]`,
-    ].join("\n");
+    ].join('\n');
   }, [grouped]);
 
   if (authLoading) {
@@ -182,7 +187,7 @@ const Skills: React.FC = () => {
           <h1 className="headline">SKILLS ON THE CUTTING EDGE</h1>
           <p className="subhead">What I use to ship at scale</p>
         </div>
-        
+
         <div className="hero-scroll-container">
           <ScrollIndicator targetId="skills-core" bottom="20px" />
         </div>
@@ -212,7 +217,7 @@ const Skills: React.FC = () => {
       <section id="skills-core" className="group-section">
         <h2 className="group-title">Core</h2>
         <div className="skills-grid">
-          {grouped.Core.map((skill) => (
+          {grouped.Core.map(skill => (
             <SkillCard
               key={skill.id}
               skill={skill}
@@ -229,7 +234,7 @@ const Skills: React.FC = () => {
       <section id="skills-use" className="group-section">
         <h2 className="group-title">Use</h2>
         <div className="skills-grid">
-          {grouped.Use.map((skill) => (
+          {grouped.Use.map(skill => (
             <SkillCard
               key={skill.id}
               skill={skill}
@@ -246,7 +251,7 @@ const Skills: React.FC = () => {
       <section id="skills-learning" className="group-section last">
         <h2 className="group-title">Learning</h2>
         <div className="skills-grid">
-          {grouped.Learning.map((skill) => (
+          {grouped.Learning.map(skill => (
             <SkillCard
               key={skill.id}
               skill={skill}

@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { 
-  Box, 
-  Paper, 
-  TextField, 
-  Button, 
-  Typography, 
+import {
+  Box,
+  Paper,
+  TextField,
+  Button,
+  Typography,
   Alert,
   Container,
   InputAdornment,
-  IconButton
+  IconButton,
 } from '@mui/material';
 import authService from '../api/authService';
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
-  loginMethod?: (password: string) => Promise<{ success: boolean; message?: string }>;
+  loginMethod?: (
+    password: string
+  ) => Promise<{ success: boolean; message?: string }>;
 }
 
-const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, loginMethod }) => {
+const LoginPage: React.FC<LoginPageProps> = ({
+  onLoginSuccess,
+  loginMethod,
+}) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,10 +36,10 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, loginMethod }) =>
     setError('');
 
     try {
-      const result = loginMethod 
+      const result = loginMethod
         ? await loginMethod(password)
         : await authService.login(password);
-      
+
       if (result.success) {
         onLoginSuccess();
       } else {
@@ -58,13 +63,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, loginMethod }) =>
           justifyContent: 'center',
         }}
       >
-        <Paper 
-          elevation={3} 
-          sx={{ 
-            p: 4, 
-            width: '100%', 
+        <Paper
+          elevation={3}
+          sx={{
+            p: 4,
+            width: '100%',
             maxWidth: 400,
-            textAlign: 'center'
+            textAlign: 'center',
           }}
         >
           <Box sx={{ mb: 3 }}>
@@ -91,7 +96,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, loginMethod }) =>
               type={showPassword ? 'text' : 'password'}
               label="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               required
               disabled={loading}
               variant="outlined"
@@ -122,7 +127,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, loginMethod }) =>
               {loading ? 'Logging in...' : 'Login'}
             </Button>
           </Box>
-
         </Paper>
       </Box>
     </Container>

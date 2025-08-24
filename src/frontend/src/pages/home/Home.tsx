@@ -1,5 +1,5 @@
-import React from "react";
-import "./styles.css";
+import React from 'react';
+import './styles.css';
 
 const Home: React.FC = () => {
   return (
@@ -27,7 +27,12 @@ const Home: React.FC = () => {
           </p>
 
           <div className="cta-row">
-            <a className="btn primary" href="/resume" target="_blank" rel="noopener noreferrer">
+            <a
+              className="btn primary"
+              href="/resume"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               View Resume
             </a>
             <a className="btn ghost" href="/contact">
@@ -36,14 +41,47 @@ const Home: React.FC = () => {
           </div>
 
           <div className="social-row">
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X/Twitter">
-              <img src="/twitter.png" alt="" className="social-icon" width={36} height={36} />
+            <a
+              href="https://x.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X/Twitter"
+            >
+              <img
+                src="/twitter.png"
+                alt=""
+                className="social-icon"
+                width={36}
+                height={36}
+              />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <img src="/facebook.png" alt="" className="social-icon" width={36} height={36} />
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <img
+                src="/facebook.png"
+                alt=""
+                className="social-icon"
+                width={36}
+                height={36}
+              />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <img src="/linkedin.png" alt="" className="social-icon" width={36} height={36} />
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <img
+                src="/linkedin.png"
+                alt=""
+                className="social-icon"
+                width={36}
+                height={36}
+              />
             </a>
           </div>
         </div>
@@ -64,7 +102,9 @@ const Home: React.FC = () => {
       <section className="quick-facts">
         <div className="fact">
           <span className="fact-kicker">Core</span>
-          <span className="fact-text">Python • Django • DotNET • TypeScript</span>
+          <span className="fact-text">
+            Python • Django • DotNET • TypeScript
+          </span>
         </div>
         <div className="fact">
           <span className="fact-kicker">Cloud</span>
@@ -72,7 +112,9 @@ const Home: React.FC = () => {
         </div>
         <div className="fact">
           <span className="fact-kicker">Focus</span>
-          <span className="fact-text">Reliability • Performance • Developer Experience</span>
+          <span className="fact-text">
+            Reliability • Performance • Developer Experience
+          </span>
         </div>
       </section>
     </main>

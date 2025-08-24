@@ -1,16 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useLocation, Link } from "@tanstack/react-router";
-import { useAuth } from "../../hooks/useAuth";
-import "./styles.css";
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, Link } from '@tanstack/react-router';
+import { useAuth } from '../../hooks/useAuth';
+import './styles.css';
 
-type NavItem = { to: string; label: string; match?: "exact" | "startsWith" };
+type NavItem = { to: string; label: string; match?: 'exact' | 'startsWith' };
 
 const NAV_ITEMS: NavItem[] = [
-  { to: "/", label: "Home", match: "exact" },
-  { to: "/skills", label: "Skills", match: "startsWith" },
-  { to: "/projects", label: "Projects", match: "startsWith" },
-  { to: "/resume", label: "Resume", match: "startsWith" },
-  { to: "/portfolio", label: "Portfolio", match: "startsWith" },
+  { to: '/', label: 'Home', match: 'exact' },
+  { to: '/skills', label: 'Skills', match: 'startsWith' },
+  { to: '/projects', label: 'Projects', match: 'startsWith' },
+  { to: '/resume', label: 'Resume', match: 'startsWith' },
+  { to: '/portfolio', label: 'Portfolio', match: 'startsWith' },
 ];
 
 const NavigationBar: React.FC = () => {
@@ -19,7 +19,11 @@ const NavigationBar: React.FC = () => {
 
   const linksRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
-  const [indicator, setIndicator] = useState<{ left: number; width: number; visible: boolean }>({
+  const [indicator, setIndicator] = useState<{
+    left: number;
+    width: number;
+    visible: boolean;
+  }>({
     left: 0,
     width: 0,
     visible: false,
@@ -28,7 +32,7 @@ const NavigationBar: React.FC = () => {
   const activePath = useMemo(() => {
     const path = location.pathname;
     for (const item of NAV_ITEMS) {
-      if (item.match === "startsWith") {
+      if (item.match === 'startsWith') {
         if (path.startsWith(item.to)) return item.to;
       } else {
         if (path === item.to) return item.to;
@@ -41,7 +45,7 @@ const NavigationBar: React.FC = () => {
     const container = linksRef.current;
     const activeEl = itemRefs.current[activePath];
     if (!container || !activeEl) {
-      setIndicator((s) => ({ ...s, visible: false }));
+      setIndicator(s => ({ ...s, visible: false }));
       return;
     }
     const cRect = container.getBoundingClientRect();
@@ -54,11 +58,11 @@ const NavigationBar: React.FC = () => {
   useEffect(() => {
     updateIndicator();
     const handle = () => updateIndicator();
-    window.addEventListener("resize", handle, { passive: true });
+    window.addEventListener('resize', handle, { passive: true });
     // Recompute on font load / images / route change
     const t = setTimeout(handle, 50);
     return () => {
-      window.removeEventListener("resize", handle);
+      window.removeEventListener('resize', handle);
       clearTimeout(t);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,45 +77,53 @@ const NavigationBar: React.FC = () => {
     <>
       {/* need to keep, empty spacer for nav bar */}
       <div className="nav-wrapper">
-        
         <div className="nav-rail nav-rail-left" aria-hidden="true" />
         <div className="nav-rail nav-rail-right" aria-hidden="true" />
 
         <nav className="navigation_container" aria-label="Primary">
-          
           <div className="nav-inner">
             <div className="nav-links" ref={linksRef}>
-              
               <span
-                className={`nav-active-indicator ${indicator.visible ? "show" : ""}`}
-                style={{ transform: `translateX(${indicator.left}px)`, width: indicator.width }}
+                className={`nav-active-indicator ${indicator.visible ? 'show' : ''}`}
+                style={{
+                  transform: `translateX(${indicator.left}px)`,
+                  width: indicator.width,
+                }}
                 aria-hidden="true"
               />
-              {NAV_ITEMS.map((item) => {
+              {NAV_ITEMS.map(item => {
                 const isActive =
-                  item.match === "startsWith"
+                  item.match === 'startsWith'
                     ? location.pathname.startsWith(item.to)
                     : location.pathname === item.to;
                 return (
                   <Link
                     key={item.to}
                     to={item.to}
-                    className={`link ${isActive ? "active" : ""}`}
-                    ref={(el) => { itemRefs.current[item.to] = el; }}
+                    className={`link ${isActive ? 'active' : ''}`}
+                    ref={el => {
+                      itemRefs.current[item.to] = el;
+                    }}
                   >
                     {item.label}
                   </Link>
                 );
               })}
               {isAuthenticated ? (
-                <a href="/logout" className="link auth-link" onClick={handleLogout}>
+                <a
+                  href="/logout"
+                  className="link auth-link"
+                  onClick={handleLogout}
+                >
                   Logout
                 </a>
               ) : (
                 <Link
                   to="/login"
-                  className={`link auth-link ${location.pathname === "/login" ? "active" : ""}`}
-                  ref={(el) => { itemRefs.current["/login"] = el; }}
+                  className={`link auth-link ${location.pathname === '/login' ? 'active' : ''}`}
+                  ref={el => {
+                    itemRefs.current['/login'] = el;
+                  }}
                 >
                   Login
                 </Link>
@@ -120,11 +132,17 @@ const NavigationBar: React.FC = () => {
           </div>
         </nav>
       </div>
-      
+
       {/* Sticky elements that move with content */}
       <div className="nav-sticky-line" aria-hidden="true" />
-      <div className="nav-sticky-rail nav-sticky-rail-left" aria-hidden="true" />
-      <div className="nav-sticky-rail nav-sticky-rail-right" aria-hidden="true" />
+      <div
+        className="nav-sticky-rail nav-sticky-rail-left"
+        aria-hidden="true"
+      />
+      <div
+        className="nav-sticky-rail nav-sticky-rail-right"
+        aria-hidden="true"
+      />
     </>
   );
 };

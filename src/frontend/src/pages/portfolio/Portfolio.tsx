@@ -1,35 +1,35 @@
-import "./styles.css";
-import React from "react";
-import { motion } from "framer-motion";
-import MockCode from "../../components/MockIDE/MockCode";
-import MockDashboard from "../../components/MockDashboard/mockDashboard";
-import ImageComparison from "../../components/ImageCompare/ImageComparison";
+import './styles.css';
+import React from 'react';
+import { motion } from 'framer-motion';
+import MockCode from '../../components/MockIDE/MockCode';
+import MockDashboard from '../../components/MockDashboard/mockDashboard';
+import ImageComparison from '../../components/ImageCompare/ImageComparison';
 
 const textVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 40,
-    filter: "blur(8px)"
+    filter: 'blur(8px)',
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    filter: "blur(0px)",
+    filter: 'blur(0px)',
     transition: {
       duration: 1.5,
-      ease: "easeOut" as const
-    }
-  }
+      ease: 'easeOut' as const,
+    },
+  },
 };
 
-const AnimatedText: React.FC<{ 
-  lines: string[], 
-  visible: boolean, 
-  onComplete?: () => void 
+const AnimatedText: React.FC<{
+  lines: string[];
+  visible: boolean;
+  onComplete?: () => void;
 }> = ({ lines, visible, onComplete }) => {
   const [hasAnimated, setHasAnimated] = React.useState(false);
   const [shouldStayVisible, setShouldStayVisible] = React.useState(false);
-  
+
   React.useEffect(() => {
     if (visible && !hasAnimated) {
       setHasAnimated(true);
@@ -42,7 +42,7 @@ const AnimatedText: React.FC<{
       className="big-text animated-text"
       variants={textVariants}
       initial="hidden"
-      animate={shouldStayVisible ? "visible" : "hidden"}
+      animate={shouldStayVisible ? 'visible' : 'hidden'}
       onAnimationComplete={() => {
         if (shouldStayVisible && onComplete) {
           onComplete();
@@ -58,16 +58,15 @@ const AnimatedText: React.FC<{
   );
 };
 
-
 const Portfolio: React.FC = () => {
   const firstSectionRef = React.useRef<HTMLDivElement>(null);
   const secondSectionRef = React.useRef<HTMLDivElement>(null);
   const thirdSectionRef = React.useRef<HTMLDivElement>(null);
-  
+
   const [firstTextVisible, setFirstTextVisible] = React.useState(false);
   const [secondTextVisible, setSecondTextVisible] = React.useState(false);
   const [thirdTextVisible, setThirdTextVisible] = React.useState(false);
-  
+
   const [firstTextFinished, setFirstTextFinished] = React.useState(false);
   const [secondTextFinished, setSecondTextFinished] = React.useState(false);
   const [thirdTextFinished, setThirdTextFinished] = React.useState(false);
@@ -80,7 +79,9 @@ const Portfolio: React.FC = () => {
 
   React.useEffect(() => {
     const checkLayout = () => {
-      const isLandscape = window.matchMedia('(max-width: 1024px) and (orientation: landscape)').matches;
+      const isLandscape = window.matchMedia(
+        '(max-width: 1024px) and (orientation: landscape)'
+      ).matches;
       setIsLandscapeTablet(isLandscape);
     };
 
@@ -122,7 +123,7 @@ const Portfolio: React.FC = () => {
           if (entry.isIntersecting) {
             setFirstTextVisible(true);
             setFirstTriggered(true);
-            observer.disconnect(); 
+            observer.disconnect();
           }
         },
         { threshold: 0.3 }
@@ -146,7 +147,7 @@ const Portfolio: React.FC = () => {
         if (entry.isIntersecting) {
           setSecondTextVisible(true);
           setSecondTriggered(true);
-          observer.disconnect(); 
+          observer.disconnect();
         }
       },
       { threshold: 0.3 }
@@ -185,43 +186,45 @@ const Portfolio: React.FC = () => {
   return (
     <div className="portfolio-background">
       <div className="portfolio-minipage">
-      <div className="portfolio-header big-text" ref={firstSectionRef}>
-        <AnimatedText 
-          lines={["Bringing", "Legacy", "Applications", "Back to Life"]}
-          visible={firstTextVisible}
-          onComplete={() => setFirstTextFinished(true)}
-        />
+        <div className="portfolio-header big-text" ref={firstSectionRef}>
+          <AnimatedText
+            lines={['Bringing', 'Legacy', 'Applications', 'Back to Life']}
+            visible={firstTextVisible}
+            onComplete={() => setFirstTextFinished(true)}
+          />
         </div>
-      <div className="minipage-visual">
-      <ImageComparison startPct={98} animateOnFinish={firstTextFinished} />
-        </div>
-        </div>
-      
-      <div className="portfolio-minipage">
-      <div className="portfolio-header big-text" ref={secondSectionRef}>
-        <AnimatedText 
-          lines={["Scaling", "Services", "to Enterprise", "Demands"]}
-          visible={secondTextVisible}
-          onComplete={() => setSecondTextFinished(true)}
-        />
-      </div>
         <div className="minipage-visual">
-      {secondTextVisible && <MockCode ideVisible={secondTextVisible} />}
-      </div>
+          <ImageComparison startPct={98} animateOnFinish={firstTextFinished} />
         </div>
+      </div>
 
       <div className="portfolio-minipage">
-      <div className="portfolio-header big-text" ref={thirdSectionRef}>
-        <AnimatedText 
-          lines={["Leading", "Optimization", "That Delivers", "Real Results"]}
-          visible={thirdTextVisible}
-          onComplete={() => setThirdTextFinished(true)}
-        />
+        <div className="portfolio-header big-text" ref={secondSectionRef}>
+          <AnimatedText
+            lines={['Scaling', 'Services', 'to Enterprise', 'Demands']}
+            visible={secondTextVisible}
+            onComplete={() => setSecondTextFinished(true)}
+          />
+        </div>
+        <div className="minipage-visual">
+          {secondTextVisible && <MockCode ideVisible={secondTextVisible} />}
+        </div>
       </div>
 
-      <div className="minipage-visual">
-      {thirdTextVisible && <MockDashboard dashboardVisible={thirdTextVisible} />}
-      </div>
+      <div className="portfolio-minipage">
+        <div className="portfolio-header big-text" ref={thirdSectionRef}>
+          <AnimatedText
+            lines={['Leading', 'Optimization', 'That Delivers', 'Real Results']}
+            visible={thirdTextVisible}
+            onComplete={() => setThirdTextFinished(true)}
+          />
+        </div>
+
+        <div className="minipage-visual">
+          {thirdTextVisible && (
+            <MockDashboard dashboardVisible={thirdTextVisible} />
+          )}
+        </div>
       </div>
     </div>
   );
