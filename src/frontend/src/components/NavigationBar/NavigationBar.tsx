@@ -8,6 +8,7 @@ type NavItem = { to: string; label: string; match?: "exact" | "startsWith" };
 const NAV_ITEMS: NavItem[] = [
   { to: "/", label: "Home", match: "exact" },
   { to: "/skills", label: "Skills", match: "startsWith" },
+  { to: "/projects", label: "Projects", match: "startsWith" },
   { to: "/resume", label: "Resume", match: "startsWith" },
   { to: "/portfolio", label: "Portfolio", match: "startsWith" },
 ];

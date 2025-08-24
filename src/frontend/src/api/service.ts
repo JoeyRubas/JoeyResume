@@ -1,13 +1,12 @@
 import { Skill } from '../types/skill';
-import { mockApi } from './mockData';
+import { Project } from '../types/project';
+import { mockApi, mockProjects } from './mockData';
 
 const apiUrl = import.meta.env.VITE_API_URL || 'https://wapp-joeytest2321.azurewebsites.net';
 const useMockData = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
-// If no API URL is configured or if explicitly using mock data, use mock data
 const shouldUseMockData = useMockData || !apiUrl;
 
-// Use mock data in development when VITE_USE_MOCK_DATA is true OR when no API URL is set
 const apiService = shouldUseMockData ? mockApi : {
   getSkills: async (): Promise<Array<Skill>> => {
     try {
@@ -35,7 +34,6 @@ const apiService = shouldUseMockData ? mockApi : {
     }
   },
 
-  // Get a single skill by ID
   getSkill: async (id: string): Promise<Skill> => {
     try {
       const response = await fetch(`${apiUrl}/skill/${id}`, {
@@ -120,6 +118,11 @@ const apiService = shouldUseMockData ? mockApi : {
     }
     return Promise.resolve();
   },
-};
+
+  getProjects: async (): Promise<Array<Project>> => {
+      return await mockApi.getProjects();
+  },
+
+}
 
 export default apiService;

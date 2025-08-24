@@ -11,12 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as ResumeRouteImport } from './routes/resume'
+import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SkillsIndexRouteImport } from './routes/skills/index'
 import { Route as SkillSkillIdRouteImport } from './routes/skill.$skillId'
+import { Route as ProjectProjectIdRouteImport } from './routes/project.$projectId'
 
 const SkillsRoute = SkillsRouteImport.update({
   id: '/skills',
@@ -26,6 +28,11 @@ const SkillsRoute = SkillsRouteImport.update({
 const ResumeRoute = ResumeRouteImport.update({
   id: '/resume',
   path: '/resume',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioRoute = PortfolioRouteImport.update({
@@ -58,14 +65,21 @@ const SkillSkillIdRoute = SkillSkillIdRouteImport.update({
   path: '/skill/$skillId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectProjectIdRoute = ProjectProjectIdRouteImport.update({
+  id: '/project/$projectId',
+  path: '/project/$projectId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
   '/portfolio': typeof PortfolioRoute
+  '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRouteWithChildren
+  '/project/$projectId': typeof ProjectProjectIdRoute
   '/skill/$skillId': typeof SkillSkillIdRoute
   '/skills/': typeof SkillsIndexRoute
 }
@@ -74,7 +88,9 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
   '/portfolio': typeof PortfolioRoute
+  '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
+  '/project/$projectId': typeof ProjectProjectIdRoute
   '/skill/$skillId': typeof SkillSkillIdRoute
   '/skills': typeof SkillsIndexRoute
 }
@@ -84,8 +100,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
   '/portfolio': typeof PortfolioRoute
+  '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRouteWithChildren
+  '/project/$projectId': typeof ProjectProjectIdRoute
   '/skill/$skillId': typeof SkillSkillIdRoute
   '/skills/': typeof SkillsIndexRoute
 }
@@ -96,8 +114,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/login'
     | '/portfolio'
+    | '/projects'
     | '/resume'
     | '/skills'
+    | '/project/$projectId'
     | '/skill/$skillId'
     | '/skills/'
   fileRoutesByTo: FileRoutesByTo
@@ -106,7 +126,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/login'
     | '/portfolio'
+    | '/projects'
     | '/resume'
+    | '/project/$projectId'
     | '/skill/$skillId'
     | '/skills'
   id:
@@ -115,8 +137,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/login'
     | '/portfolio'
+    | '/projects'
     | '/resume'
     | '/skills'
+    | '/project/$projectId'
     | '/skill/$skillId'
     | '/skills/'
   fileRoutesById: FileRoutesById
@@ -126,8 +150,10 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   LoginRoute: typeof LoginRoute
   PortfolioRoute: typeof PortfolioRoute
+  ProjectsRoute: typeof ProjectsRoute
   ResumeRoute: typeof ResumeRoute
   SkillsRoute: typeof SkillsRouteWithChildren
+  ProjectProjectIdRoute: typeof ProjectProjectIdRoute
   SkillSkillIdRoute: typeof SkillSkillIdRoute
 }
 
@@ -145,6 +171,13 @@ declare module '@tanstack/react-router' {
       path: '/resume'
       fullPath: '/resume'
       preLoaderRoute: typeof ResumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio': {
@@ -189,6 +222,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SkillSkillIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/project/$projectId': {
+      id: '/project/$projectId'
+      path: '/project/$projectId'
+      fullPath: '/project/$projectId'
+      preLoaderRoute: typeof ProjectProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -208,8 +248,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   LoginRoute: LoginRoute,
   PortfolioRoute: PortfolioRoute,
+  ProjectsRoute: ProjectsRoute,
   ResumeRoute: ResumeRoute,
   SkillsRoute: SkillsRouteWithChildren,
+  ProjectProjectIdRoute: ProjectProjectIdRoute,
   SkillSkillIdRoute: SkillSkillIdRoute,
 }
 export const routeTree = rootRouteImport

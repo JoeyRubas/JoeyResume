@@ -67,13 +67,14 @@
   gap: 4px;
   padding: 6px;
   width: 100%;
+  justify-content: center;
   overflow-x: auto;
   scrollbar-width: none; 
 }
 .nav-links::-webkit-scrollbar { display: none; }
 
 
-.active-indicator {
+.nav-wrapper .active-indicator {
   position: absolute;
   top: 6px;
   left: 0;
@@ -81,6 +82,25 @@
   border-radius: var(--radius-full);
   background: linear-gradient(180deg, var(--accent), #2a3e59);
   box-shadow: 0 6px 18px rgba(23, 38, 58, 0.25);
+  transform: translateX(0);
+  width: 0;
+  opacity: 0;
+  transition:
+    transform 220ms cubic-bezier(.2,.8,.2,1),
+    width 220ms cubic-bezier(.2,.8,.2,1),
+    opacity 180ms ease;
+}
+.nav-wrapper .active-indicator.show { opacity: 1; }
+
+/* Default .active-indicator elsewhere (skills header, etc) gets a neutral style */
+.active-indicator {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: calc(100% - 12px);
+  border-radius: var(--radius-full);
+  background: var(--accent, #e0e6ef);
+  box-shadow: none;
   transform: translateX(0);
   width: 0;
   opacity: 0;
