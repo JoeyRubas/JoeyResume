@@ -1,24 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import SkillForm from './SkillForm';
+import SkillsHeader from './SkillsHeader';
+import SkillGroup from './SkillGroup';
 import { useNavigate } from '@tanstack/react-router';
 import apiService from '../../api/service';
 import { Skill } from '../../types/skill';
 import { useAuth } from '../../hooks/useAuth';
-import ScrollIndicator from '../../components/Scroll/ScrollIndicator';
-import SkillCard from '../../components/SkillCard/SkillCard';
+import { levelToString, groupSkills } from './utils';
 import styles from '../../components/SkillCard/SkillCard.module.css';
 import './styles.css';
-
-function levelToString(level: number): string {
-  const levels = ['Basic', 'Novice', 'Intermediate', 'Advanced', 'Expert'];
-  return levels[level] || 'Unknown';
-}
-
-function deriveBand(s: Skill): 'Core' | 'Use' | 'Learning' {
-  if (s.skillLevel >= 4 || s.hoursExperience >= 800) return 'Core';
-  if (s.skillLevel >= 2 || s.hoursExperience >= 300) return 'Use';
-  return 'Learning';
-}
 
 const Skills: React.FC = () => {
   const navigate = useNavigate();
@@ -50,43 +40,9 @@ const Skills: React.FC = () => {
     navigate({ to: '/skill/$skillId', params: { skillId } });
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (
-      formData.name.trim() &&
-      formData.description.trim() &&
-      formData.hoursExperience.trim()
-    ) {
-      try {
-        const skillData: Skill = {
-          id: editingSkillId || '',
-          name: formData.name.trim(),
-          skillLevel: parseInt(formData.skillLevel, 10),
-          hoursExperience: parseInt(formData.hoursExperience, 10),
-          description: formData.description.trim(),
-        };
-
-        if (editingSkillId) {
-          await apiService.editSkill(skillData);
-        } else {
-          await apiService.createSkill(skillData);
-        }
-
-        await loadSkills();
-        clearForm();
-      } catch (error) {
-        console.error(error);
-      }
-    }
   };
 
   const clearForm = () => {
@@ -97,6 +53,30 @@ const Skills: React.FC = () => {
       description: '',
     });
     setEditingSkillId(null);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const skillData: Skill = {
+        id: editingSkillId || '',
+        name: formData.name,
+        skillLevel: parseInt(formData.skillLevel),
+        hoursExperience: parseInt(formData.hoursExperience),
+        description: formData.description,
+      };
+
+      if (editingSkillId) {
+        await apiService.editSkill(skillData);
+      } else {
+        await apiService.createSkill(skillData);
+      }
+
+      clearForm();
+      await loadSkills();
+    } catch (error) {
+      console.error('Failed to save skill:', error);
+    }
   };
 
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -132,75 +112,21 @@ const Skills: React.FC = () => {
     await logout();
   };
 
-  const grouped = useMemo(() => {
-    const by: Record<'Core' | 'Use' | 'Learning', Skill[]> = {
-      Core: [],
-      Use: [],
-      Learning: [],
-    };
-    skills.forEach(s => by[deriveBand(s)].push(s));
-    (Object.keys(by) as Array<keyof typeof by>).forEach(k =>
-      by[k].sort(
-        (a, b) =>
-          b.skillLevel - a.skillLevel || b.hoursExperience - a.hoursExperience
-      )
-    );
-    return by;
-  }, [skills]);
+  const grouped = useMemo(() => groupSkills(skills), [skills]);
 
-  const yaml = useMemo(() => {
-    const mk = (arr: Skill[]) =>
-      arr.map(s => s.name.toLowerCase().replace(/\s+/g, '_')).join(', ');
-    return [
-      'skills.yaml:',
-      '  groups:',
-      `    Core: [${mk(grouped.Core)}]`,
-      `    use: [${mk(grouped.Use)}]`,
-      `    learning: [${mk(grouped.Learning)}]`,
-    ].join('\n');
-  }, [grouped]);
-
-  if (authLoading) {
-    return (
-      <div className="skills-container">
-        <div className="loading">Loading…</div>
-      </div>
-    );
-  }
+  const skillGroups = [
+    { title: 'Core', skills: grouped.Core },
+    { title: 'Use', skills: grouped.Use },
+    { title: 'Learning', skills: grouped.Learning },
+  ];
 
   return (
     <div className="skills-page">
-      <section id="skills-hero" className="skills-hero">
-        <div className="editor-panel">
-          <div className="editor-chrome">
-            <span className="dot red" />
-            <span className="dot yellow" />
-            <span className="dot green" />
-            <span className="filename">skills.yaml</span>
-          </div>
-          <pre className="code-block">
-            <code>{yaml}</code>
-          </pre>
-        </div>
-
-        <div className="headline-side">
-          <h1 className="headline">SKILLS ON THE CUTTING EDGE</h1>
-          <p className="subhead">What I use to ship at scale</p>
-        </div>
-
-        <div className="hero-scroll-container">
-          <ScrollIndicator targetId="skills-core" bottom="20px" />
-        </div>
-      </section>
-
-      {isAuthenticated && (
-        <section className="admin-banner">
-          <div className="banner-left">Admin Mode — edit enabled</div>
-          <button className="btn outline" onClick={handleLogout}>
-            Logout
-          </button>
-        </section>
-      )}
+      <SkillsHeader 
+        isAuthenticated={isAuthenticated}
+        authLoading={authLoading}
+        handleLogout={handleLogout}
+      />
 
       {isAuthenticated && (
         <section className="editor-form">
@@ -214,56 +140,19 @@ const Skills: React.FC = () => {
         </section>
       )}
 
-      <section id="skills-core" className="group-section">
-        <h2 className="group-title">Core</h2>
-        <div className="skills-grid">
-          {grouped.Core.map(skill => (
-            <SkillCard
-              key={skill.id}
-              skill={skill}
-              isAuthenticated={isAuthenticated}
-              levelToString={levelToString}
-              handleSkillClick={handleSkillClick}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section id="skills-use" className="group-section">
-        <h2 className="group-title">Use</h2>
-        <div className="skills-grid">
-          {grouped.Use.map(skill => (
-            <SkillCard
-              key={skill.id}
-              skill={skill}
-              isAuthenticated={isAuthenticated}
-              levelToString={levelToString}
-              handleSkillClick={handleSkillClick}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section id="skills-learning" className="group-section last">
-        <h2 className="group-title">Learning</h2>
-        <div className="skills-grid">
-          {grouped.Learning.map(skill => (
-            <SkillCard
-              key={skill.id}
-              skill={skill}
-              isAuthenticated={isAuthenticated}
-              levelToString={levelToString}
-              handleSkillClick={handleSkillClick}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </div>
-      </section>
+      {skillGroups.map((group, index) => (
+        <SkillGroup
+          key={group.title}
+          title={group.title}
+          skills={group.skills}
+          isAuthenticated={isAuthenticated}
+          levelToString={levelToString}
+          handleSkillClick={handleSkillClick}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          isLast={index === skillGroups.length - 1}
+        />
+      ))}
     </div>
   );
 };

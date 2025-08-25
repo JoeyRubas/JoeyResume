@@ -2,6 +2,6 @@
 
 public record CatFactResponse
 {
-    public string fact { get; set; }
+    public required string fact { get; set; }
     public int length { get; set; }
 }
