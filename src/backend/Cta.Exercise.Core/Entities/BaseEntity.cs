@@ -6,8 +6,8 @@ public abstract class BaseEntity
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public abstract BaseType Type { get; }
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public required string Name { get; set; }
+    public required string Description { get; set; }
 
     public int HoursExperience { get; set; }
 
