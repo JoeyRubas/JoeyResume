@@ -34,7 +34,7 @@ const apiService = shouldUseMockData ? mockApi : {
     }
   },
 
-  getSkill: async (id: string): Promise<Skill> => {
+  getSkill: async (id: string): Promise<Skill | null> => {
     try {
       const response = await fetch(`${apiUrl}/skill/${id}`, {
         credentials: 'include'
@@ -43,18 +43,18 @@ const apiService = shouldUseMockData ? mockApi : {
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
         console.warn('API returned non-JSON response, falling back to mock data');
-        return mockApi.getSkill(id);
+        return mockApi.getSkill(id) || null;
       }
       
       if (!response.ok) {
         console.warn(`API returned ${response.status}, falling back to mock data`);
-        return mockApi.getSkill(id);
+        return mockApi.getSkill(id) || null;
       }
       
       return await response.json();
     } catch (error) {
       console.warn('API request failed, falling back to mock data:', error);
-      return mockApi.getSkill(id);
+      return mockApi.getSkill(id) || null;
     }
   },
 
@@ -119,8 +119,8 @@ const apiService = shouldUseMockData ? mockApi : {
     return Promise.resolve();
   },
 
-  getProjects: async (): Promise<Array<Project>> => {
-      return await mockApi.getProjects();
+  getProjects: (): Promise<Array<Project>> => {
+      return Promise.resolve(mockApi.getProjects());
   },
 
 }

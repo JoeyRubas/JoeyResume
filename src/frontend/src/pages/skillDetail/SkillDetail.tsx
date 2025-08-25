@@ -47,7 +47,7 @@ const SkillDetail: React.FC = () => {
       setLoading(true);
       setError(null);
       const skillData = await apiService.getSkill(skillId);
-      setSkill(skillData);
+      setSkill(skillData || null);
     } catch (error) {
       console.error('Error loading skill:', error);
       setError('Failed to load skill details');

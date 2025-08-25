@@ -147,10 +147,15 @@ const Projects: React.FC = () => {
   const [width, height] = useWindowSize();
 
   useEffect(() => {
-    apiService
-      .getProjects()
-      .then(setProjects)
-      .catch(e => console.error('Failed to load projects:', e));
+    const loadProjects = async () => {
+      try {
+        const projects = await apiService.getProjects();
+        setProjects(projects);
+      } catch (e: unknown) {
+        console.error('Failed to load projects:', e);
+      }
+    };
+    loadProjects();
   }, []);
 
   const handleProjectClick = useCallback(
