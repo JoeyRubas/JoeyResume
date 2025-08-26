@@ -6,8 +6,13 @@ export interface GitHubLanguageStats {
 
 class GitHubService {
   // Backend API URL - adjust if your backend runs on a different port or path
-  private readonly apiBaseUrl = '/api/github';
+  private readonly apiBaseUrl: string;
   private readonly MAX_LINES_PER_COMMIT = 2500;
+  
+  constructor() {
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://wapp-joeytest2321.azurewebsites.net';
+    this.apiBaseUrl = `${apiUrl}/api/github`;
+  }
   
   async getLanguageStats(languageName: string, gitHubAlias?: string): Promise<GitHubLanguageStats[]> {
     try {
