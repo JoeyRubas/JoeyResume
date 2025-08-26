@@ -51,7 +51,7 @@ public class BaseRepository : IBaseRepository
         return new List<BaseEntity>()
             {
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Python",
                     Name = "Python",
                     Description = "This is my goto language, I've been programming in Python for a solid 8 years",
                     SkillLevel = SkillLevel.Expert,
@@ -60,7 +60,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Django",
                     Name = "Django",
                     Description = "I have 3 years of experience building web applications with Django",
                     SkillLevel = SkillLevel.Intermediate,
