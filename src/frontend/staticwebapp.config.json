@@ -2,7 +2,8 @@
   "routes": [
     {
       "route": "/api/*",
-      "allowedRoles": ["anonymous"]
+      "allowedRoles": ["anonymous"],
+      "backendUri": "https://wapp-joeytest2321.azurewebsites.net/api/*"
     },
     {
       "route": "/*",
