@@ -73,6 +73,7 @@ const Skills: React.FC = () => {
           skillLevel: parseInt(formData.skillLevel, 10),
           hoursExperience: parseInt(formData.hoursExperience, 10),
           description: formData.description.trim(),
+          canTrackInGitHub: false
         };
 
         if (editingSkillId) {

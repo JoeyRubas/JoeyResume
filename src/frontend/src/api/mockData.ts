@@ -140,147 +140,168 @@ export const mockSkills: Skill[] = [
     name: 'Python',
     description: "This is my goto language, I've been programming in Python for a solid 8 years",
     skillLevel: SkillLevel.Expert,
-    hoursExperience: 2000
+    hoursExperience: 2000,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'Django',
     description: 'I have 3 years of experience building web applications with Django',
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 800
+    hoursExperience: 800,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'HTML',
     description: 'I have 5 years of experience creating web markup and structures',
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 1000
+    hoursExperience: 1000,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'CSS',
     description: 'I have 5 years of experience styling web applications and creating responsive designs',
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 1000
+    hoursExperience: 1000,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'JavaScript',
     description: 'I have 4 years of experience with JavaScript for frontend and backend development',
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 900
+    hoursExperience: 900,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'TypeScript',
     description: 'I have medium experience with TypeScript for type-safe JavaScript development',
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 400
+    hoursExperience: 400,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'React',
     description: ",I'm new to React but excited to build modern user interfaces",
     skillLevel: SkillLevel.Basic,
-    hoursExperience: 100
+    hoursExperience: 100,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'Vue',
     description: "I'm new to Vue.js and learning this progressive framework",
     skillLevel: SkillLevel.Basic,
-    hoursExperience: 80
+    hoursExperience: 80,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'Express.js',
     description: "I'm new to Express.js for building Node.js web applications",
     skillLevel: SkillLevel.Basic,
-    hoursExperience: 120
+    hoursExperience: 120,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'Azure',
     description: "I have medium experience with Microsoft Azure cloud services",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 400
+    hoursExperience: 400,
+    canTrackInGitHub: false
   },
   {
     id: generateId(),
     name: 'Digital Ocean',
     description: "I have medium experience with Digital Ocean cloud infrastructure",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 300
+    hoursExperience: 300,
+    canTrackInGitHub: false
   },
   {
     id: generateId(),
     name: 'Linode',
     description: "I have medium experience with Linode cloud hosting services",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 400
+    hoursExperience: 400,
+    canTrackInGitHub: false
   },
   {
     id: generateId(),
     name: 'AWS',
     description: "I have novice experience with Amazon Web Services",
     skillLevel: SkillLevel.Novice,
-    hoursExperience: 20
+    hoursExperience: 20,
+    canTrackInGitHub: false
   },
   {
     id: generateId(),
     name: 'Google Cloud',
     description: "I have novice experience with Google Cloud Platform",
     skillLevel: SkillLevel.Novice,
-    hoursExperience: 20
+    hoursExperience: 20,
+    canTrackInGitHub: false
   },
   {
     id: generateId(),
     name: 'CI/CD',
     description: "I have medium experience with continuous integration and deployment pipelines",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 400
+    hoursExperience: 400,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'Infrastructure as Code',
     description: "I have medium experience with infrastructure automation and provisioning",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 250
+    hoursExperience: 250,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'C#',
     description: "I have medium experience with C# and .NET development",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 500
+    hoursExperience: 500,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: '.NET',
     description: "I have medium experience with the .NET framework and ecosystem",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 500
+    hoursExperience: 500,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'Java',
     description: "I have medium experience with Java programming and enterprise development",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 600
+    hoursExperience: 600,
+    canTrackInGitHub: true
   },
   {
     id: generateId(),
     name: 'Docker',
     description: "I have medium experience with containerization and Docker deployment",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 150
+    hoursExperience: 150,
+    canTrackInGitHub: false
   },
   {
     id: generateId(),
     name: 'GitHub Actions',
     description: "I have medium experience with GitHub Actions for CI/CD workflows",
     skillLevel: SkillLevel.Intermediate,
-    hoursExperience: 100
+    hoursExperience: 100,
+    canTrackInGitHub: true
   }
 ];
 
