@@ -3,7 +3,8 @@
     {
       "route": "/api/*",
       "allowedRoles": ["anonymous"],
-      "backendUri": "https://wapp-joeytest2321.azurewebsites.net/api/*"
+      "methods": ["GET", "POST", "PUT", "DELETE"],
+      "backendUri": "https://wapp-joeytest2321.azurewebsites.net/api"
     },
     {
       "route": "/*",
