@@ -20,14 +20,20 @@ const SkillCard: React.FC<SkillCardProps> = memo(
     handleDelete,
   }) => {
     const onCardClick = useCallback(
-      () => handleSkillClick(skill.id),
-      [handleSkillClick, skill.id]
+      () => {
+        if (skill.canTrackInGitHub) {
+          handleSkillClick(skill.id);
+        }
+      },
+      [handleSkillClick, skill.id, skill.canTrackInGitHub]
     );
     const onKeyDown = useCallback(
       (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (e.key === 'Enter') handleSkillClick(skill.id);
+        if (e.key === 'Enter' && skill.canTrackInGitHub) {
+          handleSkillClick(skill.id);
+        }
       },
-      [handleSkillClick, skill.id]
+      [handleSkillClick, skill.id, skill.canTrackInGitHub]
     );
 
     return (
@@ -53,6 +59,12 @@ const SkillCard: React.FC<SkillCardProps> = memo(
             style={{ width: `${(skill.skillLevel / 3) * 100}%` }}
           />
         </div>
+        {skill.canTrackInGitHub && (
+          <div className="click-indicator">
+            <span className="info-icon">ⓘ</span>
+            <span className="click-text">Click for details</span>
+          </div>
+        )}
 
         {isAuthenticated && (
           <div className="admin-actions">

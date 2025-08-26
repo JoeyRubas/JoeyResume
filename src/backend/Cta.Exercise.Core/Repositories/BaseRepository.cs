@@ -69,7 +69,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "HTML",
                     Name = "HTML",
                     Description = "I have 5 years of experience creating web markup and structures",
                     SkillLevel = SkillLevel.Intermediate,
@@ -78,7 +78,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "CSS",
                     Name = "CSS",
                     Description = "I have 5 years of experience styling web applications and creating responsive designs",
                     SkillLevel = SkillLevel.Intermediate,
@@ -87,7 +87,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "JavaScript",
                     Name = "JavaScript",
                     Description = "I have 4 years of experience with JavaScript for frontend and backend development",
                     SkillLevel = SkillLevel.Intermediate,
@@ -96,7 +96,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "TypeScript",
                     Name = "TypeScript",
                     Description = "I have medium experience with TypeScript for type-safe JavaScript development",
                     SkillLevel = SkillLevel.Intermediate,
@@ -105,7 +105,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "React",
                     Name = "React",
                     Description = "I'm new to React but excited to build modern user interfaces",
                     SkillLevel = SkillLevel.Basic,
@@ -114,7 +114,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Vue",
                     Name = "Vue",
                     Description = "I'm new to Vue.js and learning this progressive framework",
                     SkillLevel = SkillLevel.Basic,
@@ -123,7 +123,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Expressjs",
                     Name = "Express.js",
                     Description = "I'm new to Express.js for building Node.js web applications",
                     SkillLevel = SkillLevel.Basic,
@@ -132,7 +132,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Azure",
                     Name = "Azure",
                     Description = "I have medium experience with Microsoft Azure cloud services",
                     SkillLevel = SkillLevel.Intermediate,
@@ -141,7 +141,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Digital Ocean",
                     Name = "Digital Ocean",
                     Description = "I have medium experience with Digital Ocean cloud infrastructure",
                     SkillLevel = SkillLevel.Intermediate,
@@ -150,7 +150,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Linode",
                     Name = "Linode",
                     Description = "I have medium experience with Linode cloud hosting services",
                     SkillLevel = SkillLevel.Intermediate,
@@ -159,7 +159,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "AWS",
                     Name = "AWS",
                     Description = "I have novice experience with Amazon Web Services",
                     SkillLevel = SkillLevel.Novice,
@@ -168,7 +168,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Google Cloud",
                     Name = "Google Cloud",
                     Description = "I have novice experience with Google Cloud Platform",
                     SkillLevel = SkillLevel.Novice,
@@ -177,7 +177,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "CI-CD",
                     Name = "CI/CD",
                     Description = "I have medium experience with continuous integration and deployment pipelines",
                     SkillLevel = SkillLevel.Intermediate,
@@ -186,7 +186,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Infrastructure as Code",
                     Name = "Infrastructure as Code",
                     Description = "I have medium experience with infrastructure automation and provisioning",
                     SkillLevel = SkillLevel.Intermediate,
@@ -195,7 +195,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Csharp",
                     Name = "C#",
                     Description = "I have medium experience with C# and .NET development",
                     SkillLevel = SkillLevel.Intermediate,
@@ -204,7 +204,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "dotNET",
                     Name = ".NET",
                     Description = "I have medium experience with the .NET framework and ecosystem",
                     SkillLevel = SkillLevel.Intermediate,
@@ -213,7 +213,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = "C#"
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Java",
                     Name = "Java",
                     Description = "I have medium experience with Java programming and enterprise development",
                     SkillLevel = SkillLevel.Intermediate,
@@ -222,7 +222,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = null
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "Docker",
                     Name = "Docker",
                     Description = "I have medium experience with containerization and Docker deployment",
                     SkillLevel = SkillLevel.Intermediate,
@@ -231,7 +231,7 @@ public class BaseRepository : IBaseRepository
                     GitHubAlias = "Dockerfile"
                 },
                 new SkillEntity {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "GitHub Actions",
                     Name = "GitHub Actions",
                     Description = "I have medium experience with GitHub Actions for CI/CD workflows",
                     SkillLevel = SkillLevel.Intermediate,

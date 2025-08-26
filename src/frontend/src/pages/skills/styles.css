@@ -203,13 +203,38 @@
     transform 0.2s ease,
     box-shadow 0.2s ease,
     border-color 0.2s ease;
-  cursor: pointer;
+  cursor: default;
   font-family: 'IBM Plex Sans', sans-serif;
 }
 .skill-card-v2:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
   border-color: #d4dbe8;
+}
+.skill-card-v2:hover .click-indicator {
+  opacity: 1;
+}
+.skill-card-v2 .click-indicator {
+  cursor: pointer;
+}
+.click-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--accent);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.info-icon {
+  font-size: 15px;
+  font-weight: bold;
+}
+.click-text {
+  font-size: 12px;
+  font-weight: 500;
 }
 .skill-card-top {
   display: flex;
