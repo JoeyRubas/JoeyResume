@@ -10,7 +10,6 @@ public static class BaseMapper
         return dto switch
         {
             SkillCreateDto skillCreateDto => Map(skillCreateDto),
-            HobbyCreateDto hobbyCreateDto => Map(hobbyCreateDto)
         };
     }
 
@@ -19,7 +18,6 @@ public static class BaseMapper
         return dto switch
         {
             SkillUpdateDto skillCreateDto => Map(skillCreateDto, id),
-            HobbyUpdateDto hobbyCreateDto => Map(hobbyCreateDto, id)
         };
     }
 
@@ -28,7 +26,6 @@ public static class BaseMapper
         return baseEntity switch
         {
             SkillEntity skillEntity => Map(skillEntity),
-            HobbyEntity hobbyEntity => Map(hobbyEntity)
         };
     }
 
@@ -40,18 +37,9 @@ public static class BaseMapper
             Name = skillCreateDto.Name,
             Description = skillCreateDto.Description,
             SkillLevel = skillCreateDto.SkillLevel,
-            HoursExperience = skillCreateDto.HoursExperience
-        };
-    }
-
-    private static HobbyEntity Map(HobbyCreateDto hobbyCreateDto)
-    {
-        return new HobbyEntity
-        {
-            Id = Guid.NewGuid().ToString(),
-            Name = hobbyCreateDto.Name,
-            Description = hobbyCreateDto.Description,
-            HoursExperience = hobbyCreateDto.HoursExperience
+            HoursExperience = skillCreateDto.HoursExperience,
+            CanTrackInGitHub = skillCreateDto.CanTrackInGitHub,
+            GitHubAlias = skillCreateDto.GitHubAlias
         };
     }
 
@@ -63,18 +51,9 @@ public static class BaseMapper
             Name = skillEntity.Name,
             Description = skillEntity.Description,
             SkillLevel = skillEntity.SkillLevel,
-            HoursExperience = skillEntity.HoursExperience
-        };
-    }
-
-    private static HobbyGetDto Map(HobbyEntity hobbyEntity)
-    {
-        return new HobbyGetDto
-        {
-            Id = hobbyEntity.Id,
-            Name = hobbyEntity.Name,
-            Description = hobbyEntity.Description,
-            HoursExperience = hobbyEntity.HoursExperience
+            HoursExperience = skillEntity.HoursExperience,
+            CanTrackInGitHub = skillEntity.CanTrackInGitHub,
+            GitHubAlias = skillEntity.GitHubAlias
         };
     }
 
@@ -86,18 +65,9 @@ public static class BaseMapper
             Name = skillCreateDto.Name,
             Description = skillCreateDto.Description,
             SkillLevel = skillCreateDto.SkillLevel,
-            HoursExperience = skillCreateDto.HoursExperience
-        };
-    }
-
-    private static HobbyEntity Map(HobbyUpdateDto hobbyCreateDto, string id)
-    {
-        return new HobbyEntity
-        {
-            Id = id,
-            Name = hobbyCreateDto.Name,
-            Description = hobbyCreateDto.Description,
-            HoursExperience = hobbyCreateDto.HoursExperience
+            HoursExperience = skillCreateDto.HoursExperience,
+            CanTrackInGitHub = skillCreateDto.CanTrackInGitHub,
+            GitHubAlias = skillCreateDto.GitHubAlias
         };
     }
 }

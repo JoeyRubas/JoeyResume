@@ -6,22 +6,25 @@ import { githubService, GitHubLanguageStats } from '../api/githubService';
 
 interface LanguageStatsChartProps {
   languageName: string;
+  gitHubAlias?: string;
 }
 
 const LanguageStatsChart: React.FC<LanguageStatsChartProps> = ({
   languageName,
+  gitHubAlias,
 }) => {
   const [stats, setStats] = useState<GitHubLanguageStats[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadLanguageStats();
-  }, [languageName]);
+  }, [languageName, gitHubAlias]);
 
   const loadLanguageStats = async () => {
     try {
       setLoading(true);
-      const languageStats = await githubService.getLanguageStats(languageName);
+      // Use the GitHub alias if provided
+      const languageStats = await githubService.getLanguageStats(languageName, gitHubAlias);
       setStats(
         languageStats.filter(stat => stat.additions > 0 || stat.deletions > 0)
       );

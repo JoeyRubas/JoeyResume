@@ -1,4 +1,3 @@
-using Cta.Exercise.Application.ServiceClients;
 using Cta.Exercise.Application.Services;
 using Cta.Exercise.Core.Repositories;
 using Cta.Exercise.Service.Middleware;
@@ -14,14 +13,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IBaseRepository, BaseRepository>();
 builder.Services.AddScoped<IBaseService, BaseService>();
-builder.Services.AddHttpClient<ICatFactServiceClient, CatFactServiceClient>(client =>
-{
-    client.BaseAddress = new Uri("https://catfact.ninja");
-});
-builder.Services.AddHttpClient<IRandomFactServiceClient, RandomFactServiceClient>(client =>
-{
-    client.BaseAddress = new Uri("https://uselessfacts.jsph.pl/");
-});
+builder.Services.AddMemoryCache();
+
+// Add GitHub service as singleton - it will preload in constructor
+Console.WriteLine("Registering GitHub service - will preload at startup...");
+builder.Services.AddSingleton<IGitHubService, GitHubService>();
 
 builder.Services.AddCors(options =>
 {
@@ -60,6 +56,13 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// Force initialization of GitHubService at startup
+using (var scope = app.Services.CreateScope())
+{
+    var gitHubService = scope.ServiceProvider.GetRequiredService<IGitHubService>();
+    Console.WriteLine($"GitHub service initialized with username: {gitHubService.GetUsername()}");
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

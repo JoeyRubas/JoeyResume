@@ -1,0 +1,15 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "GitHub": {
+    "Username": "JoeyRubas",
+    "Token": "YOUR_GITHUB_TOKEN_HERE"
+  },
+  "AllowedHosts": "*",
+  "AdminPassword": "admin-password",
+  "JwtSecret": "secure-jwt-secret-key-with-at-least-32-characters"
+}

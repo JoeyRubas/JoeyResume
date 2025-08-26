@@ -14,7 +14,6 @@ public abstract class BaseEntity
 
     public static BaseType GetTypeByConstraint(Type type) => type switch
     {
-        not null when type == typeof(HobbyEntity) => BaseType.Hobby,
         not null when type == typeof(SkillEntity) => BaseType.Skill,
         _ => throw new NotImplementedException()
     };

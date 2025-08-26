@@ -19,11 +19,10 @@ namespace Cta.Exercise.Service.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            // Only protect POST, PUT, DELETE operations on skill/hobby endpoints
             var path = context.Request.Path.Value?.ToLower();
             var method = context.Request.Method.ToUpper();
             
-            var isProtectedEndpoint = (path?.Contains("/skill") == true || path?.Contains("/hobby") == true) &&
+            var isProtectedEndpoint = path?.Contains("/skill") == true  &&
                                     (method == "POST" || method == "PUT" || method == "DELETE");
             
             if (isProtectedEndpoint)

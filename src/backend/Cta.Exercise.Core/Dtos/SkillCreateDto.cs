@@ -10,4 +10,8 @@ namespace Cta.Exercise.Core.Dtos;
 public class SkillCreateDto : BaseCreateDto
 {
     public SkillLevel SkillLevel { get; set; }
+    
+    public bool CanTrackInGitHub { get; set; }
+    
+    public string GitHubAlias { get; set; }
 }

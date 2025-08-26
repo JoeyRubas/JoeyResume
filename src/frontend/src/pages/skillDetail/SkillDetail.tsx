@@ -177,7 +177,14 @@ const SkillDetail: React.FC = () => {
           </Typography>
         </Box>
       </Paper>
-      <LanguageStatsChart languageName={skill.name} />
+      
+      {/* Only show GitHub stats for skills that can be tracked in GitHub */}
+      {skill.canTrackInGitHub && (
+        <LanguageStatsChart 
+          languageName={skill.name} 
+          gitHubAlias={skill.gitHubAlias} 
+        />
+      )}
     </Box>
   );
 };

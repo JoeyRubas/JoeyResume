@@ -3,7 +3,9 @@ export type Skill = {
     name: string;
     description: string;
     hoursExperience: number;
-    skillLevel: SkillLevel
+    skillLevel: SkillLevel;
+    canTrackInGitHub: boolean;
+    gitHubAlias?: string;
 }
 
 export enum SkillLevel {

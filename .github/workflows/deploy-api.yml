@@ -111,5 +111,13 @@ jobs:
             {
               "name": "JWT_SECRET",
               "value": "${{ secrets.JWT_SECRET }}"
+            },
+            {
+              "name": "GitHub__Username",
+              "value": "JoeyRubas"
+            },
+            {
+              "name": "GitHub__Token",
+              "value": "${{ secrets.VITE_GITHUB_TOKEN }}"
             }
           ]

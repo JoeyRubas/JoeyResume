@@ -374,3 +374,7 @@ src/frontend/.env.production
 .env.local
 .env.development
 .env.production
+
+# Ignore all appsettings.json files (contain secrets)
+**/appsettings.json
+**/appsettings.Production.json

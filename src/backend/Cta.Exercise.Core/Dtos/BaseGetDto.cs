@@ -12,7 +12,6 @@ public class BaseGetDto
 
     public static BaseType GetTypeByConstraint(Type type) => type switch
     {
-        not null when type == typeof(HobbyGetDto) => BaseType.Hobby,
         not null when type == typeof(SkillGetDto) => BaseType.Skill,
         _ => throw new NotImplementedException()
     };

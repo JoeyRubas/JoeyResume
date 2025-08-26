@@ -10,5 +10,4 @@ public enum BaseType
 {
     NotSet,
     Skill,
-    Hobby
 }
