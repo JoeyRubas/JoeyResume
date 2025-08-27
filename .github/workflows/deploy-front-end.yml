@@ -15,7 +15,6 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,6 +33,18 @@ jobs:
         run: npm ci
         working-directory: ${{ env.APP_DIR }}
 
+      - name: Compile Resume from .tex
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: |
+            src/frontend/src/pages/resume/resume.tex
+
+      - name: Place compiled resume in Vite public/
+        run: |
+          mkdir -p src/frontend/public/resume
+          cp src/frontend/src/pages/resume/resume.pdf src/frontend/public/resume/JoeyResume.pdf
+          echo "Copied resume.pdf to public/resume/JoeyResume.pdf"
+
       - name: Export public build vars
         run: |
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> $GITHUB_ENV
@@ -51,25 +62,12 @@ jobs:
         run: npm run build
         working-directory: ${{ env.APP_DIR }}
 
-      
       - name: Include staticwebapp.config.json
         run: |
           if [ -f "${{ env.APP_DIR }}/staticwebapp.config.json" ]; then
             cp "${{ env.APP_DIR }}/staticwebapp.config.json" "${{ env.DIST_DIR }}/"
           fi
-        
-      - name: Compile Resume from .tex
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: |
-            src/frontend/src/pages/resume/resume.tex
 
-      - name: Copy compiled resume to dist directory
-        run: |
-          cp src/frontend/src/pages/resume/resume.pdf "${{ env.DIST_DIR }}/JoeyResume.pdf"
-          echo "Copied resume.pdf to ${{ env.DIST_DIR }}/JoeyResume.pdf"
-
-      
       - name: Validate artifact
         run: |
           test -f "${{ env.DIST_DIR }}/index.html"
@@ -81,10 +79,8 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           action: upload
-
           app_location: ${{ env.DIST_DIR }}
-          output_location: ''         
-
-          skip_app_build: true       
+          output_location: ''
+          skip_app_build: true
           skip_api_build: true
           repo_token: ${{ secrets.GITHUB_TOKEN }}

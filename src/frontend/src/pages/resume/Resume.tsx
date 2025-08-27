@@ -2,16 +2,20 @@ import React from 'react';
 import './styles.css';
 
 const Resume: React.FC = () => {
-  const isProd = import.meta.env.PROD;
-  const pdfFileName = isProd ? 'JoeyResume.pdf' : 'resume-dev.pdf';
+  const pdfUrl = '/resume/JoeyResume.pdf';
 
-  const pdfUrl = isProd 
-    ? `/${pdfFileName}` 
-    : new URL(`/src/pages/resume/${pdfFileName}`, import.meta.url).href;
-  
   return (
     <div className="resume-page">
       <div className="resume-container">
+        <div className="resume-actions">
+          <a className="resume-button" href={pdfUrl} target="_blank" rel="noreferrer">
+            Open in new tab
+          </a>
+          <a className="resume-button" href={pdfUrl} download>
+            Download PDF
+          </a>
+        </div>
+
         <div className="resume-pdf-container">
           <object
             data={pdfUrl}
@@ -26,6 +30,11 @@ const Resume: React.FC = () => {
               frameBorder="0"
               loading="lazy"
             />
+            <p>
+              Your browser can’t display PDFs inline.{' '}
+              <a href={pdfUrl} target="_blank" rel="noreferrer">Open the resume</a>{' '}
+              or <a href={pdfUrl} download>download it</a>.
+            </p>
           </object>
         </div>
       </div>
