@@ -79,7 +79,7 @@ export const MockCode: React.FC<{ ideVisible: boolean }> = ({ ideVisible }) => {
               >
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
               </svg>
-              src
+              .github
             </div>
             <div className="file-item">
               <svg
@@ -96,7 +96,7 @@ export const MockCode: React.FC<{ ideVisible: boolean }> = ({ ideVisible }) => {
                 <line x1="16" y1="17" x2="8" y2="17" />
                 <polyline points="10,9 9,9 8,9" />
               </svg>
-              Portfolio.tsx
+              deploy-front-end.yml
             </div>
             <div className="file-item">
               <svg
@@ -113,7 +113,7 @@ export const MockCode: React.FC<{ ideVisible: boolean }> = ({ ideVisible }) => {
                 <line x1="16" y1="17" x2="8" y2="17" />
                 <polyline points="10,9 9,9 8,9" />
               </svg>
-              styles.css
+              deploy-api.yml
             </div>
             <div className="folder">
               <svg
