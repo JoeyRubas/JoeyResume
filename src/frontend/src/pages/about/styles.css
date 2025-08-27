@@ -1,6 +1,5 @@
 .about-page {
   min-height: 100dvh;
-  background: var(--bg-alt);
   color: var(--ink);
   font-family: 'IBM Plex Sans', sans-serif;
 }

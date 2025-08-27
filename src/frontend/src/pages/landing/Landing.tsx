@@ -5,20 +5,19 @@ import MockCode from '../../components/MockIDE/MockCode';
 import MockDashboard from '../../components/MockDashboard/mockDashboard';
 import ImageComparison from '../../components/ImageCompare/ImageComparison';
 
+import 'swiper/css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Mousewheel } from 'swiper/modules';
+
+const HEADER_PX = 72;
+
 const textVariants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-    filter: 'blur(8px)',
-  },
+  hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
   visible: {
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-    transition: {
-      duration: 1.5,
-      ease: 'easeOut' as const,
-    },
+    transition: { duration: 1.0, ease: 'easeOut' as const },
   },
 };
 
@@ -44,188 +43,109 @@ const AnimatedText: React.FC<{
       initial="hidden"
       animate={shouldStayVisible ? 'visible' : 'hidden'}
       onAnimationComplete={() => {
-        if (shouldStayVisible && onComplete) {
-          onComplete();
-        }
+        if (shouldStayVisible && onComplete) onComplete();
       }}
     >
-      {lines.map((line, index) => (
-        <div key={index} className="text-line">
-          {line}
-        </div>
+      {lines.map((line, i) => (
+        <div key={i} className="text-line">{line}</div>
       ))}
     </motion.div>
   );
 };
 
 const Landing: React.FC = () => {
-  const firstSectionRef = React.useRef<HTMLDivElement>(null);
-  const secondSectionRef = React.useRef<HTMLDivElement>(null);
-  const thirdSectionRef = React.useRef<HTMLDivElement>(null);
-
-  const [firstTextVisible, setFirstTextVisible] = React.useState(false);
-  const [secondTextVisible, setSecondTextVisible] = React.useState(false);
-  const [thirdTextVisible, setThirdTextVisible] = React.useState(false);
-
+  // mark which slides have been seen to trigger animations/mounts only once
+  const [seen, setSeen] = React.useState<Record<number, boolean>>({ 0: true });
   const [firstTextFinished, setFirstTextFinished] = React.useState(false);
   const [secondTextFinished, setSecondTextFinished] = React.useState(false);
   const [thirdTextFinished, setThirdTextFinished] = React.useState(false);
 
-  const [firstTriggered, setFirstTriggered] = React.useState(false);
-  const [secondTriggered, setSecondTriggered] = React.useState(false);
-  const [thirdTriggered, setThirdTriggered] = React.useState(false);
-
-  const [isLandscapeTablet, setIsLandscapeTablet] = React.useState(false);
-
+  // Lock page scroll only while this component is mounted
   React.useEffect(() => {
-    const checkLayout = () => {
-      const isLandscape = window.matchMedia(
-        '(max-width: 1024px) and (orientation: landscape)'
-      ).matches;
-      setIsLandscapeTablet(isLandscape);
-    };
-
-    checkLayout();
-    window.addEventListener('resize', checkLayout);
-    window.addEventListener('orientationchange', checkLayout);
-
-    return () => {
-      window.removeEventListener('resize', checkLayout);
-      window.removeEventListener('orientationchange', checkLayout);
-    };
+    document.body.classList.add('landing-page-active');
+    return () => document.body.classList.remove('landing-page-active');
   }, []);
 
-  React.useEffect(() => {
-    if (isLandscapeTablet) {
-      if (!firstTriggered) {
-        setFirstTextVisible(true);
-        setFirstTriggered(true);
-      }
-      const timer1 = setTimeout(() => {
-        if (!secondTriggered) {
-          setSecondTextVisible(true);
-          setSecondTriggered(true);
-        }
-      }, 2000);
-      const timer2 = setTimeout(() => {
-        if (!thirdTriggered) {
-          setThirdTextVisible(true);
-          setThirdTriggered(true);
-        }
-      }, 4000);
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-      };
-    } else if (!firstTriggered) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setFirstTextVisible(true);
-            setFirstTriggered(true);
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.3 }
-      );
-
-      if (firstSectionRef.current) {
-        observer.observe(firstSectionRef.current);
-      }
-
-      return () => observer.disconnect();
-    }
-  }, [isLandscapeTablet, firstTriggered]);
-
-  React.useEffect(() => {
-    if (isLandscapeTablet || secondTriggered) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSecondTextVisible(true);
-          setSecondTriggered(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (secondSectionRef.current) {
-      observer.observe(secondSectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isLandscapeTablet, secondTriggered]);
-
-  React.useEffect(() => {
-    if (isLandscapeTablet || thirdTriggered) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setThirdTextVisible(true);
-          setThirdTriggered(true);
-          observer.disconnect(); // Disconnect immediately after triggering
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (thirdSectionRef.current) {
-      observer.observe(thirdSectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isLandscapeTablet, thirdTriggered]);
-
   return (
-    <div className="landing-background">
-      <div className="landing-minipage">
-        <div className="landing-header big-text" ref={firstSectionRef}>
-          <AnimatedText
-            lines={['Bringing', 'Legacy', 'Applications', 'Back to Life']}
-            visible={firstTextVisible}
-            onComplete={() => setFirstTextFinished(true)}
-          />
-        </div>
-        <div className="minipage-visual">
-          <ImageComparison startPct={98} animateOnFinish={firstTextFinished} />
-        </div>
-      </div>
+    <div className="landing-swiper fixed-under-header" data-header-height={HEADER_PX}>
+      <Swiper
+        modules={[Mousewheel]}
+        direction="vertical"
+        slidesPerView={1}
+        spaceBetween={0}
 
-      <div className="landing-minipage">
-        <div className="landing-header big-text" ref={secondSectionRef}>
-          <AnimatedText
-            lines={['Scaling', 'Services', 'to Enterprise', 'Demands']}
-            visible={secondTextVisible}
-            onComplete={() => setSecondTextFinished(true)}
-          />
-        </div>
-        <div className="minipage-visual">
-          {secondTextVisible && <MockCode ideVisible={secondTextVisible} />}
-        </div>
-      </div>
+        /* Snappy + smooth wheel behavior (no grain) */
+        speed={450}
+        mousewheel={{
+          forceToAxis: true,
+          releaseOnEdges: true,
+          sensitivity: 1.2,
+          thresholdDelta: 20,
+          thresholdTime: 50,
+          eventsTarget: '.landing-swiper',
+        }}
 
-      <div className="landing-minipage">
-        <div className="landing-header big-text" ref={thirdSectionRef}>
-          <AnimatedText
-            lines={['Leading', 'Optimization', 'That Delivers', 'Real Results']}
-            visible={thirdTextVisible}
-            onComplete={() => setThirdTextFinished(true)}
-          />
-        </div>
+        allowTouchMove
+        simulateTouch
+        touchRatio={1}
+        resistanceRatio={0.6}
+        autoHeight={false}
 
-        <div className="minipage-visual">
-          {thirdTextVisible && (
-            <MockDashboard dashboardVisible={thirdTextVisible} />
-          )}
-        </div>
-      </div>
+        onSlideChange={(sw) => setSeen((s) => ({ ...s, [sw.activeIndex]: true }))}
+        className="landing-swiper-instance"
+      >
+        <SwiperSlide>
+          <div className="slide-content">
+            <div className="landing-minipage">
+              <div className="landing-header big-text">
+                <AnimatedText
+                  lines={['Bringing', 'Legacy', 'Applications', 'Back to Life']}
+                  visible={!!seen[0]}
+                  onComplete={() => setFirstTextFinished(true)}
+                />
+              </div>
+              <div className="minipage-visual">
+                <ImageComparison startPct={98} animateOnFinish={firstTextFinished} />
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* middle slide flips header/visual on wide screens */}
+        <SwiperSlide>
+          <div className="slide-content">
+            <div className="landing-minipage flip-on-wide">
+              <div className="landing-header big-text">
+                <AnimatedText
+                  lines={['Scaling', 'Services', 'to Enterprise', 'Demands']}
+                  visible={!!seen[1]}
+                  onComplete={() => setSecondTextFinished(true)}
+                />
+              </div>
+              <div className="minipage-visual">
+                {seen[1] && <MockCode ideVisible />}
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <div className="slide-content">
+            <div className="landing-minipage">
+              <div className="landing-header big-text">
+                <AnimatedText
+                  lines={['Leading', 'Optimization', 'That Delivers', 'Real Results']}
+                  visible={!!seen[2]}
+                  onComplete={() => setThirdTextFinished(true)}
+                />
+              </div>
+              <div className="minipage-visual">
+                {seen[2] && <MockDashboard dashboardVisible />}
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
     </div>
   );
 };
