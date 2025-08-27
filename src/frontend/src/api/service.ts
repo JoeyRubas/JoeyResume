@@ -123,6 +123,10 @@ const apiService = shouldUseMockData ? mockApi : {
       return await mockApi.getProjects();
   },
 
+  getProject: async (id: string): Promise<Project> => {
+      return await mockApi.getProject(id);
+  },
+
 }
 
 export default apiService;

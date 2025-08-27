@@ -53,7 +53,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Python",
                     Name = "Python",
-                    Description = "This is my goto language, I've been programming in Python for a solid 8 years",
+                    Description = "Extensive experience developing robust applications and automation solutions using Python across multiple domains. Proficient in leveraging Python's ecosystem for data processing, web development, and enterprise-level software engineering.",
                     SkillLevel = SkillLevel.Expert,
                     HoursExperience = 2000,
                     CanTrackInGitHub = true,
@@ -62,7 +62,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Django",
                     Name = "Django",
-                    Description = "I have 3 years of experience building web applications with Django",
+                    Description = "Demonstrated proficiency in developing scalable web applications using Django's full-stack framework. Experience includes building RESTful APIs, implementing authentication systems, and managing complex database relationships in production environments.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 800,
                     CanTrackInGitHub = false,
@@ -71,7 +71,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "HTML",
                     Name = "HTML",
-                    Description = "I have 5 years of experience creating web markup and structures",
+                    Description = "Proficient in creating semantic, accessible, and standards-compliant web markup structures. Experience includes implementing modern HTML5 features, optimizing for SEO, and ensuring cross-browser compatibility.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 1000,
                     CanTrackInGitHub = true,
@@ -80,7 +80,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "CSS",
                     Name = "CSS",
-                    Description = "I have 5 years of experience styling web applications and creating responsive designs",
+                    Description = "Skilled in developing responsive, mobile-first designs using modern CSS techniques and frameworks. Expertise includes CSS Grid, Flexbox, animations, and implementing design systems for consistent user experiences.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 1000,
                     CanTrackInGitHub = true,
@@ -89,7 +89,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "JavaScript",
                     Name = "JavaScript",
-                    Description = "I have 4 years of experience with JavaScript for frontend and backend development",
+                    Description = "Competent in developing dynamic web applications using modern JavaScript ES6+ features and best practices. Experience spans both client-side development and server-side Node.js applications with focus on performance optimization.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 900,
                     CanTrackInGitHub = true,
@@ -98,7 +98,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "TypeScript",
                     Name = "TypeScript",
-                    Description = "I have medium experience with TypeScript for type-safe JavaScript development",
+                    Description = "Proficient in leveraging TypeScript's static typing system to build maintainable and scalable JavaScript applications. Experience includes configuring complex type systems, implementing interfaces, and integrating with modern development workflows.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 400,
                     CanTrackInGitHub = true,
@@ -107,7 +107,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "React",
                     Name = "React",
-                    Description = "I'm new to React but excited to build modern user interfaces",
+                    Description = "Developing proficiency in building interactive user interfaces using React's component-based architecture. Currently expanding knowledge in hooks, state management, and modern React development patterns.",
                     SkillLevel = SkillLevel.Basic,
                     HoursExperience = 100,
                     CanTrackInGitHub = false,
@@ -116,7 +116,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Vue",
                     Name = "Vue",
-                    Description = "I'm new to Vue.js and learning this progressive framework",
+                    Description = "Acquiring hands-on experience with Vue.js progressive framework and its ecosystem. Focused on understanding component composition, reactive data binding, and the Vue CLI for efficient development workflows.",
                     SkillLevel = SkillLevel.Basic,
                     HoursExperience = 80,
                     CanTrackInGitHub = true,
@@ -125,7 +125,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Expressjs",
                     Name = "Express.js",
-                    Description = "I'm new to Express.js for building Node.js web applications",
+                    Description = "Building foundational knowledge in Express.js for developing RESTful APIs and web server applications. Experience includes middleware implementation, routing configuration, and integration with database systems.",
                     SkillLevel = SkillLevel.Basic,
                     HoursExperience = 120,
                     CanTrackInGitHub = false,
@@ -134,7 +134,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Azure",
                     Name = "Azure",
-                    Description = "I have medium experience with Microsoft Azure cloud services",
+                    Description = "Competent in deploying and managing applications on Microsoft Azure cloud platform. Experience includes working with Azure App Services, storage solutions, and implementing cloud-based architectures.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 400,
                     CanTrackInGitHub = false,
@@ -143,7 +143,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Digital Ocean",
                     Name = "Digital Ocean",
-                    Description = "I have medium experience with Digital Ocean cloud infrastructure",
+                    Description = "Experienced in provisioning and managing cloud infrastructure using DigitalOcean's platform. Proficient in deploying applications, configuring droplets, and implementing scalable hosting solutions.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 300,
                     CanTrackInGitHub = false,
@@ -152,7 +152,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Linode",
                     Name = "Linode",
-                    Description = "I have medium experience with Linode cloud hosting services",
+                    Description = "Skilled in utilizing Linode's cloud infrastructure for application deployment and server management. Experience includes configuring virtual private servers, implementing backup strategies, and optimizing performance.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 400,
                     CanTrackInGitHub = false,
@@ -161,7 +161,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "AWS",
                     Name = "AWS",
-                    Description = "I have novice experience with Amazon Web Services",
+                    Description = "Developing foundational knowledge of Amazon Web Services cloud ecosystem and core services. Currently expanding understanding of AWS infrastructure, deployment strategies, and cloud architecture principles.",
                     SkillLevel = SkillLevel.Novice,
                     HoursExperience = 20,
                     CanTrackInGitHub = false,
@@ -170,7 +170,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Google Cloud",
                     Name = "Google Cloud",
-                    Description = "I have novice experience with Google Cloud Platform",
+                    Description = "Building introductory experience with Google Cloud Platform services and cloud computing concepts. Focused on understanding GCP's core offerings, deployment models, and integration capabilities.",
                     SkillLevel = SkillLevel.Novice,
                     HoursExperience = 20,
                     CanTrackInGitHub = false,
@@ -179,7 +179,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "CI-CD",
                     Name = "CI/CD",
-                    Description = "I have medium experience with continuous integration and deployment pipelines",
+                    Description = "Proficient in designing and implementing continuous integration and deployment pipelines for automated software delivery. Experience includes configuring build processes, automated testing workflows, and deployment strategies across multiple environments.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 400,
                     CanTrackInGitHub = false,
@@ -188,7 +188,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Infrastructure as Code",
                     Name = "Infrastructure as Code",
-                    Description = "I have medium experience with infrastructure automation and provisioning",
+                    Description = "Competent in implementing infrastructure automation using declarative configuration and version-controlled provisioning tools. Experience includes managing cloud resources programmatically and ensuring consistent, reproducible infrastructure deployments.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 250,
                     CanTrackInGitHub = false,
@@ -197,7 +197,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Csharp",
                     Name = "C#",
-                    Description = "I have medium experience with C# and .NET development",
+                    Description = "Proficient in developing robust applications using C# and object-oriented programming principles. Experience includes building enterprise-grade solutions, implementing design patterns, and working with modern C# features.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 500,
                     CanTrackInGitHub = true,
@@ -206,7 +206,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "dotNET",
                     Name = ".NET",
-                    Description = "I have medium experience with the .NET framework and ecosystem",
+                    Description = "Skilled in leveraging the .NET ecosystem for building scalable, cross-platform applications and web services. Experience includes working with ASP.NET Core, Entity Framework, and implementing microservices architectures.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 500,
                     CanTrackInGitHub = true,
@@ -215,7 +215,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Java",
                     Name = "Java",
-                    Description = "I have medium experience with Java programming and enterprise development",
+                    Description = "Competent in developing enterprise-level applications using Java's robust programming paradigms and extensive library ecosystem. Experience includes working with Spring framework, implementing RESTful services, and managing complex business logic.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 600,
                     CanTrackInGitHub = true,
@@ -224,7 +224,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "Docker",
                     Name = "Docker",
-                    Description = "I have medium experience with containerization and Docker deployment",
+                    Description = "Proficient in containerizing applications and managing Docker-based deployment workflows. Experience includes creating optimized Dockerfiles, orchestrating multi-container applications, and implementing containerization best practices.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 150,
                     CanTrackInGitHub = true,
@@ -233,7 +233,7 @@ public class BaseRepository : IBaseRepository
                 new SkillEntity {
                     Id = "GitHub Actions",
                     Name = "GitHub Actions",
-                    Description = "I have medium experience with GitHub Actions for CI/CD workflows",
+                    Description = "Competent in designing and implementing automated CI/CD workflows using GitHub Actions for streamlined development processes. Experience includes configuring build pipelines, automated testing, and deployment strategies across multiple environments.",
                     SkillLevel = SkillLevel.Intermediate,
                     HoursExperience = 100,
                     CanTrackInGitHub = false,
