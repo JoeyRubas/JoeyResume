@@ -18,7 +18,7 @@ export const mockProjects: Project[] = [
     projectMaturity: 6,
     showNumberCommits: true,
     skillsUsed: ['React', 'TypeScript', 'CSS', 'Vite', 'Azure','CI/CD', 'DotNET'],
-    startDate: '2024-01-15',
+    startDate: '2024-07-15',
     status: ProjectStatus.InProgress,
     role: 'Full Stack Developer',
     teamSize: 1,
@@ -50,7 +50,7 @@ export const mockProjects: Project[] = [
     projectMaturity: 7,
     showNumberCommits: false,
     skillsUsed: ["CSS", "Linode", "WordPress", "PHP"],
-    startDate: '2024-03-10',
+    startDate: '2024-0-10',
     status: ProjectStatus.Maintenance,
     role: 'Web Developer & System Administrator',
     teamSize: 1,
@@ -70,7 +70,7 @@ export const mockProjects: Project[] = [
       'WordPress theme development and customization',
       'Content management system best practices',
       'Server administration and hosting management',
-      'Working with stakeholders and content creators'
+      'Working with stakeholders and content writers'
     ]
   },
   {
@@ -83,8 +83,8 @@ export const mockProjects: Project[] = [
     projectMaturity: 9,
     showNumberCommits: true,
     skillsUsed: ['Python', 'Django', 'HTML', 'CSS', 'JavaScript','CI/CD', 'SQL'],
-    startDate: '2022-08-01',
-    status: ProjectStatus.Completed,
+    startDate: '2024-08-01',
+    status: ProjectStatus.Maintenance,
     role: 'Lead Backend Developer',
     teamSize: 3,
     keyFeatures: [
@@ -121,7 +121,6 @@ export const mockProjects: Project[] = [
     role: 'Core Contributor & Maintainer',
     teamSize: 5,
     keyFeatures: [
-      'Multi-format tournament support',
       'Automated pairing algorithms',
       'Real-time result tracking',
       'Judge assignment optimization',
@@ -318,7 +317,6 @@ export const mockProjects: Project[] = [
       'TypeScript for type safety',
       'Automated deployment pipeline',
       'Content management system',
-      'SEO optimization'
     ],
     challengesFaced: [
       'Coordinating team development',
