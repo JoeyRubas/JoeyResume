@@ -33,6 +33,9 @@ const AnimatedText: React.FC<{
     if (visible && !hasAnimated) {
       setHasAnimated(true);
       setShouldStayVisible(true);
+    } else if (!visible) {
+      setHasAnimated(false);
+      setShouldStayVisible(false);
     }
   }, [visible, hasAnimated]);
 
@@ -54,13 +57,13 @@ const AnimatedText: React.FC<{
 };
 
 const Landing: React.FC = () => {
-  // mark which slides have been seen to trigger animations/mounts only once
+  const [active, setActive] = React.useState(0);
+  const [replay, setReplay] = React.useState<number[]>([0, 0, 0]);
   const [seen, setSeen] = React.useState<Record<number, boolean>>({ 0: true });
   const [firstTextFinished, setFirstTextFinished] = React.useState(false);
   const [secondTextFinished, setSecondTextFinished] = React.useState(false);
   const [thirdTextFinished, setThirdTextFinished] = React.useState(false);
 
-  // Lock page scroll only while this component is mounted
   React.useEffect(() => {
     document.body.classList.add('landing-page-active');
     return () => document.body.classList.remove('landing-page-active');
@@ -73,8 +76,6 @@ const Landing: React.FC = () => {
         direction="vertical"
         slidesPerView={1}
         spaceBetween={0}
-
-        /* Snappy + smooth wheel behavior (no grain) */
         speed={450}
         mousewheel={{
           forceToAxis: true,
@@ -84,14 +85,20 @@ const Landing: React.FC = () => {
           thresholdTime: 50,
           eventsTarget: '.landing-swiper',
         }}
-
         allowTouchMove
         simulateTouch
         touchRatio={1}
         resistanceRatio={0.6}
         autoHeight={false}
-
-        onSlideChange={(sw) => setSeen((s) => ({ ...s, [sw.activeIndex]: true }))}
+        onSlideChange={(sw) => {
+          setActive(sw.activeIndex);
+          setSeen((s) => ({ ...s, [sw.activeIndex]: true }));
+          setReplay((r) => {
+            const n = [...r];
+            n[sw.activeIndex] = (n[sw.activeIndex] ?? 0) + 1;
+            return n;
+          });
+        }}
         className="landing-swiper-instance"
       >
         <SwiperSlide>
@@ -99,8 +106,9 @@ const Landing: React.FC = () => {
             <div className="landing-minipage">
               <div className="landing-header big-text">
                 <AnimatedText
+                  key={`text-0-${replay[0]}`}
                   lines={['Bringing', 'Legacy', 'Applications', 'Back to Life']}
-                  visible={!!seen[0]}
+                  visible={active === 0}
                   onComplete={() => setFirstTextFinished(true)}
                 />
               </div>
@@ -111,14 +119,14 @@ const Landing: React.FC = () => {
           </div>
         </SwiperSlide>
 
-        {/* middle slide flips header/visual on wide screens */}
         <SwiperSlide>
           <div className="slide-content">
             <div className="landing-minipage flip-on-wide">
               <div className="landing-header big-text">
                 <AnimatedText
+                  key={`text-1-${replay[1]}`}
                   lines={['Scaling', 'Services', 'to Enterprise', 'Demands']}
-                  visible={!!seen[1]}
+                  visible={active === 1}
                   onComplete={() => setSecondTextFinished(true)}
                 />
               </div>
@@ -134,8 +142,9 @@ const Landing: React.FC = () => {
             <div className="landing-minipage">
               <div className="landing-header big-text">
                 <AnimatedText
+                  key={`text-2-${replay[2]}`}
                   lines={['Leading', 'Optimization', 'That Delivers', 'Real Results']}
-                  visible={!!seen[2]}
+                  visible={active === 2}
                   onComplete={() => setThirdTextFinished(true)}
                 />
               </div>

@@ -92,6 +92,9 @@ body.landing-page-active { overflow: hidden; }
 
 @media (orientation: portrait) {
   .big-text { font-size: 14vw !important; line-height: 1.2 !important; }
+    .landing-swiper .landing-minipage {
+    grid-template-rows: minmax(0, 4fr) minmax(0, 6fr);
+  }
   .landing-minipage {
     grid-template-columns: 1fr;   
     grid-template-rows: 4fr 6fr; 
@@ -107,6 +110,13 @@ body.landing-page-active { overflow: hidden; }
     margin: 0 auto;
     width: 90%;
     height: auto;
+  }
+
+  .minipage-visual {
+    height: 90%;
+    overflow: hidden;
+    padding-bottom: 1vh;
+    box-sizing: border-box;
   }
 }
 
