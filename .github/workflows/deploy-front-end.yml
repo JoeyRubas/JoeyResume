@@ -9,12 +9,13 @@ on:
 
 env:
   NODE_VERSION: '20.x'
-  APP_DIR: 'src/frontend'        
+  APP_DIR: 'src/frontend'
   DIST_DIR: 'src/frontend/dist'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,17 +34,19 @@ jobs:
         run: npm ci
         working-directory: ${{ env.APP_DIR }}
 
+      # Compile LaTeX resume BEFORE the Vite build
       - name: Compile Resume from .tex
         uses: xu-cheng/latex-action@v4
         with:
-          root_file: |
-            src/frontend/src/pages/resume/resume.tex
+          root_file: src/frontend/src/pages/resume/resume.tex
+          work_in_root_file_dir: true
 
       - name: Place compiled resume in Vite public/
         run: |
+          set -e
           mkdir -p src/frontend/public/resume
           cp src/frontend/src/pages/resume/resume.pdf src/frontend/public/resume/JoeyResume.pdf
-          echo "Copied resume.pdf to public/resume/JoeyResume.pdf"
+          echo "Copied to public/resume/JoeyResume.pdf"
 
       - name: Export public build vars
         run: |
@@ -73,6 +76,7 @@ jobs:
           test -f "${{ env.DIST_DIR }}/index.html"
           grep -q '<script type="module"' "${{ env.DIST_DIR }}/index.html"
           ! grep -q '/src/main\.' "${{ env.DIST_DIR }}/index.html" || (echo "ERROR: dev index.html detected"; exit 1)
+          test -f "${{ env.APP_DIR }}/public/resume/JoeyResume.pdf" || (echo "ERROR: JoeyResume.pdf missing in public/"; exit 1)
 
       - name: Deploy to Azure Static Web Apps (upload dist as site root)
         uses: Azure/static-web-apps-deploy@v1
