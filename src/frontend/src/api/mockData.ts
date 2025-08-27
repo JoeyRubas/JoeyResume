@@ -79,7 +79,7 @@ export const mockProjects: Project[] = [
     description: 'Displays the current standings of the American Parliamentary Debate Association.',
     longDescription: 'A comprehensive tournament results and standings tracking system for the American Parliamentary Debate Association. This application processes tournament data and displays real-time rankings for debaters across the country.',
     githubUrl: 'https://github.com/APDA-Tech-Committee/black-rod',
-    liveUrl: 'https://results.apda.online',
+    liveUrl: 'http://results.apda.online',
     projectMaturity: 9,
     showNumberCommits: true,
     skillsUsed: ['Python', 'Django', 'HTML', 'CSS', 'JavaScript','CI/CD', 'SQL'],
@@ -192,8 +192,6 @@ export const mockProjects: Project[] = [
     teamSize: 1,
     keyFeatures: [
       'Multiple solving algorithms implementation',
-      'Visual cube representation',
-      'Step-by-step solution display',
       'Performance optimization'
     ],
     challengesFaced: [
@@ -225,7 +223,6 @@ export const mockProjects: Project[] = [
     keyFeatures: [
       'LLM integration for market analysis',
       'Real-time stock data processing',
-      'Trading strategy backtesting',
       'Performance analytics dashboard'
     ],
     challengesFaced: [

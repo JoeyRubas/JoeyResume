@@ -52,6 +52,7 @@ const ProjectCard: React.FC<ProjectCardProps> = memo(
                   target="_blank"
                   rel="noopener noreferrer"
                   title="GitHub"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <svg
                     width="18"
@@ -72,6 +73,7 @@ const ProjectCard: React.FC<ProjectCardProps> = memo(
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Live Site"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <svg
                     width="18"
