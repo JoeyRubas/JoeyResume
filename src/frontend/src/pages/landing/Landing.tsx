@@ -58,7 +58,7 @@ const AnimatedText: React.FC<{
   );
 };
 
-const Portfolio: React.FC = () => {
+const Landing: React.FC = () => {
   const firstSectionRef = React.useRef<HTMLDivElement>(null);
   const secondSectionRef = React.useRef<HTMLDivElement>(null);
   const thirdSectionRef = React.useRef<HTMLDivElement>(null);
@@ -184,9 +184,9 @@ const Portfolio: React.FC = () => {
   }, [isLandscapeTablet, thirdTriggered]);
 
   return (
-    <div className="portfolio-background">
-      <div className="portfolio-minipage">
-        <div className="portfolio-header big-text" ref={firstSectionRef}>
+    <div className="landing-background">
+      <div className="landing-minipage">
+        <div className="landing-header big-text" ref={firstSectionRef}>
           <AnimatedText
             lines={['Bringing', 'Legacy', 'Applications', 'Back to Life']}
             visible={firstTextVisible}
@@ -198,8 +198,8 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
 
-      <div className="portfolio-minipage">
-        <div className="portfolio-header big-text" ref={secondSectionRef}>
+      <div className="landing-minipage">
+        <div className="landing-header big-text" ref={secondSectionRef}>
           <AnimatedText
             lines={['Scaling', 'Services', 'to Enterprise', 'Demands']}
             visible={secondTextVisible}
@@ -211,8 +211,8 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
 
-      <div className="portfolio-minipage">
-        <div className="portfolio-header big-text" ref={thirdSectionRef}>
+      <div className="landing-minipage">
+        <div className="landing-header big-text" ref={thirdSectionRef}>
           <AnimatedText
             lines={['Leading', 'Optimization', 'That Delivers', 'Real Results']}
             visible={thirdTextVisible}
@@ -230,4 +230,4 @@ const Portfolio: React.FC = () => {
   );
 };
 
-export default Portfolio;
+export default Landing;

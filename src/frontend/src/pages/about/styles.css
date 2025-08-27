@@ -1,11 +1,11 @@
-.home-page {
+.about-page {
   min-height: 100dvh;
   background: var(--bg-alt);
   color: var(--ink);
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-.home-hero {
+.about-hero {
   position: relative;
   display: grid;
   grid-template-columns: minmax(320px, 640px) 1fr;
@@ -16,8 +16,8 @@
   padding: 0 2rem;
 }
 
-.home-hero::before,
-.home-hero::after {
+.about-hero::before,
+.about-hero::after {
   content: '';
   position: absolute;
   top: -4vh;
@@ -25,10 +25,10 @@
   width: 1px;
   background: #b4b4b4;
 }
-.home-hero::before {
+.about-hero::before {
   left: 0;
 }
-.home-hero::after {
+.about-hero::after {
   right: 0;
 }
 
@@ -216,7 +216,7 @@
 }
 
 @media (max-width: 968px) {
-  .home-hero {
+  .about-hero {
     max-width: 100% !important;
     grid-template-columns: 1fr;
     gap: 10px;
@@ -225,8 +225,8 @@
     margin-left: 0;
     margin-right: 0;
   }
-  .home-hero::before,
-  .home-hero::after {
+  .about-hero::before,
+  .about-hero::after {
     top: -2vh;
     bottom: -2vh;
   }
@@ -266,8 +266,8 @@
     grid-template-columns: 1fr;
     gap: 10px;
   }
-  .home-hero::before,
-  .home-hero::after {
+  .about-hero::before,
+  .about-hero::after {
     display: none;
   }
   .gh-calender {

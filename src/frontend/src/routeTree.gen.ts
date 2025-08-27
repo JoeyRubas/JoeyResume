@@ -12,8 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProjectsRouteImport } from './routes/projects'
-import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LandingRouteImport } from './routes/landing'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SkillsIndexRouteImport } from './routes/skills/index'
@@ -35,14 +35,14 @@ const ProjectsRoute = ProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PortfolioRoute = PortfolioRouteImport.update({
-  id: '/portfolio',
-  path: '/portfolio',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingRoute = LandingRouteImport.update({
+  id: '/landing',
+  path: '/landing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -74,8 +74,8 @@ const ProjectProjectIdRoute = ProjectProjectIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
-  '/portfolio': typeof PortfolioRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRouteWithChildren
@@ -86,8 +86,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
-  '/portfolio': typeof PortfolioRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/project/$projectId': typeof ProjectProjectIdRoute
@@ -98,8 +98,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
-  '/portfolio': typeof PortfolioRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRouteWithChildren
@@ -112,8 +112,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/landing'
     | '/login'
-    | '/portfolio'
     | '/projects'
     | '/resume'
     | '/skills'
@@ -124,8 +124,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/landing'
     | '/login'
-    | '/portfolio'
     | '/projects'
     | '/resume'
     | '/project/$projectId'
@@ -135,8 +135,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/landing'
     | '/login'
-    | '/portfolio'
     | '/projects'
     | '/resume'
     | '/skills'
@@ -148,8 +148,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  LandingRoute: typeof LandingRoute
   LoginRoute: typeof LoginRoute
-  PortfolioRoute: typeof PortfolioRoute
   ProjectsRoute: typeof ProjectsRoute
   ResumeRoute: typeof ResumeRoute
   SkillsRoute: typeof SkillsRouteWithChildren
@@ -180,18 +180,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/portfolio': {
-      id: '/portfolio'
-      path: '/portfolio'
-      fullPath: '/portfolio'
-      preLoaderRoute: typeof PortfolioRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing': {
+      id: '/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -246,8 +246,8 @@ const SkillsRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  LandingRoute: LandingRoute,
   LoginRoute: LoginRoute,
-  PortfolioRoute: PortfolioRoute,
   ProjectsRoute: ProjectsRoute,
   ResumeRoute: ResumeRoute,
   SkillsRoute: SkillsRouteWithChildren,
