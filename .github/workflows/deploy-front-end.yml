@@ -57,6 +57,17 @@ jobs:
           if [ -f "${{ env.APP_DIR }}/staticwebapp.config.json" ]; then
             cp "${{ env.APP_DIR }}/staticwebapp.config.json" "${{ env.DIST_DIR }}/"
           fi
+        
+      - name: Compile Resume from .tex
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: |
+            src/frontend/src/pages/resume/resume.tex
+
+      - name: Copy compiled resume to dist directory
+        run: |
+          cp src/frontend/src/pages/resume/resume.pdf "${{ env.DIST_DIR }}/JoeyResume.pdf"
+          echo "Copied resume.pdf to ${{ env.DIST_DIR }}/JoeyResume.pdf"
 
       
       - name: Validate artifact

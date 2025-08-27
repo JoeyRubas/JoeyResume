@@ -1,0 +1,233 @@
+\documentclass[11pt]{article}
+
+% ========= STYLE KNOBS =========
+% Page
+\newcommand{\ResumeMargin}{0.25in}     
+
+% Name (top header) -- numbers only (no "pt") for \fontsize
+\newcommand{\NameSize}{18}
+\newcommand{\NameLead}{20}
+\newcommand{\NameWeight}{\bfseries}
+
+% Contacts line
+\newcommand{\ContactSize}{10}
+\newcommand{\ContactLead}{12}
+\newcommand{\ContactSep}{\; \textbar\ \;}  % separator between contact items
+
+% Section headings
+\newcommand{\SectionSize}{12}
+\newcommand{\SectionLead}{14}
+\newcommand{\SectionWeight}{\bfseries}
+\newcommand{\SectionBefore}{5pt}
+\newcommand{\SectionAfter}{3pt}
+\newcommand{\SectionRuleThickness}{0.5pt}
+% Transform (uppercase vs normal)
+\newcommand{\SectionTransform}{\MakeUppercase}  % or \relax for no caps
+
+% Employer (single line “Company — dates”)
+\newcommand{\EmployerSize}{11}
+\newcommand{\EmployerLead}{13}
+\newcommand{\EmployerWeight}{\bfseries}
+\newcommand{\EmployerPreSkip}{2pt}
+\newcommand{\EmployerPostSkip}{-2pt}
+
+% Role (sub-header “Title — dates”)
+\newcommand{\RoleTitleSize}{11}
+\newcommand{\RoleTitleLead}{13}
+\newcommand{\RoleTitleWeight}{\bfseries}
+\newcommand{\RoleDateSize}{10}
+\newcommand{\RoleDateLead}{12}
+\newcommand{\RolePreSkip}{2pt}
+\newcommand{\RolePostSkip}{-8pt}
+
+% Bullets (itemize body)
+\newcommand{\BulletSize}{10}
+\newcommand{\BulletLead}{12}
+\newcommand{\BulletTopSep}{0pt}
+\newcommand{\BulletItemSep}{1pt}
+% Use a concrete length here to prevent enumitem errors
+\newcommand{\BulletLeftIndent}{1.5em}
+
+% Blurbs (one-line descriptions before bullet lists)
+\newcommand{\BlurbSize}{10}
+\newcommand{\BlurbLead}{12}
+\newcommand{\BlurbPre}{0pt}
+\newcommand{\BlurbPost}{-8pt}
+
+% Skills lines
+\newcommand{\SkillsSize}{10}
+\newcommand{\SkillsLead}{12}
+\newcommand{\SkillsLabelWeight}{\bfseries}
+
+% Separator line
+\newcommand{\SepLength}{0.1\textwidth}
+\newcommand{\SepThickness}{0.5pt}
+\newcommand{\SepRaise}{1ex}
+
+% ========= PACKAGES =========
+\usepackage[margin=\ResumeMargin]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{amsmath}  % for \(\sim\), etc.
+
+% ========= BASE SETTINGS =========
+\hypersetup{hidelinks}
+\urlstyle{same}
+\setlength{\parskip}{1pt}
+\setlength{\parindent}{0pt}
+
+% Hide section numbers but keep \section (so formatting & rules apply)
+\setcounter{secnumdepth}{0}
+
+% Section format wired to knobs
+\newcommand{\SectionRule}{\titlerule[\SectionRuleThickness]}
+\titleformat{\section}
+  {\fontsize{\SectionSize}{\SectionLead}\selectfont \SectionWeight}
+  {}{0pt}{\SectionTransform}
+  [\SectionRule]
+\titlespacing*{\section}{0pt}{\SectionBefore}{\SectionAfter}
+
+% Two-column helper (left label, right date)
+\newenvironment{twocol}[2]{%
+  \noindent\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
+  #1 & #2\\
+  \end{tabular*}\ignorespaces
+}{\par}
+
+% Header lines
+\newcommand{\NameLine}[1]{%
+  {\fontsize{\NameSize}{\NameLead}\selectfont \NameWeight #1}%
+}
+\newcommand{\ContactsLine}[1]{%
+  {\fontsize{\ContactSize}{\ContactLead}\selectfont #1}%
+}
+
+% Employer & Role headers
+\newcommand{\EmployerHeader}[2]{%
+  \vspace*{\EmployerPreSkip}%
+  \noindent
+  {\fontsize{\EmployerSize}{\EmployerLead}\selectfont \EmployerWeight #1}%
+  \hfill
+  {\fontsize{\EmployerSize}{\EmployerLead}\selectfont #2}%
+  \\[\EmployerPostSkip]%
+}
+\newcommand{\RoleHeader}[2]{%
+  \vspace*{\RolePreSkip}%
+  \noindent
+  {\fontsize{\RoleTitleSize}{\RoleTitleLead}\selectfont \RoleTitleWeight #1}%
+  \hfill
+  {\fontsize{\RoleDateSize}{\RoleDateLead}\selectfont #2}%
+  \\[\RolePostSkip]%
+}
+
+% Bulleted list with font & spacing knobs
+\setlist[itemize]{leftmargin=\BulletLeftIndent, topsep=\BulletTopSep, itemsep=\BulletItemSep, parsep=0pt}
+\newenvironment{ResumeItemize}{%
+  \begin{itemize}\fontsize{\BulletSize}{\BulletLead}\selectfont
+}{%
+  \end{itemize}
+}
+
+% Short blurb before bullets
+\newcommand{\ProjectBlurb}[1]{%
+  \vspace*{\BlurbPre}%
+  {\fontsize{\BlurbSize}{\BlurbLead}\selectfont #1}%
+  \\[\BlurbPost]%
+}
+
+% Separator line
+\newcommand*\sepline{\noindent\rule[\SepRaise]{\SepLength}{\SepThickness}\par}
+
+% Skills line
+\newcommand{\SkillsLine}[2]{%
+  {\fontsize{\SkillsSize}{\SkillsLead}\selectfont \SkillsLabelWeight #1: }%
+  {\fontsize{\SkillsSize}{\SkillsLead}\selectfont #2}\\
+}
+\begin{document}
+
+% ===== Header =====
+\pagestyle{empty}       
+\raggedbottom          
+\begin{center}
+  \NameLine{Joseph (Joey) Rubas}\\[2pt]
+  \ContactsLine{%
+    Richmond, VA \ContactSep
+    \href{mailto:joeymrubas@gmail.com}{joeymrubas@gmail.com} \ContactSep
+    \href{tel:+16302199451}{(630) 219\textendash 9451} \ContactSep
+    \href{https://www.linkedin.com/in/joeymrubas/}{linkedin.com/in/joeymrubas} \ContactSep
+    \href{https://github.com/joeyrubas}{github.com/joeyrubas}%
+  }
+\end{center}
+
+% ===== Education =====
+\section{Education}
+\begin{twocol}{\textbf{University of Virginia} \textit{(Echols Scholar)} \quad Charlottesville, VA}{Aug 2022 -- May 2025}\end{twocol}
+B.A. in Computer Science; B.A. in Mathematics \\
+\textbf{Selected Coursework CS:} Data Structures and Algorithms (Java), Systems and Organization (C), Synthesis Design (C++), Software Development (Java), Data Science (R), Data Visualization (JS, D3), Compilers (ANTLR4, LLVM), Cloud Computing (Python, AWS), Langs for Web (PHP, JS, Angular, React), Cloud Computing (AWS, Hadoop, LLMs), Cryptocurrency (Solidity) 
+
+\textbf{Selected Coursework Math:} Linear Algebra, Real Analysis, Probability, Algebraic Coding Theory, Complex Analysis, Differential Equations, General Topology
+
+\textbf{Honors:} Ranked \( \# \)3 nationally in Parliamentary Debate; Distinguished Service Award Recipient; 
+
+% ===== Experience =====
+\section{Experience}
+
+\EmployerHeader{CarMax \quad Richmond, VA}{Jun 2023 -- Present}
+\RoleHeader{Software Engineer I — Assessment Platform}{Jul 2025 -- Present}
+\begin{ResumeItemize}
+  \item Incoming backend engineer using .Net/Azure
+\end{ResumeItemize}
+
+\RoleHeader{Software Engineering Intern II — Payroll Platform}{Jun 2024 -- Aug 2024}
+\begin{ResumeItemize}
+  \item Automated payroll validation/normalization + API routing using \textbf{Azure Data Factory} and .NET.
+  \item Codified infrastructure with \textbf{Bicep} and shipped CI/CD via \textbf{Azure DevOps} \textbf{(reproducible, auditable releases)}.
+  \item Aligned upstream/downstream contracts across services with Swagger + JSON schema.
+\end{ResumeItemize}
+
+\RoleHeader{Software Engineering Intern I — Loan Services}{Jun 2023 -- Aug 2023}
+\begin{ResumeItemize}
+  \item Shipped an end to end \textbf{.NET}/\textbf{Azure} microservice simulating legacy loan routing \textbf{(unblocking vendor-dependent API tests)};
+  \item Implemented config-driven request/response mapping for multiple QA/dev teams for flexible integration testing.
+  \item Provisioned resources with \textbf{Bicep} and automated deploys via \textbf{Azure DevOps} for faster regression cycles.
+\end{ResumeItemize}
+
+\sepline
+
+\EmployerHeader{SchooLinks \quad Austin, TX (Remote)}{Jun 2020 -- Aug 2020}
+\RoleHeader{Software Engineering Intern}{}
+\begin{ResumeItemize}
+  \item Normalized 900\textbf{+} university name variants \textbf{(+10\% search accuracy)} via Python string matching and heuristics.
+  \item Automated Common App sync for \textbf{100K+} students \textbf{(lower ops toil, reduced data drift)} using a \textbf{Django} ETL.
+  \item Built REST API tests and error budgets \textbf{(safer releases)} with Pytest + requests; added admin quality checks in Django admin.
+\end{ResumeItemize}
+
+% ===== Projects =====
+\section{Projects}
+
+\begin{twocol}{\textbf{MIT\textendash TAB (NU\textendash TAB)} \;\textit{Primary Contributor}}{Nov 2024 -- Present}\end{twocol}
+\ProjectBlurb{National debate tournament tabulation platform (\(\sim\)\textbf{1{,}500+} users/year).}
+\begin{ResumeItemize}
+  \item Eliminated \textbf{10+} N+1 hotspots and restructured database deployment \textbf{(\(\sim\)60\% faster page loads)} (Python, \textbf{Django}).
+  \item Centralized bulk check-in \textbf{(\(\sim\)50\% faster ops)}; added max-weight matching with configurable constraints for room assignment.
+  \item Delivered CSV/JSON export pipelines \textbf{(ML-ready data)}; cut asset sizes with \textbf{Webpack} \textbf{(faster TTI, reduced bandwidth)}.
+  \item Introduced pre-commit, HTML linting \textbf{(fewer regressions)}; wrote contributor docs.
+\end{ResumeItemize}
+
+\begin{twocol}{\textbf{APDA Standings (Black Rod)} \;\textit{Lead Developer}}{Nov 2024 -- Present}\end{twocol}
+\ProjectBlurb{Official rankings platform for 1500+ member debate leauge.}
+\begin{ResumeItemize}
+  \item Implemented CI/CD and quality gates \textbf{(75\% faster releases, 90\% fewer human-error outages)} via \textbf{GitHub Actions}.
+  \item Modernized stack (Python, Django, Node) \textbf{(\(\sim\)90\% fewer known CVEs, \(\sim\)15\% speed gain)}; fixed ranking/permission bugs.
+  \item Built admin self-serve tools \textbf{(\(\sim\)50\% fewer support requests)} and mentored new contributors (reviews, onboarding).
+\end{ResumeItemize}
+% ===== Skills =====
+\section{Skills}
+\SkillsLine{Languages}{Python, C\#, Java, JavaScript/TypeScript, SQL}
+\SkillsLine{Frameworks}{Django, .NET, React, Vue, Express.js, Flask}
+\SkillsLine{Cloud/DevOps}{Azure, AWS, Docker, Google Cloud GitHub Actions, Azure DevOps, Bicep, Webpack, Git}
+\SkillsLine{Data/Tools}{PostgreSQL, Redis, MongoDB; Pytest, Postman,OpenAPI/Swagger; mypy/black; App Insights/Sentry}
+\enlargethispage{\footskip}
+\end{document}
