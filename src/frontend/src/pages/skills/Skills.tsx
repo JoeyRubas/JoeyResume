@@ -25,6 +25,7 @@ const Skills: React.FC = () => {
   const { isAuthenticated, logout, loading: authLoading } = useAuth();
 
   const [skills, setSkills] = useState<Skill[]>([]);
+  const [loading, setLoading] = useState(true);
   const [editingSkillId, setEditingSkillId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -38,11 +39,14 @@ const Skills: React.FC = () => {
   }, []);
 
   const loadSkills = async () => {
+    setLoading(true);
     try {
       const skillsData = await apiService.getSkills();
       setSkills(skillsData);
     } catch (error) {
       console.error('Failed to load skills:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -164,7 +168,10 @@ const Skills: React.FC = () => {
   if (authLoading) {
     return (
       <div className="skills-container">
-        <div className="loading">Loading…</div>
+        <div className="skills-loading-container">
+          <div className="spinner"></div>
+          <span>Authenticating...</span>
+        </div>
       </div>
     );
   }
@@ -190,10 +197,10 @@ const Skills: React.FC = () => {
         </div>
 
         <div className="hero-scroll-container">
-          <ScrollIndicator targetId="skills-core" bottom="20px" />
+          <ScrollIndicator targetId={loading ? "" : "skills-core"} bottom="20px" />
         </div>
       </section>
-
+      
       {isAuthenticated && (
         <section className="admin-banner">
           <div className="banner-left">Admin Mode — edit enabled</div>
@@ -215,56 +222,67 @@ const Skills: React.FC = () => {
         </section>
       )}
 
-      <section id="skills-core" className="group-section">
-        <h2 className="group-title">Core</h2>
-        <div className="skills-grid">
-          {grouped.Core.map(skill => (
-            <SkillCard
-              key={skill.id}
-              skill={skill}
-              isAuthenticated={isAuthenticated}
-              levelToString={levelToString}
-              handleSkillClick={handleSkillClick}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            />
-          ))}
+      {loading ? (
+        <div className="skills-loading-container" style={{ minHeight: '30vh' }}>
+          <div className="spinner"></div>
+          <span style={{ color: '#667085', fontSize: '16px', fontWeight: 500 }}>
+            Loading skills data...
+          </span>
         </div>
-      </section>
+      ) : (
+        <>
+          <section id="skills-core" className="group-section">
+            <h2 className="group-title">Core</h2>
+            <div className="skills-grid">
+              {grouped.Core.map(skill => (
+                <SkillCard
+                  key={skill.id}
+                  skill={skill}
+                  isAuthenticated={isAuthenticated}
+                  levelToString={levelToString}
+                  handleSkillClick={handleSkillClick}
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
+              ))}
+            </div>
+          </section>
 
-      <section id="skills-use" className="group-section">
-        <h2 className="group-title">Use</h2>
-        <div className="skills-grid">
-          {grouped.Use.map(skill => (
-            <SkillCard
-              key={skill.id}
-              skill={skill}
-              isAuthenticated={isAuthenticated}
-              levelToString={levelToString}
-              handleSkillClick={handleSkillClick}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </div>
-      </section>
+          <section id="skills-use" className="group-section">
+            <h2 className="group-title">Use</h2>
+            <div className="skills-grid">
+              {grouped.Use.map(skill => (
+                <SkillCard
+                  key={skill.id}
+                  skill={skill}
+                  isAuthenticated={isAuthenticated}
+                  levelToString={levelToString}
+                  handleSkillClick={handleSkillClick}
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
+              ))}
+            </div>
+          </section>
 
-      <section id="skills-learning" className="group-section last">
-        <h2 className="group-title">Learning</h2>
-        <div className="skills-grid">
-          {grouped.Learning.map(skill => (
-            <SkillCard
-              key={skill.id}
-              skill={skill}
-              isAuthenticated={isAuthenticated}
-              levelToString={levelToString}
-              handleSkillClick={handleSkillClick}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </div>
-      </section>
+          <section id="skills-learning" className="group-section last">
+            <h2 className="group-title">Learning</h2>
+            <div className="skills-grid">
+              {grouped.Learning.map(skill => (
+                <SkillCard
+                  key={skill.id}
+                  skill={skill}
+                  isAuthenticated={isAuthenticated}
+                  levelToString={levelToString}
+                  handleSkillClick={handleSkillClick}
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
+              ))}
+            </div>
+          </section>
+        </>
+      )}
     </div>
   );
 };
