@@ -16,32 +16,20 @@ public class SkillController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<SkillGetDto>> GetAllSkills()
+    public ActionResult<List<SkillGetDto?>> GetAllSkills()
     {
         return _service.GetByType<SkillGetDto>();
     }
 
     [HttpGet("{id}")]
-    public ActionResult<SkillGetDto> GetSkillById(string? id)
+    public ActionResult<SkillGetDto?> GetSkillById(string? id)
     {
+        if (string.IsNullOrEmpty(id))
+        {
+            return BadRequest("Skill ID is required");
+        }
         return _service.GetById<SkillGetDto>(id);
     }
 
-    [HttpDelete("{id}")]
-    public ActionResult<string> DeleteSkill(string id)
-    {
-        return _service.Delete(id);
-    }
 
-    [HttpPost]
-    public ActionResult<SkillGetDto> AddSkill([FromBody] SkillCreateDto? skill)
-    {
-        return _service.Create<SkillCreateDto, SkillGetDto>(skill);
-    }
-
-    [HttpPut("{id}")]
-    public ActionResult<SkillGetDto> UpdateSkill(string id, [FromBody] SkillUpdateDto skill)
-    {
-        return _service.Update<SkillUpdateDto, SkillGetDto>(id, skill);
-    }
 }

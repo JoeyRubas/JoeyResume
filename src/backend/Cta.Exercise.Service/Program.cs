@@ -1,6 +1,5 @@
 using Cta.Exercise.Application.Services;
 using Cta.Exercise.Core.Repositories;
-using Cta.Exercise.Service.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,12 +56,13 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Force initialization of GitHubService at startup
-using (var scope = app.Services.CreateScope())
+// Force initialization of GitHubService at startup - trigger async preloading
+_ = Task.Run(() =>
 {
+    using var scope = app.Services.CreateScope();
     var gitHubService = scope.ServiceProvider.GetRequiredService<IGitHubService>();
     Console.WriteLine($"GitHub service initialized with username: {gitHubService.GetUsername()}");
-}
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -72,8 +72,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowFrontend");
-
-app.UseMiddleware<AuthMiddleware>();
 
 // Only use HTTPS redirection in production
 if (!app.Environment.IsDevelopment())

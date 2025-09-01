@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProjectsRouteImport } from './routes/projects'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as LandingRouteImport } from './routes/landing'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -33,11 +32,6 @@ const ResumeRoute = ResumeRouteImport.update({
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LandingRoute = LandingRouteImport.update({
@@ -75,7 +69,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/landing': typeof LandingRoute
-  '/login': typeof LoginRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRouteWithChildren
@@ -87,7 +80,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/landing': typeof LandingRoute
-  '/login': typeof LoginRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/project/$projectId': typeof ProjectProjectIdRoute
@@ -99,7 +91,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/landing': typeof LandingRoute
-  '/login': typeof LoginRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRouteWithChildren
@@ -113,7 +104,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/landing'
-    | '/login'
     | '/projects'
     | '/resume'
     | '/skills'
@@ -125,7 +115,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/landing'
-    | '/login'
     | '/projects'
     | '/resume'
     | '/project/$projectId'
@@ -136,7 +125,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/landing'
-    | '/login'
     | '/projects'
     | '/resume'
     | '/skills'
@@ -149,7 +137,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   LandingRoute: typeof LandingRoute
-  LoginRoute: typeof LoginRoute
   ProjectsRoute: typeof ProjectsRoute
   ResumeRoute: typeof ResumeRoute
   SkillsRoute: typeof SkillsRouteWithChildren
@@ -178,13 +165,6 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/landing': {
@@ -247,7 +227,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   LandingRoute: LandingRoute,
-  LoginRoute: LoginRoute,
   ProjectsRoute: ProjectsRoute,
   ResumeRoute: ResumeRoute,
   SkillsRoute: SkillsRouteWithChildren,

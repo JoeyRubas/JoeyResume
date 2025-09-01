@@ -628,35 +628,5 @@ export const mockApi = {
       throw new Error(`Skill with id ${id} not found`);
     }
     return { ...skill };
-  },
-
-  createSkill: async (skill: Skill): Promise<Skill> => {
-    await delay(300);
-    const newSkill = {
-      ...skill,
-      id: (mockSkills.length + 1).toString()
-    };
-    mockSkills.push(newSkill);
-    return { ...newSkill };
-  },
-
-  editSkill: async (skill: Skill): Promise<Skill> => {
-    await delay(300);
-    const index = mockSkills.findIndex(s => s.id === skill.id);
-    if (index === -1) {
-      throw new Error(`Skill with id ${skill.id} not found`);
-    }
-    mockSkills[index] = { ...skill };
-    return { ...skill };
-  },
-
-  deleteSkill: async (id: string): Promise<boolean> => {
-    await delay(300);
-    const index = mockSkills.findIndex(s => s.id === id);
-    if (index === -1) {
-      throw new Error(`Skill with id ${id} not found`);
-    }
-    mockSkills.splice(index, 1);
-    return true;
   }
 };

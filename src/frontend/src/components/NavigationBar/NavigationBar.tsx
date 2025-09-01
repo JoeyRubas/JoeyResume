@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, Link } from '@tanstack/react-router';
-import { useAuth } from '../../hooks/useAuth';
 import './styles.css';
 
 type NavItem = { to: string; label: string; match?: 'exact' | 'startsWith' };
@@ -15,7 +14,6 @@ const NAV_ITEMS: NavItem[] = [
 
 const NavigationBar: React.FC = () => {
   const location = useLocation();
-  const { isAuthenticated, logout } = useAuth();
 
   const linksRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
@@ -68,11 +66,6 @@ const NavigationBar: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePath]);
 
-  const handleLogout = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    await logout();
-  };
-
   return (
     <>
       {/* need to keep, empty spacer for nav bar */}
@@ -101,7 +94,7 @@ const NavigationBar: React.FC = () => {
                     key={item.to}
                     to={item.to}
                     className={`link ${isActive ? 'active' : ''}`}
-                    ref={el => {
+                    ref={(el: HTMLAnchorElement | null) => {
                       itemRefs.current[item.to] = el;
                     }}
                   >
@@ -109,25 +102,6 @@ const NavigationBar: React.FC = () => {
                   </Link>
                 );
               })}
-              {isAuthenticated ? (
-                <a
-                  href="/logout"
-                  className="link auth-link"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </a>
-              ) : (
-                <Link
-                  to="/login"
-                  className={`link auth-link ${location.pathname === '/login' ? 'active' : ''}`}
-                  ref={el => {
-                    itemRefs.current['/login'] = el;
-                  }}
-                >
-                  Login
-                </Link>
-              )}
             </div>
           </div>
         </nav>

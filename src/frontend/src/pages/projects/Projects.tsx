@@ -3,7 +3,6 @@ import Masonry from 'react-masonry-css';
 import { useNavigate } from '@tanstack/react-router';
 import apiService from '../../api/service';
 import { Project } from '../../types/project.ts';
-import { useAuth } from '../../hooks/useAuth';
 import ProjectCard from '../../components/ProjectCard/ProjectCard.tsx';
 import './styles.css';
 
@@ -141,9 +140,7 @@ function buildPlacements(projects: Project[], COLS: number, ROWS: number) {
 
 const Projects: React.FC = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, loading: authLoading } = useAuth();
   const [projects, setProjects] = useState<Project[]>([]);
-  const [editingProjectId, setEditingProjectId] = useState<string | null>(null);
   const [width, height] = useWindowSize();
 
   useEffect(() => {
@@ -158,22 +155,6 @@ const Projects: React.FC = () => {
       navigate({ to: '/project/$projectId', params: { projectId: id } }),
     [navigate]
   );
-  const handleEdit = useCallback((id: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setEditingProjectId(id);
-  }, []);
-  const handleDelete = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }, []);
-
-  if (authLoading)
-    return (
-      <div className="projects-page">
-        <div className="loading">Loading…</div>
-      </div>
-    );
 
   if (width < 600) {
     return (
@@ -194,10 +175,10 @@ const Projects: React.FC = () => {
               <ProjectCard
                 key={proj.id}
                 project={proj}
-                isAuthenticated={isAuthenticated}
+                isAuthenticated={false}
                 handleProjectClick={() => handleProjectClick(proj.id)}
-                handleEdit={e => handleEdit(proj.id, e)}
-                handleDelete={handleDelete}
+                handleEdit={() => {}}
+                handleDelete={() => {}}
               />
             ))}
           </Masonry>
@@ -242,10 +223,10 @@ const Projects: React.FC = () => {
               <ProjectCard
                 key={proj.id}
                 project={proj}
-                isAuthenticated={isAuthenticated}
+                isAuthenticated={false}
                 handleProjectClick={() => handleProjectClick(proj.id)}
-                handleEdit={e => handleEdit(proj.id, e)}
-                handleDelete={handleDelete}
+                handleEdit={() => {}}
+                handleDelete={() => {}}
                 mosaicSize={Math.max(p.colSpan, p.rowSpan)}
                 style={{
                   gridColumn: `${p.col + 1} / span ${p.colSpan}`,
