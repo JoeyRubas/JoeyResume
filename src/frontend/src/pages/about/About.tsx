@@ -137,6 +137,7 @@ const About: React.FC = () => {
         <div style={{ display: calendarLoading ? 'none' : 'block' }} ref={calendarRef}>
           <GitHubCalendar 
             username="JoeyRubas"
+            colorScheme="light"
           />
         </div>
       </section>
