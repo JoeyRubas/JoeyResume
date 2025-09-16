@@ -78,7 +78,7 @@ export const mockProjects: Project[] = [
     name: 'APDA Standings',
     description: 'Displays the current standings of the American Parliamentary Debate Association.',
     longDescription: 'A comprehensive tournament results and standings tracking system for the American Parliamentary Debate Association. This application processes tournament data and displays real-time rankings for debaters across the country.',
-    githubUrl: 'https://github.com/APDA-Tech-Committee/black-rod',
+    githubUrl: 'https://github.com/MIT-Tab/black-rod',
     liveUrl: 'http://results.apda.online',
     projectMaturity: 9,
     showNumberCommits: true,
@@ -184,8 +184,8 @@ export const mockProjects: Project[] = [
     projectMaturity: 3,
     showNumberCommits: true,
     skillsUsed: ['Python'],
-    startDate: '2023-05-01',
-    endDate: '2023-07-15',
+    startDate: '2024-12-01',
+    endDate: '2025-01-15',
     status: ProjectStatus.Completed,
     role: 'Solo Developer',
     teamSize: 1,
@@ -196,7 +196,6 @@ export const mockProjects: Project[] = [
     challengesFaced: [
       'Understanding complex group theory concepts',
       'Optimizing algorithm performance',
-      'Creating intuitive visualization'
     ],
     lessonsLearned: [
       'Advanced mathematical programming',
