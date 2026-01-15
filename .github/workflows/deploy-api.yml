@@ -15,7 +15,7 @@ env:
   SOLUTION_PATH: 'src/backend/Cta.Exercise.sln'
   PROJECT_PATH: 'src/backend/Cta.Exercise.Service/Cta.Exercise.Service.csproj'
   AZURE_WEBAPP_PACKAGE_PATH: './publish'
-  AZURE_WEBAPP_NAME: 'wapp-joeytest2321'
+  AZURE_WEBAPP_NAME: 'wapp-joey-resume'
   AZURE_WEBAPP_SLOT_NAME: 'production'
 
 # jobs that will run in this workflow
