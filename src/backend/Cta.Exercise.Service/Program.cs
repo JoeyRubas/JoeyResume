@@ -44,6 +44,7 @@ builder.Services.AddCors(options =>
                     "http://localhost:5173",           
                     "https://localhost:5173",        
                     "https://yellow-sand-045d4620f.1.azurestaticapps.net",
+                    "https://gentle-river-07d6a0f0f.4.azurestaticapps.net",
                     "https://joeyrubas.com",
                     "https://www.joeyrubas.com"
                   )
