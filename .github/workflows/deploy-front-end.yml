@@ -6,6 +6,7 @@ on:
     paths:
       - 'src/frontend/**'
   workflow_dispatch:
+  workflow_call:      # Allow being called by other workflows
 
 env:
   NODE_VERSION: '20.x'

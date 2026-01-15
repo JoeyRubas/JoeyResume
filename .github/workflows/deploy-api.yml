@@ -8,6 +8,7 @@ on:
     paths: 
       - 'src/backend/**'
   workflow_dispatch:  # Allow manual triggering
+  workflow_call:      # Allow being called by other workflows
 
 # environment variables used in this workflow
 env:

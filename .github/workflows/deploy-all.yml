@@ -1,0 +1,17 @@
+# Orchestrator workflow to deploy both API and Frontend in sequence
+name: Deploy All
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  deploy-api:
+    name: Deploy API
+    uses: ./.github/workflows/deploy-api.yml
+    secrets: inherit
+
+  deploy-frontend:
+    name: Deploy Frontend
+    needs: deploy-api  # Wait for API deployment to complete
+    uses: ./.github/workflows/deploy-front-end.yml
+    secrets: inherit
