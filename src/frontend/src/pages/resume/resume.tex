@@ -1,37 +1,30 @@
 \documentclass[11pt]{article}
 
 % ========= STYLE KNOBS =========
-% Page
 \newcommand{\ResumeMargin}{0.25in}     
 
-% Name (top header) -- numbers only (no "pt") for \fontsize
 \newcommand{\NameSize}{18}
 \newcommand{\NameLead}{20}
 \newcommand{\NameWeight}{\bfseries}
 
-% Contacts line
 \newcommand{\ContactSize}{10}
 \newcommand{\ContactLead}{12}
-\newcommand{\ContactSep}{\; \textbar\ \;}  % separator between contact items
+\newcommand{\ContactSep}{\; \textbar\ \;}
 
-% Section headings
 \newcommand{\SectionSize}{12}
 \newcommand{\SectionLead}{14}
 \newcommand{\SectionWeight}{\bfseries}
 \newcommand{\SectionBefore}{5pt}
 \newcommand{\SectionAfter}{3pt}
 \newcommand{\SectionRuleThickness}{0.5pt}
-% Transform (uppercase vs normal)
-\newcommand{\SectionTransform}{\MakeUppercase}  % or \relax for no caps
+\newcommand{\SectionTransform}{\MakeUppercase}
 
-% Employer (single line “Company — dates”)
 \newcommand{\EmployerSize}{11}
 \newcommand{\EmployerLead}{13}
 \newcommand{\EmployerWeight}{\bfseries}
-\newcommand{\EmployerPreSkip}{2pt}
+\newcommand{\EmployerPreSkip}{1pt}
 \newcommand{\EmployerPostSkip}{-2pt}
 
-% Role (sub-header “Title — dates”)
 \newcommand{\RoleTitleSize}{11}
 \newcommand{\RoleTitleLead}{13}
 \newcommand{\RoleTitleWeight}{\bfseries}
@@ -40,26 +33,21 @@
 \newcommand{\RolePreSkip}{2pt}
 \newcommand{\RolePostSkip}{-8pt}
 
-% Bullets (itemize body)
 \newcommand{\BulletSize}{10}
 \newcommand{\BulletLead}{12}
 \newcommand{\BulletTopSep}{0pt}
 \newcommand{\BulletItemSep}{1pt}
-% Use a concrete length here to prevent enumitem errors
 \newcommand{\BulletLeftIndent}{1.5em}
 
-% Blurbs (one-line descriptions before bullet lists)
 \newcommand{\BlurbSize}{10}
 \newcommand{\BlurbLead}{12}
 \newcommand{\BlurbPre}{0pt}
 \newcommand{\BlurbPost}{-8pt}
 
-% Skills lines
 \newcommand{\SkillsSize}{10}
 \newcommand{\SkillsLead}{12}
 \newcommand{\SkillsLabelWeight}{\bfseries}
 
-% Separator line
 \newcommand{\SepLength}{0.1\textwidth}
 \newcommand{\SepThickness}{0.5pt}
 \newcommand{\SepRaise}{1ex}
@@ -70,18 +58,15 @@
 \usepackage{hyperref}
 \usepackage{titlesec}
 \usepackage{parskip}
-\usepackage{amsmath}  % for \(\sim\), etc.
+\usepackage{amsmath}
 
 % ========= BASE SETTINGS =========
 \hypersetup{hidelinks}
 \urlstyle{same}
 \setlength{\parskip}{1pt}
 \setlength{\parindent}{0pt}
-
-% Hide section numbers but keep \section (so formatting & rules apply)
 \setcounter{secnumdepth}{0}
 
-% Section format wired to knobs
 \newcommand{\SectionRule}{\titlerule[\SectionRuleThickness]}
 \titleformat{\section}
   {\fontsize{\SectionSize}{\SectionLead}\selectfont \SectionWeight}
@@ -89,14 +74,12 @@
   [\SectionRule]
 \titlespacing*{\section}{0pt}{\SectionBefore}{\SectionAfter}
 
-% Two-column helper (left label, right date)
 \newenvironment{twocol}[2]{%
   \noindent\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
   #1 & #2\\
   \end{tabular*}\ignorespaces
 }{\par}
 
-% Header lines
 \newcommand{\NameLine}[1]{%
   {\fontsize{\NameSize}{\NameLead}\selectfont \NameWeight #1}%
 }
@@ -104,7 +87,6 @@
   {\fontsize{\ContactSize}{\ContactLead}\selectfont #1}%
 }
 
-% Employer & Role headers
 \newcommand{\EmployerHeader}[2]{%
   \vspace*{\EmployerPreSkip}%
   \noindent
@@ -122,7 +104,6 @@
   \\[\RolePostSkip]%
 }
 
-% Bulleted list with font & spacing knobs
 \setlist[itemize]{leftmargin=\BulletLeftIndent, topsep=\BulletTopSep, itemsep=\BulletItemSep, parsep=0pt}
 \newenvironment{ResumeItemize}{%
   \begin{itemize}\fontsize{\BulletSize}{\BulletLead}\selectfont
@@ -130,32 +111,33 @@
   \end{itemize}
 }
 
-% Short blurb before bullets
 \newcommand{\ProjectBlurb}[1]{%
   \vspace*{\BlurbPre}%
   {\fontsize{\BlurbSize}{\BlurbLead}\selectfont #1}%
   \\[\BlurbPost]%
 }
 
-% Separator line
-\newcommand*\sepline{\noindent\rule[\SepRaise]{\SepLength}{\SepThickness}\par}
+\newcommand*\sepline{%
+  \par\vspace{4pt}%
+  \noindent\rule[\SepRaise]{\SepLength}{\SepThickness}%
+  \par\vspace{-6pt}%
+}
 
-% Skills line
 \newcommand{\SkillsLine}[2]{%
   {\fontsize{\SkillsSize}{\SkillsLead}\selectfont \SkillsLabelWeight #1: }%
   {\fontsize{\SkillsSize}{\SkillsLead}\selectfont #2}\\
 }
+
 \begin{document}
 
 % ===== Header =====
-\pagestyle{empty}       
-\raggedbottom          
+\pagestyle{empty}
+\raggedbottom
 \begin{center}
-  \NameLine{Joseph (Joey) Rubas}\\[2pt]
+  \NameLine{Joseph Rubas}\\[2pt]
   \ContactsLine{%
     Richmond, VA \ContactSep
     \href{mailto:joeymrubas@gmail.com}{joeymrubas@gmail.com} \ContactSep
-    \href{tel:+16302199451}{(630) 219\textendash 9451} \ContactSep
     \href{https://www.linkedin.com/in/joeymrubas/}{linkedin.com/in/joeymrubas} \ContactSep
     \href{https://github.com/joeyrubas}{github.com/joeyrubas}%
   }
@@ -164,12 +146,16 @@
 % ===== Education =====
 \section{Education}
 \begin{twocol}{\textbf{University of Virginia} \textit{(Echols Scholar)} \quad Charlottesville, VA}{Aug 2022 -- May 2025}\end{twocol}
-B.A. in Computer Science; B.A. in Mathematics \\
-\textbf{Selected Coursework CS:} Data Structures and Algorithms (Java), Systems and Organization (C), Synthesis Design (C++), Software Development (Java), Data Science (R), Data Visualization (JS, D3), Compilers (ANTLR4, LLVM), Cloud Computing (Python, AWS), Langs for Web (PHP, JS, Angular, React), Cloud Computing (AWS, Hadoop, LLMs), Cryptocurrency (Solidity) 
+B.A. Computer Science; B.A. Mathematics
 
-\textbf{Selected Coursework Math:} Linear Algebra, Real Analysis, Probability, Algebraic Coding Theory, Complex Analysis, Differential Equations, General Topology
+\textbf{Coursework:}
+Data Structures \& Algorithms, Systems Programming, Compilers, Cloud Computing, Probability, Real Analysis, Algebraic Coding Theory, Topology
 
-\textbf{Honors:} Ranked \( \# \)3 nationally in Parliamentary Debate; Distinguished Service Award Recipient; 
+\textbf{Honors:}
+\begin{ResumeItemize}
+  \item Ranked \#3 nationally in collegiate parliamentary debate (APDA; ~1,500+ competitors annually).
+  \item Distinguished Service Award for engineering the MIT-TAB and APDA Standings platforms.
+\end{ResumeItemize}
 
 % ===== Experience =====
 \section{Experience}
@@ -177,57 +163,57 @@ B.A. in Computer Science; B.A. in Mathematics \\
 \EmployerHeader{CarMax \quad Richmond, VA}{Jun 2023 -- Present}
 \RoleHeader{Software Engineer I — Assessment Platform}{Jul 2025 -- Present}
 \begin{ResumeItemize}
-  \item Incoming backend engineer using \textbf{.NET}/\textbf{Azure}
+  \item Designed idempotent request tracking across distributed services to prevent duplicate processing and downstream reconciliation failures.
+  \item Built real-time observability dashboards and alerts to surface pipeline health issues and shorten incident triage.
+  \item Led a JFrog $\rightarrow$ NuGet migration with zero downtime, coordinating changes across dependent teams and services.
 \end{ResumeItemize}
 
 \RoleHeader{Software Engineering Intern II — Payroll Platform}{Jun 2024 -- Aug 2024}
 \begin{ResumeItemize}
-  \item Automated payroll validation/normalization + API routing using \textbf{Azure Data Factory} and \textbf{.NET}.
-  \item Codified infrastructure with \textbf{Bicep} and shipped \textbf{CI/CD} via \textbf{Azure DevOps} \textbf{(reproducible, auditable releases)}.
-  \item Aligned upstream/downstream contracts across services with Swagger + JSON schema.
+  \item Automated payroll validation and routing workflows using Azure Data Factory and .NET, reducing manual QA and inconsistency.
+  \item Codified infrastructure using Bicep and delivered reproducible CI/CD pipelines through Azure DevOps.
+  \item Formalized service contracts via OpenAPI and schema validation to prevent breaking changes across consumers.
 \end{ResumeItemize}
 
 \RoleHeader{Software Engineering Intern I — Loan Services}{Jun 2023 -- Aug 2023}
 \begin{ResumeItemize}
-  \item Shipped an end to end \textbf{.NET}/\textbf{Azure} microservice simulating legacy loan routing \textbf{(unblocking vendor-dependent API tests)};
-  \item Implemented config-driven request/response mapping for multiple QA/dev teams for flexible integration testing.
-  \item Provisioned resources with \textbf{Bicep} and automated deploys via \textbf{Azure DevOps} for faster regression cycles.
+  \item Shipped a .NET microservice to emulate legacy loan routing behavior, unblocking integration testing for downstream systems.
+  \item Implemented configuration-driven request/response mappings to support multiple environments without code changes.
 \end{ResumeItemize}
-
 \sepline
-
 \EmployerHeader{SchooLinks \quad Austin, TX (Remote)}{Jun 2020 -- Aug 2020}
 \RoleHeader{Software Engineering Intern}{}
 \begin{ResumeItemize}
-  \item Normalized \textbf{900+} university name variants \textbf{(+10\% search accuracy)} via \textbf{Python} string matching and heuristics.
-  \item Automated Common App sync for \textbf{100K+} students \textbf{(lower ops toil, reduced data drift)} using a \textbf{Django} ETL.
-  \item Built \textbf{REST API} tests and error budgets \textbf{(safer releases)} with \textbf{Pytest} + \textbf{requests}; added admin quality checks in \textbf{Django} admin.
+  \item Built data normalization and matching logic in Python to resolve inconsistent university naming and improve search accuracy.
+  \item Implemented a Django-based ETL pipeline syncing Common App data into production systems, reducing manual operational overhead.
 \end{ResumeItemize}
 
-% ===== Projects =====
-\section{Projects}
 
-\begin{twocol}{\textbf{MIT\textendash TAB (NU\textendash TAB)} \;\textit{Primary Contributor}}{Nov 2024 -- Present}\end{twocol}
-\ProjectBlurb{National debate tournament tabulation platform (\(\sim\)\textbf{1{,}500+} users/year).}
+% ==== Open Source =====
+\section{Open Source}
+
+\begin{twocol}{\textbf{National Debate Tabulation Platform (MIT-TAB)} \;\textit{Lead Maintainer}}{Nov 2024 -- Present}\end{twocol}
+\ProjectBlurb{Production tabulation system used by thouthands annually; responsible for live pairing, bracket generation, and results publication.}
 \begin{ResumeItemize}
-  \item Eliminated \textbf{10+} N+1 hotspots and restructured database deployment \textbf{(\(\sim\)60\% faster page loads)} (\textbf{Python}, \textbf{Django}).
-  \item Centralized bulk check-in \textbf{(\(\sim\)50\% faster ops)}; added max-weight matching with configurable constraints for room assignment.
-  \item Delivered \textbf{CSV/JSON} export pipelines \textbf{(DSML-ready data)}; cut asset sizes with \textbf{Webpack} \textbf{(faster TTI, reduced bandwidth)}.
-  \item Introduced \textbf{pre-commit}, \textbf{HTML} linting \textbf{(fewer regressions)}; wrote contributor docs.
+  \item Designed layered caching (CDN + application) leading to 95\% reduced page-load latency during peak tournament traffic, 
+  \item Built and maintained operational tooling for tournament staff (re-pairing, room assignment, judge controls), materially reducing manual intervention during rounds.
+  \item Led modernization efforts including Python 3.10 upgrades and frontend asset optimization to improve maintainability and deployment safety.
 \end{ResumeItemize}
 
-\begin{twocol}{\textbf{APDA Standings (Black Rod)} \;\textit{Lead Developer}}{Nov 2024 -- Present}\end{twocol}
-\ProjectBlurb{Official rankings platform for \textbf{1500+} member debate leauge.}
+\begin{twocol}{\textbf{National Debate Rankings Platform (APDA Standings)} \;\textit{Lead Maintainer}}{Nov 2024 -- Present}\end{twocol}
+\ProjectBlurb{Official national rankings system aggregating results across all sanctioned tournaments.}
 \begin{ResumeItemize}
-  \item Implemented \textbf{CI/CD} and quality gates \textbf{(75\% faster releases, 90\% fewer human-error outages)} via \textbf{GitHub Actions}.
-  \item Modernized stack (\textbf{Python}, \textbf{Django}, \textbf{Node}) \textbf{(\(\sim\)90\% fewer known CVEs, \(\sim\)15\% speed gain)}; fixed ranking/permission bugs.
-  \item Built admin self-serve tools \textbf{(\(\sim\)50\% fewer support requests)} and mentored new contributors (reviews, onboarding).
+  \item Architected a unified ingestion pipeline consuming tournament results and normalizing competitor identities across disparate sources.
+  \item Designed administrative workflows to resolve historical data corruption and enforce referential integrity across seasons.
+  \item Introduced CI/CD and automated quality gates to reduce release risk and operational regressions.
 \end{ResumeItemize}
+
 % ===== Skills =====
 \section{Skills}
-\SkillsLine{Languages}{Python, C\#, Java, JavaScript/TypeScript, SQL}
-\SkillsLine{Frameworks}{Django, .NET, React, Vue, Express.js, Flask}
-\SkillsLine{Cloud/DevOps}{Azure, AWS, Docker, Google Cloud, GitHub Actions, Azure DevOps, Bicep, Webpack, Git}
-\SkillsLine{Data/Tools}{PostgreSQL, Redis, MongoDB; Pytest, Postman, OpenAPI/Swagger; mypy/black; App Insights/Sentry}
+
+\SkillsLine{Languages}{Python, SQL, C\#, Java, TypeScript}
+\SkillsLine{Frameworks}{Django, .NET, React, Express}
+\SkillsLine{Infrastructure}{AWS, Azure, Docker, CI/CD (GitHub Actions, Azure DevOps), Bicep}
+\SkillsLine{Data \& Tooling}{PostgreSQL, Redis, MongoDB, OpenAPI/Swagger, Pytest, Sentry}
 \enlargethispage{\footskip}
 \end{document}
