@@ -35,6 +35,12 @@ jobs:
         run: npm ci
         working-directory: ${{ env.APP_DIR }}
 
+      - name: Fetch GitHub stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_STATS_TOKEN }}
+          GITHUB_USERNAME: 'JoeyRubas'
+        run: node scripts/fetch-github-data.js
+
       # Compile LaTeX resume BEFORE the Vite build
       - name: Compile Resume from .tex
         uses: xu-cheng/latex-action@v4
@@ -51,14 +57,8 @@ jobs:
 
       - name: Export public build vars
         run: |
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> $GITHUB_ENV
           echo "VITE_SHOW_EDIT_FUNCTIONALITY=false" >> $GITHUB_ENV
           echo "VITE_USE_MOCK_DATA=false" >> $GITHUB_ENV
-
-      - name: Debug environment variables
-        run: |
-          echo "VITE_API_URL is set: ${{ secrets.VITE_API_URL != '' }}"
-          echo "Environment variables exported to GITHUB_ENV"
 
       - name: Build (Vite)
         env:

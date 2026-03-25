@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --port 5173",
+    "fetch-stats": "node ../../scripts/fetch-github-data.js",
+    "dev": "npm run fetch-stats && vite --port 5173",
     "build": "vite build && tsc --noEmit",
     "build:dev": "vite build --mode dev",
     "serve": "vite preview",

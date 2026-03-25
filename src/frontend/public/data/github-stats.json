@@ -1,0 +1,2146 @@
+{
+  "Python": [
+    {
+      "date": "2019-07-15",
+      "additions": 490,
+      "deletions": 0
+    },
+    {
+      "date": "2019-07-16",
+      "additions": 501,
+      "deletions": 5
+    },
+    {
+      "date": "2019-07-18",
+      "additions": 568,
+      "deletions": 37
+    },
+    {
+      "date": "2019-07-19",
+      "additions": 1125,
+      "deletions": 387
+    },
+    {
+      "date": "2019-07-20",
+      "additions": 1128,
+      "deletions": 390
+    },
+    {
+      "date": "2019-07-22",
+      "additions": 1130,
+      "deletions": 391
+    },
+    {
+      "date": "2019-07-23",
+      "additions": 1134,
+      "deletions": 394
+    },
+    {
+      "date": "2019-07-29",
+      "additions": 1136,
+      "deletions": 604
+    },
+    {
+      "date": "2019-07-31",
+      "additions": 1137,
+      "deletions": 605
+    },
+    {
+      "date": "2019-08-06",
+      "additions": 1165,
+      "deletions": 619
+    },
+    {
+      "date": "2019-08-07",
+      "additions": 1174,
+      "deletions": 628
+    },
+    {
+      "date": "2019-08-08",
+      "additions": 1249,
+      "deletions": 663
+    },
+    {
+      "date": "2019-08-11",
+      "additions": 1255,
+      "deletions": 669
+    },
+    {
+      "date": "2019-08-15",
+      "additions": 1256,
+      "deletions": 670
+    },
+    {
+      "date": "2019-11-27",
+      "additions": 1533,
+      "deletions": 670
+    },
+    {
+      "date": "2019-12-13",
+      "additions": 1540,
+      "deletions": 677
+    },
+    {
+      "date": "2020-06-09",
+      "additions": 1541,
+      "deletions": 677
+    },
+    {
+      "date": "2020-06-10",
+      "additions": 1662,
+      "deletions": 677
+    },
+    {
+      "date": "2020-08-12",
+      "additions": 1663,
+      "deletions": 678
+    },
+    {
+      "date": "2021-01-19",
+      "additions": 6667,
+      "deletions": 678
+    },
+    {
+      "date": "2021-03-02",
+      "additions": 6864,
+      "deletions": 875
+    },
+    {
+      "date": "2022-10-09",
+      "additions": 7007,
+      "deletions": 875
+    },
+    {
+      "date": "2024-11-26",
+      "additions": 7456,
+      "deletions": 1044
+    },
+    {
+      "date": "2024-11-27",
+      "additions": 7576,
+      "deletions": 1071
+    },
+    {
+      "date": "2024-12-09",
+      "additions": 8238,
+      "deletions": 1262
+    },
+    {
+      "date": "2024-12-18",
+      "additions": 8866,
+      "deletions": 2055
+    },
+    {
+      "date": "2025-01-15",
+      "additions": 13866,
+      "deletions": 2123
+    },
+    {
+      "date": "2025-01-21",
+      "additions": 14140,
+      "deletions": 2179
+    },
+    {
+      "date": "2025-01-29",
+      "additions": 16607,
+      "deletions": 3227
+    },
+    {
+      "date": "2025-02-27",
+      "additions": 16741,
+      "deletions": 3368
+    },
+    {
+      "date": "2025-02-28",
+      "additions": 16870,
+      "deletions": 3497
+    },
+    {
+      "date": "2025-03-03",
+      "additions": 17261,
+      "deletions": 3752
+    },
+    {
+      "date": "2025-03-04",
+      "additions": 17360,
+      "deletions": 3753
+    },
+    {
+      "date": "2025-03-05",
+      "additions": 17372,
+      "deletions": 3755
+    },
+    {
+      "date": "2025-03-08",
+      "additions": 17699,
+      "deletions": 3822
+    },
+    {
+      "date": "2025-03-10",
+      "additions": 17704,
+      "deletions": 3827
+    },
+    {
+      "date": "2025-03-12",
+      "additions": 18578,
+      "deletions": 4338
+    },
+    {
+      "date": "2025-03-14",
+      "additions": 18581,
+      "deletions": 4339
+    },
+    {
+      "date": "2025-03-18",
+      "additions": 18818,
+      "deletions": 4339
+    },
+    {
+      "date": "2025-03-31",
+      "additions": 18819,
+      "deletions": 4343
+    },
+    {
+      "date": "2025-04-14",
+      "additions": 19475,
+      "deletions": 5398
+    },
+    {
+      "date": "2025-04-15",
+      "additions": 19492,
+      "deletions": 5407
+    },
+    {
+      "date": "2025-04-16",
+      "additions": 19547,
+      "deletions": 5424
+    },
+    {
+      "date": "2025-04-18",
+      "additions": 19563,
+      "deletions": 5444
+    },
+    {
+      "date": "2025-04-21",
+      "additions": 20599,
+      "deletions": 5780
+    },
+    {
+      "date": "2025-04-22",
+      "additions": 20714,
+      "deletions": 6852
+    },
+    {
+      "date": "2025-04-23",
+      "additions": 20760,
+      "deletions": 6889
+    },
+    {
+      "date": "2025-04-25",
+      "additions": 20772,
+      "deletions": 6893
+    },
+    {
+      "date": "2025-05-04",
+      "additions": 22059,
+      "deletions": 6893
+    },
+    {
+      "date": "2025-08-04",
+      "additions": 22800,
+      "deletions": 7333
+    },
+    {
+      "date": "2025-08-05",
+      "additions": 22804,
+      "deletions": 7335
+    },
+    {
+      "date": "2025-08-06",
+      "additions": 22848,
+      "deletions": 7336
+    },
+    {
+      "date": "2025-08-08",
+      "additions": 24058,
+      "deletions": 7806
+    },
+    {
+      "date": "2025-08-09",
+      "additions": 24296,
+      "deletions": 7809
+    },
+    {
+      "date": "2025-08-10",
+      "additions": 24598,
+      "deletions": 11684
+    },
+    {
+      "date": "2025-08-11",
+      "additions": 24773,
+      "deletions": 11705
+    },
+    {
+      "date": "2025-08-12",
+      "additions": 25197,
+      "deletions": 19508
+    },
+    {
+      "date": "2025-08-13",
+      "additions": 25267,
+      "deletions": 19523
+    },
+    {
+      "date": "2025-08-14",
+      "additions": 31057,
+      "deletions": 23787
+    },
+    {
+      "date": "2025-08-15",
+      "additions": 31111,
+      "deletions": 23815
+    },
+    {
+      "date": "2025-08-16",
+      "additions": 31187,
+      "deletions": 23851
+    },
+    {
+      "date": "2025-08-18",
+      "additions": 31310,
+      "deletions": 23853
+    },
+    {
+      "date": "2025-08-21",
+      "additions": 31369,
+      "deletions": 23866
+    },
+    {
+      "date": "2025-08-22",
+      "additions": 31370,
+      "deletions": 23866
+    },
+    {
+      "date": "2025-08-24",
+      "additions": 45677,
+      "deletions": 32861
+    },
+    {
+      "date": "2025-08-25",
+      "additions": 45689,
+      "deletions": 32864
+    },
+    {
+      "date": "2025-08-29",
+      "additions": 45740,
+      "deletions": 32874
+    },
+    {
+      "date": "2025-08-30",
+      "additions": 49888,
+      "deletions": 36750
+    },
+    {
+      "date": "2025-08-31",
+      "additions": 50001,
+      "deletions": 36795
+    },
+    {
+      "date": "2025-09-02",
+      "additions": 50023,
+      "deletions": 36803
+    },
+    {
+      "date": "2025-09-05",
+      "additions": 50073,
+      "deletions": 36841
+    },
+    {
+      "date": "2025-09-06",
+      "additions": 53938,
+      "deletions": 40706
+    },
+    {
+      "date": "2025-09-07",
+      "additions": 54291,
+      "deletions": 40763
+    },
+    {
+      "date": "2025-09-08",
+      "additions": 55180,
+      "deletions": 40800
+    },
+    {
+      "date": "2025-09-09",
+      "additions": 55919,
+      "deletions": 40974
+    },
+    {
+      "date": "2025-09-14",
+      "additions": 56554,
+      "deletions": 41924
+    },
+    {
+      "date": "2025-09-15",
+      "additions": 57117,
+      "deletions": 42704
+    },
+    {
+      "date": "2025-09-17",
+      "additions": 57282,
+      "deletions": 42789
+    },
+    {
+      "date": "2025-09-21",
+      "additions": 58244,
+      "deletions": 43625
+    },
+    {
+      "date": "2025-09-22",
+      "additions": 58458,
+      "deletions": 43664
+    },
+    {
+      "date": "2025-09-23",
+      "additions": 58705,
+      "deletions": 43679
+    },
+    {
+      "date": "2025-09-24",
+      "additions": 58861,
+      "deletions": 43710
+    },
+    {
+      "date": "2025-09-26",
+      "additions": 59261,
+      "deletions": 43711
+    },
+    {
+      "date": "2025-09-30",
+      "additions": 59299,
+      "deletions": 43736
+    },
+    {
+      "date": "2025-10-01",
+      "additions": 65036,
+      "deletions": 48341
+    },
+    {
+      "date": "2025-10-03",
+      "additions": 65080,
+      "deletions": 48351
+    },
+    {
+      "date": "2025-10-04",
+      "additions": 67167,
+      "deletions": 48408
+    },
+    {
+      "date": "2025-10-05",
+      "additions": 67483,
+      "deletions": 48427
+    },
+    {
+      "date": "2025-10-06",
+      "additions": 67501,
+      "deletions": 48428
+    },
+    {
+      "date": "2025-10-07",
+      "additions": 68102,
+      "deletions": 48451
+    },
+    {
+      "date": "2025-10-09",
+      "additions": 68284,
+      "deletions": 48510
+    },
+    {
+      "date": "2025-10-12",
+      "additions": 68722,
+      "deletions": 48532
+    },
+    {
+      "date": "2025-10-13",
+      "additions": 69528,
+      "deletions": 48896
+    },
+    {
+      "date": "2025-10-14",
+      "additions": 69680,
+      "deletions": 48979
+    },
+    {
+      "date": "2025-10-15",
+      "additions": 69716,
+      "deletions": 48986
+    },
+    {
+      "date": "2025-10-16",
+      "additions": 73500,
+      "deletions": 50775
+    },
+    {
+      "date": "2025-10-17",
+      "additions": 73648,
+      "deletions": 50863
+    },
+    {
+      "date": "2025-10-26",
+      "additions": 74122,
+      "deletions": 50875
+    },
+    {
+      "date": "2025-10-29",
+      "additions": 74200,
+      "deletions": 50875
+    },
+    {
+      "date": "2025-10-30",
+      "additions": 76886,
+      "deletions": 51314
+    },
+    {
+      "date": "2025-11-05",
+      "additions": 77434,
+      "deletions": 51371
+    },
+    {
+      "date": "2025-11-10",
+      "additions": 78503,
+      "deletions": 51495
+    },
+    {
+      "date": "2025-11-11",
+      "additions": 78794,
+      "deletions": 51500
+    },
+    {
+      "date": "2025-11-12",
+      "additions": 79972,
+      "deletions": 51570
+    },
+    {
+      "date": "2025-11-13",
+      "additions": 81203,
+      "deletions": 51915
+    },
+    {
+      "date": "2025-11-14",
+      "additions": 81494,
+      "deletions": 51923
+    },
+    {
+      "date": "2025-11-23",
+      "additions": 82867,
+      "deletions": 51990
+    },
+    {
+      "date": "2025-11-24",
+      "additions": 84990,
+      "deletions": 52347
+    },
+    {
+      "date": "2025-12-03",
+      "additions": 85326,
+      "deletions": 52356
+    },
+    {
+      "date": "2025-12-07",
+      "additions": 86058,
+      "deletions": 52433
+    },
+    {
+      "date": "2025-12-08",
+      "additions": 86189,
+      "deletions": 52451
+    },
+    {
+      "date": "2026-01-15",
+      "additions": 86199,
+      "deletions": 52456
+    },
+    {
+      "date": "2026-02-08",
+      "additions": 86788,
+      "deletions": 52483
+    },
+    {
+      "date": "2026-02-15",
+      "additions": 88247,
+      "deletions": 53803
+    },
+    {
+      "date": "2026-02-27",
+      "additions": 89430,
+      "deletions": 53876
+    },
+    {
+      "date": "2026-03-02",
+      "additions": 89866,
+      "deletions": 53876
+    },
+    {
+      "date": "2026-03-04",
+      "additions": 89899,
+      "deletions": 53878
+    },
+    {
+      "date": "2026-03-11",
+      "additions": 90402,
+      "deletions": 53888
+    },
+    {
+      "date": "2026-03-16",
+      "additions": 90491,
+      "deletions": 53890
+    },
+    {
+      "date": "2026-03-17",
+      "additions": 99695,
+      "deletions": 54828
+    },
+    {
+      "date": "2026-03-18",
+      "additions": 103883,
+      "deletions": 55424
+    },
+    {
+      "date": "2026-03-19",
+      "additions": 104302,
+      "deletions": 55758
+    },
+    {
+      "date": "2026-03-20",
+      "additions": 105044,
+      "deletions": 55759
+    }
+  ],
+  "HTML": [
+    {
+      "date": "2019-07-15",
+      "additions": 289,
+      "deletions": 0
+    },
+    {
+      "date": "2019-07-16",
+      "additions": 296,
+      "deletions": 3
+    },
+    {
+      "date": "2019-07-18",
+      "additions": 335,
+      "deletions": 22
+    },
+    {
+      "date": "2019-07-19",
+      "additions": 655,
+      "deletions": 215
+    },
+    {
+      "date": "2019-07-20",
+      "additions": 656,
+      "deletions": 216
+    },
+    {
+      "date": "2019-07-22",
+      "additions": 657,
+      "deletions": 217
+    },
+    {
+      "date": "2019-07-23",
+      "additions": 658,
+      "deletions": 217
+    },
+    {
+      "date": "2019-07-29",
+      "additions": 659,
+      "deletions": 341
+    },
+    {
+      "date": "2019-08-06",
+      "additions": 673,
+      "deletions": 347
+    },
+    {
+      "date": "2019-08-07",
+      "additions": 677,
+      "deletions": 352
+    },
+    {
+      "date": "2019-08-08",
+      "additions": 722,
+      "deletions": 373
+    },
+    {
+      "date": "2019-08-11",
+      "additions": 725,
+      "deletions": 376
+    },
+    {
+      "date": "2019-12-13",
+      "additions": 730,
+      "deletions": 379
+    },
+    {
+      "date": "2024-11-26",
+      "additions": 839,
+      "deletions": 421
+    },
+    {
+      "date": "2024-11-27",
+      "additions": 868,
+      "deletions": 428
+    },
+    {
+      "date": "2024-12-09",
+      "additions": 7312,
+      "deletions": 2286
+    },
+    {
+      "date": "2024-12-18",
+      "additions": 12070,
+      "deletions": 9987
+    },
+    {
+      "date": "2025-01-15",
+      "additions": 12121,
+      "deletions": 9993
+    },
+    {
+      "date": "2025-01-16",
+      "additions": 12281,
+      "deletions": 10035
+    },
+    {
+      "date": "2025-01-21",
+      "additions": 12347,
+      "deletions": 10049
+    },
+    {
+      "date": "2025-01-29",
+      "additions": 13096,
+      "deletions": 10368
+    },
+    {
+      "date": "2025-02-24",
+      "additions": 13112,
+      "deletions": 10383
+    },
+    {
+      "date": "2025-02-25",
+      "additions": 13114,
+      "deletions": 10383
+    },
+    {
+      "date": "2025-02-27",
+      "additions": 13148,
+      "deletions": 10419
+    },
+    {
+      "date": "2025-02-28",
+      "additions": 13181,
+      "deletions": 10452
+    },
+    {
+      "date": "2025-03-03",
+      "additions": 13280,
+      "deletions": 10516
+    },
+    {
+      "date": "2025-03-04",
+      "additions": 13305,
+      "deletions": 10516
+    },
+    {
+      "date": "2025-03-05",
+      "additions": 13308,
+      "deletions": 10517
+    },
+    {
+      "date": "2025-03-08",
+      "additions": 13390,
+      "deletions": 10534
+    },
+    {
+      "date": "2025-03-10",
+      "additions": 13391,
+      "deletions": 10535
+    },
+    {
+      "date": "2025-03-12",
+      "additions": 13610,
+      "deletions": 10663
+    },
+    {
+      "date": "2025-03-14",
+      "additions": 13611,
+      "deletions": 10663
+    },
+    {
+      "date": "2025-03-18",
+      "additions": 13671,
+      "deletions": 10663
+    },
+    {
+      "date": "2025-03-31",
+      "additions": 13792,
+      "deletions": 10722
+    },
+    {
+      "date": "2025-04-14",
+      "additions": 13956,
+      "deletions": 10987
+    },
+    {
+      "date": "2025-04-15",
+      "additions": 13960,
+      "deletions": 10989
+    },
+    {
+      "date": "2025-04-16",
+      "additions": 13974,
+      "deletions": 10993
+    },
+    {
+      "date": "2025-04-18",
+      "additions": 13978,
+      "deletions": 10998
+    },
+    {
+      "date": "2025-04-20",
+      "additions": 13991,
+      "deletions": 11011
+    },
+    {
+      "date": "2025-04-21",
+      "additions": 14251,
+      "deletions": 11095
+    },
+    {
+      "date": "2025-04-22",
+      "additions": 14279,
+      "deletions": 11364
+    },
+    {
+      "date": "2025-04-23",
+      "additions": 14302,
+      "deletions": 11375
+    },
+    {
+      "date": "2025-04-24",
+      "additions": 14478,
+      "deletions": 11480
+    },
+    {
+      "date": "2025-04-25",
+      "additions": 14481,
+      "deletions": 11481
+    },
+    {
+      "date": "2025-08-04",
+      "additions": 14663,
+      "deletions": 11588
+    },
+    {
+      "date": "2025-08-05",
+      "additions": 14664,
+      "deletions": 11589
+    },
+    {
+      "date": "2025-08-06",
+      "additions": 14675,
+      "deletions": 11589
+    },
+    {
+      "date": "2025-08-08",
+      "additions": 14970,
+      "deletions": 11703
+    },
+    {
+      "date": "2025-08-09",
+      "additions": 15028,
+      "deletions": 11704
+    },
+    {
+      "date": "2025-08-10",
+      "additions": 15101,
+      "deletions": 12650
+    },
+    {
+      "date": "2025-08-11",
+      "additions": 15144,
+      "deletions": 12655
+    },
+    {
+      "date": "2025-08-12",
+      "additions": 15248,
+      "deletions": 14560
+    },
+    {
+      "date": "2025-08-13",
+      "additions": 15267,
+      "deletions": 14564
+    },
+    {
+      "date": "2025-08-14",
+      "additions": 16681,
+      "deletions": 15605
+    },
+    {
+      "date": "2025-08-15",
+      "additions": 16694,
+      "deletions": 15611
+    },
+    {
+      "date": "2025-08-16",
+      "additions": 16712,
+      "deletions": 15620
+    },
+    {
+      "date": "2025-08-17",
+      "additions": 16714,
+      "deletions": 15620
+    },
+    {
+      "date": "2025-08-18",
+      "additions": 16744,
+      "deletions": 15620
+    },
+    {
+      "date": "2025-08-20",
+      "additions": 16747,
+      "deletions": 15621
+    },
+    {
+      "date": "2025-08-21",
+      "additions": 16766,
+      "deletions": 15626
+    },
+    {
+      "date": "2025-08-24",
+      "additions": 20264,
+      "deletions": 17823
+    },
+    {
+      "date": "2025-08-25",
+      "additions": 20267,
+      "deletions": 17824
+    },
+    {
+      "date": "2025-08-26",
+      "additions": 20268,
+      "deletions": 17826
+    },
+    {
+      "date": "2025-08-27",
+      "additions": 20271,
+      "deletions": 17828
+    },
+    {
+      "date": "2025-08-29",
+      "additions": 20284,
+      "deletions": 17831
+    },
+    {
+      "date": "2025-08-30",
+      "additions": 21297,
+      "deletions": 18777
+    },
+    {
+      "date": "2025-08-31",
+      "additions": 21325,
+      "deletions": 18789
+    },
+    {
+      "date": "2025-09-01",
+      "additions": 21325,
+      "deletions": 18790
+    },
+    {
+      "date": "2025-09-02",
+      "additions": 21330,
+      "deletions": 18792
+    },
+    {
+      "date": "2025-09-05",
+      "additions": 21343,
+      "deletions": 18802
+    },
+    {
+      "date": "2025-09-06",
+      "additions": 22286,
+      "deletions": 19745
+    },
+    {
+      "date": "2025-09-07",
+      "additions": 22372,
+      "deletions": 19758
+    },
+    {
+      "date": "2025-09-08",
+      "additions": 22372,
+      "deletions": 19767
+    },
+    {
+      "date": "2025-09-09",
+      "additions": 22553,
+      "deletions": 19809
+    },
+    {
+      "date": "2025-09-14",
+      "additions": 22708,
+      "deletions": 20041
+    },
+    {
+      "date": "2025-09-15",
+      "additions": 22844,
+      "deletions": 20231
+    },
+    {
+      "date": "2025-09-17",
+      "additions": 22885,
+      "deletions": 20252
+    },
+    {
+      "date": "2025-09-21",
+      "additions": 23120,
+      "deletions": 20457
+    },
+    {
+      "date": "2025-09-22",
+      "additions": 23174,
+      "deletions": 20467
+    },
+    {
+      "date": "2025-09-23",
+      "additions": 23234,
+      "deletions": 20471
+    },
+    {
+      "date": "2025-09-24",
+      "additions": 23273,
+      "deletions": 20479
+    },
+    {
+      "date": "2025-09-26",
+      "additions": 23374,
+      "deletions": 20479
+    },
+    {
+      "date": "2025-09-30",
+      "additions": 23383,
+      "deletions": 20485
+    },
+    {
+      "date": "2025-10-01",
+      "additions": 24793,
+      "deletions": 21613
+    },
+    {
+      "date": "2025-10-03",
+      "additions": 24804,
+      "deletions": 21615
+    },
+    {
+      "date": "2025-10-04",
+      "additions": 25316,
+      "deletions": 21630
+    },
+    {
+      "date": "2025-10-05",
+      "additions": 25392,
+      "deletions": 21634
+    },
+    {
+      "date": "2025-10-06",
+      "additions": 25396,
+      "deletions": 21634
+    },
+    {
+      "date": "2025-10-07",
+      "additions": 25543,
+      "deletions": 21639
+    },
+    {
+      "date": "2025-10-09",
+      "additions": 25589,
+      "deletions": 21654
+    },
+    {
+      "date": "2025-10-12",
+      "additions": 25699,
+      "deletions": 21659
+    },
+    {
+      "date": "2025-10-13",
+      "additions": 25902,
+      "deletions": 21749
+    },
+    {
+      "date": "2025-10-14",
+      "additions": 25940,
+      "deletions": 21770
+    },
+    {
+      "date": "2025-10-15",
+      "additions": 25949,
+      "deletions": 21772
+    },
+    {
+      "date": "2025-10-16",
+      "additions": 29799,
+      "deletions": 22223
+    },
+    {
+      "date": "2025-10-17",
+      "additions": 29835,
+      "deletions": 22247
+    },
+    {
+      "date": "2025-10-21",
+      "additions": 31533,
+      "deletions": 25055
+    },
+    {
+      "date": "2025-10-26",
+      "additions": 31648,
+      "deletions": 25059
+    },
+    {
+      "date": "2025-10-29",
+      "additions": 31667,
+      "deletions": 25059
+    },
+    {
+      "date": "2025-10-30",
+      "additions": 32323,
+      "deletions": 25167
+    },
+    {
+      "date": "2025-11-05",
+      "additions": 32457,
+      "deletions": 25181
+    },
+    {
+      "date": "2025-11-10",
+      "additions": 32718,
+      "deletions": 25212
+    },
+    {
+      "date": "2025-11-11",
+      "additions": 32789,
+      "deletions": 25213
+    },
+    {
+      "date": "2025-11-12",
+      "additions": 33075,
+      "deletions": 25230
+    },
+    {
+      "date": "2025-11-13",
+      "additions": 33376,
+      "deletions": 25314
+    },
+    {
+      "date": "2025-11-14",
+      "additions": 33447,
+      "deletions": 25316
+    },
+    {
+      "date": "2025-11-23",
+      "additions": 33783,
+      "deletions": 25333
+    },
+    {
+      "date": "2025-11-24",
+      "additions": 34301,
+      "deletions": 25420
+    },
+    {
+      "date": "2025-12-03",
+      "additions": 34383,
+      "deletions": 25422
+    },
+    {
+      "date": "2025-12-07",
+      "additions": 34561,
+      "deletions": 25441
+    },
+    {
+      "date": "2025-12-08",
+      "additions": 34593,
+      "deletions": 25445
+    },
+    {
+      "date": "2026-01-15",
+      "additions": 34595,
+      "deletions": 25446
+    },
+    {
+      "date": "2026-02-08",
+      "additions": 34740,
+      "deletions": 25453
+    },
+    {
+      "date": "2026-02-15",
+      "additions": 35096,
+      "deletions": 25775
+    },
+    {
+      "date": "2026-02-27",
+      "additions": 35385,
+      "deletions": 25793
+    },
+    {
+      "date": "2026-03-02",
+      "additions": 35491,
+      "deletions": 25793
+    },
+    {
+      "date": "2026-03-04",
+      "additions": 35499,
+      "deletions": 25793
+    },
+    {
+      "date": "2026-03-10",
+      "additions": 35500,
+      "deletions": 25793
+    },
+    {
+      "date": "2026-03-11",
+      "additions": 35623,
+      "deletions": 25795
+    },
+    {
+      "date": "2026-03-16",
+      "additions": 35644,
+      "deletions": 25795
+    },
+    {
+      "date": "2026-03-17",
+      "additions": 37891,
+      "deletions": 26025
+    },
+    {
+      "date": "2026-03-18",
+      "additions": 38915,
+      "deletions": 26171
+    },
+    {
+      "date": "2026-03-19",
+      "additions": 39017,
+      "deletions": 26252
+    },
+    {
+      "date": "2026-03-20",
+      "additions": 39198,
+      "deletions": 26252
+    }
+  ],
+  "CSS": [
+    {
+      "date": "2019-07-15",
+      "additions": 5,
+      "deletions": 0
+    },
+    {
+      "date": "2019-07-18",
+      "additions": 6,
+      "deletions": 0
+    },
+    {
+      "date": "2019-07-19",
+      "additions": 11,
+      "deletions": 3
+    },
+    {
+      "date": "2019-07-29",
+      "additions": 11,
+      "deletions": 5
+    },
+    {
+      "date": "2025-01-15",
+      "additions": 36,
+      "deletions": 8
+    },
+    {
+      "date": "2025-01-16",
+      "additions": 116,
+      "deletions": 29
+    },
+    {
+      "date": "2025-02-24",
+      "additions": 124,
+      "deletions": 36
+    },
+    {
+      "date": "2025-03-18",
+      "additions": 505,
+      "deletions": 36
+    },
+    {
+      "date": "2025-03-31",
+      "additions": 565,
+      "deletions": 65
+    },
+    {
+      "date": "2025-04-14",
+      "additions": 1619,
+      "deletions": 1761
+    },
+    {
+      "date": "2025-04-15",
+      "additions": 1647,
+      "deletions": 1775
+    },
+    {
+      "date": "2025-04-16",
+      "additions": 1736,
+      "deletions": 1803
+    },
+    {
+      "date": "2025-04-18",
+      "additions": 1762,
+      "deletions": 1835
+    },
+    {
+      "date": "2025-04-20",
+      "additions": 1768,
+      "deletions": 1842
+    },
+    {
+      "date": "2025-04-21",
+      "additions": 3433,
+      "deletions": 2382
+    },
+    {
+      "date": "2025-04-22",
+      "additions": 3618,
+      "deletions": 4106
+    },
+    {
+      "date": "2025-04-23",
+      "additions": 3698,
+      "deletions": 4167
+    },
+    {
+      "date": "2025-04-24",
+      "additions": 3785,
+      "deletions": 4220
+    },
+    {
+      "date": "2025-04-25",
+      "additions": 3804,
+      "deletions": 4226
+    },
+    {
+      "date": "2025-08-13",
+      "additions": 4056,
+      "deletions": 4379
+    },
+    {
+      "date": "2025-08-17",
+      "additions": 4384,
+      "deletions": 4431
+    },
+    {
+      "date": "2025-08-20",
+      "additions": 4972,
+      "deletions": 4703
+    },
+    {
+      "date": "2025-08-21",
+      "additions": 5527,
+      "deletions": 5104
+    },
+    {
+      "date": "2025-08-22",
+      "additions": 5596,
+      "deletions": 5192
+    },
+    {
+      "date": "2025-08-23",
+      "additions": 5599,
+      "deletions": 5194
+    },
+    {
+      "date": "2025-08-24",
+      "additions": 6363,
+      "deletions": 5580
+    },
+    {
+      "date": "2025-08-26",
+      "additions": 6642,
+      "deletions": 5786
+    },
+    {
+      "date": "2025-08-27",
+      "additions": 7177,
+      "deletions": 6106
+    },
+    {
+      "date": "2025-09-01",
+      "additions": 7183,
+      "deletions": 6308
+    },
+    {
+      "date": "2025-09-06",
+      "additions": 7184,
+      "deletions": 6309
+    },
+    {
+      "date": "2025-09-16",
+      "additions": 7214,
+      "deletions": 6340
+    },
+    {
+      "date": "2025-10-16",
+      "additions": 7229,
+      "deletions": 6340
+    },
+    {
+      "date": "2025-10-21",
+      "additions": 7238,
+      "deletions": 6355
+    },
+    {
+      "date": "2026-01-14",
+      "additions": 7248,
+      "deletions": 6355
+    },
+    {
+      "date": "2026-01-15",
+      "additions": 7252,
+      "deletions": 6365
+    },
+    {
+      "date": "2026-02-05",
+      "additions": 7263,
+      "deletions": 6379
+    }
+  ],
+  "JavaScript": [
+    {
+      "date": "2024-11-26",
+      "additions": 20,
+      "deletions": 6
+    },
+    {
+      "date": "2024-11-27",
+      "additions": 25,
+      "deletions": 7
+    },
+    {
+      "date": "2025-01-15",
+      "additions": 61,
+      "deletions": 11
+    },
+    {
+      "date": "2025-01-16",
+      "additions": 176,
+      "deletions": 40
+    },
+    {
+      "date": "2025-01-21",
+      "additions": 188,
+      "deletions": 42
+    },
+    {
+      "date": "2025-02-24",
+      "additions": 200,
+      "deletions": 53
+    },
+    {
+      "date": "2025-02-25",
+      "additions": 201,
+      "deletions": 53
+    },
+    {
+      "date": "2025-02-27",
+      "additions": 211,
+      "deletions": 63
+    },
+    {
+      "date": "2025-02-28",
+      "additions": 220,
+      "deletions": 72
+    },
+    {
+      "date": "2025-03-03",
+      "additions": 249,
+      "deletions": 91
+    },
+    {
+      "date": "2025-03-04",
+      "additions": 256,
+      "deletions": 91
+    },
+    {
+      "date": "2025-03-05",
+      "additions": 257,
+      "deletions": 91
+    },
+    {
+      "date": "2025-03-08",
+      "additions": 281,
+      "deletions": 96
+    },
+    {
+      "date": "2025-03-12",
+      "additions": 345,
+      "deletions": 133
+    },
+    {
+      "date": "2025-03-18",
+      "additions": 812,
+      "deletions": 133
+    },
+    {
+      "date": "2025-03-31",
+      "additions": 899,
+      "deletions": 174
+    },
+    {
+      "date": "2025-04-14",
+      "additions": 2189,
+      "deletions": 2250
+    },
+    {
+      "date": "2025-04-15",
+      "additions": 2223,
+      "deletions": 2268
+    },
+    {
+      "date": "2025-04-16",
+      "additions": 2331,
+      "deletions": 2302
+    },
+    {
+      "date": "2025-04-18",
+      "additions": 2362,
+      "deletions": 2341
+    },
+    {
+      "date": "2025-04-20",
+      "additions": 2371,
+      "deletions": 2351
+    },
+    {
+      "date": "2025-04-21",
+      "additions": 4409,
+      "deletions": 3011
+    },
+    {
+      "date": "2025-04-22",
+      "additions": 4635,
+      "deletions": 5121
+    },
+    {
+      "date": "2025-04-23",
+      "additions": 4733,
+      "deletions": 5195
+    },
+    {
+      "date": "2025-04-24",
+      "additions": 4859,
+      "deletions": 5271
+    },
+    {
+      "date": "2025-04-25",
+      "additions": 4882,
+      "deletions": 5279
+    },
+    {
+      "date": "2025-08-04",
+      "additions": 4914,
+      "deletions": 5299
+    },
+    {
+      "date": "2025-08-06",
+      "additions": 4916,
+      "deletions": 5299
+    },
+    {
+      "date": "2025-08-08",
+      "additions": 4970,
+      "deletions": 5320
+    },
+    {
+      "date": "2025-08-09",
+      "additions": 4981,
+      "deletions": 5320
+    },
+    {
+      "date": "2025-08-10",
+      "additions": 4994,
+      "deletions": 5491
+    },
+    {
+      "date": "2025-08-11",
+      "additions": 5002,
+      "deletions": 5492
+    },
+    {
+      "date": "2025-08-12",
+      "additions": 5020,
+      "deletions": 5837
+    },
+    {
+      "date": "2025-08-13",
+      "additions": 5040,
+      "deletions": 5847
+    },
+    {
+      "date": "2025-08-14",
+      "additions": 5296,
+      "deletions": 6035
+    },
+    {
+      "date": "2025-08-15",
+      "additions": 5298,
+      "deletions": 6036
+    },
+    {
+      "date": "2025-08-16",
+      "additions": 5302,
+      "deletions": 6037
+    },
+    {
+      "date": "2025-08-17",
+      "additions": 5321,
+      "deletions": 6039
+    },
+    {
+      "date": "2025-08-18",
+      "additions": 5326,
+      "deletions": 6039
+    },
+    {
+      "date": "2025-08-20",
+      "additions": 5364,
+      "deletions": 6057
+    },
+    {
+      "date": "2025-08-21",
+      "additions": 5402,
+      "deletions": 6083
+    },
+    {
+      "date": "2025-08-22",
+      "additions": 5406,
+      "deletions": 6088
+    },
+    {
+      "date": "2025-08-24",
+      "additions": 6086,
+      "deletions": 6510
+    },
+    {
+      "date": "2025-08-26",
+      "additions": 6104,
+      "deletions": 6523
+    },
+    {
+      "date": "2025-08-27",
+      "additions": 6136,
+      "deletions": 6541
+    },
+    {
+      "date": "2025-08-29",
+      "additions": 6140,
+      "deletions": 6542
+    },
+    {
+      "date": "2025-08-30",
+      "additions": 6323,
+      "deletions": 6713
+    },
+    {
+      "date": "2025-08-31",
+      "additions": 6328,
+      "deletions": 6715
+    },
+    {
+      "date": "2025-09-01",
+      "additions": 6328,
+      "deletions": 6728
+    },
+    {
+      "date": "2025-09-02",
+      "additions": 6329,
+      "deletions": 6728
+    },
+    {
+      "date": "2025-09-05",
+      "additions": 6333,
+      "deletions": 6731
+    },
+    {
+      "date": "2025-09-06",
+      "additions": 6504,
+      "deletions": 6902
+    },
+    {
+      "date": "2025-09-07",
+      "additions": 6519,
+      "deletions": 6904
+    },
+    {
+      "date": "2025-09-08",
+      "additions": 6519,
+      "deletions": 6906
+    },
+    {
+      "date": "2025-09-09",
+      "additions": 6557,
+      "deletions": 6914
+    },
+    {
+      "date": "2025-09-14",
+      "additions": 6585,
+      "deletions": 6956
+    },
+    {
+      "date": "2025-09-15",
+      "additions": 6609,
+      "deletions": 6991
+    },
+    {
+      "date": "2025-09-16",
+      "additions": 6611,
+      "deletions": 6993
+    },
+    {
+      "date": "2025-09-17",
+      "additions": 6623,
+      "deletions": 7000
+    },
+    {
+      "date": "2025-09-21",
+      "additions": 6667,
+      "deletions": 7038
+    },
+    {
+      "date": "2025-09-22",
+      "additions": 6683,
+      "deletions": 7041
+    },
+    {
+      "date": "2025-09-23",
+      "additions": 6693,
+      "deletions": 7041
+    },
+    {
+      "date": "2025-09-24",
+      "additions": 6704,
+      "deletions": 7043
+    },
+    {
+      "date": "2025-09-26",
+      "additions": 6733,
+      "deletions": 7043
+    },
+    {
+      "date": "2025-09-30",
+      "additions": 6735,
+      "deletions": 7044
+    },
+    {
+      "date": "2025-10-01",
+      "additions": 7032,
+      "deletions": 7263
+    },
+    {
+      "date": "2025-10-03",
+      "additions": 7035,
+      "deletions": 7264
+    },
+    {
+      "date": "2025-10-04",
+      "additions": 7137,
+      "deletions": 7268
+    },
+    {
+      "date": "2025-10-05",
+      "additions": 7151,
+      "deletions": 7268
+    },
+    {
+      "date": "2025-10-06",
+      "additions": 7152,
+      "deletions": 7268
+    },
+    {
+      "date": "2025-10-07",
+      "additions": 7179,
+      "deletions": 7269
+    },
+    {
+      "date": "2025-10-09",
+      "additions": 7192,
+      "deletions": 7273
+    },
+    {
+      "date": "2025-10-12",
+      "additions": 7223,
+      "deletions": 7275
+    },
+    {
+      "date": "2025-10-13",
+      "additions": 7282,
+      "deletions": 7301
+    },
+    {
+      "date": "2025-10-14",
+      "additions": 7293,
+      "deletions": 7307
+    },
+    {
+      "date": "2025-10-15",
+      "additions": 7296,
+      "deletions": 7307
+    },
+    {
+      "date": "2025-10-16",
+      "additions": 7935,
+      "deletions": 7436
+    },
+    {
+      "date": "2025-10-17",
+      "additions": 7945,
+      "deletions": 7442
+    },
+    {
+      "date": "2025-10-21",
+      "additions": 8156,
+      "deletions": 7791
+    },
+    {
+      "date": "2025-10-26",
+      "additions": 8177,
+      "deletions": 7791
+    },
+    {
+      "date": "2025-10-29",
+      "additions": 8180,
+      "deletions": 7791
+    },
+    {
+      "date": "2025-10-30",
+      "additions": 8298,
+      "deletions": 7810
+    },
+    {
+      "date": "2025-11-05",
+      "additions": 8322,
+      "deletions": 7813
+    },
+    {
+      "date": "2025-11-10",
+      "additions": 8370,
+      "deletions": 7818
+    },
+    {
+      "date": "2025-11-11",
+      "additions": 8383,
+      "deletions": 7818
+    },
+    {
+      "date": "2025-11-12",
+      "additions": 8435,
+      "deletions": 7820
+    },
+    {
+      "date": "2025-11-13",
+      "additions": 8489,
+      "deletions": 7835
+    },
+    {
+      "date": "2025-11-14",
+      "additions": 8502,
+      "deletions": 7835
+    },
+    {
+      "date": "2025-11-23",
+      "additions": 8564,
+      "deletions": 7838
+    },
+    {
+      "date": "2025-11-24",
+      "additions": 8657,
+      "deletions": 7854
+    },
+    {
+      "date": "2025-12-03",
+      "additions": 8671,
+      "deletions": 7854
+    },
+    {
+      "date": "2025-12-07",
+      "additions": 8704,
+      "deletions": 7858
+    },
+    {
+      "date": "2025-12-08",
+      "additions": 8710,
+      "deletions": 7859
+    },
+    {
+      "date": "2026-01-14",
+      "additions": 8711,
+      "deletions": 7859
+    },
+    {
+      "date": "2026-01-15",
+      "additions": 8711,
+      "deletions": 7860
+    },
+    {
+      "date": "2026-02-05",
+      "additions": 8712,
+      "deletions": 7861
+    },
+    {
+      "date": "2026-02-08",
+      "additions": 8738,
+      "deletions": 7862
+    },
+    {
+      "date": "2026-02-15",
+      "additions": 8802,
+      "deletions": 7920
+    },
+    {
+      "date": "2026-02-27",
+      "additions": 8854,
+      "deletions": 7924
+    },
+    {
+      "date": "2026-03-02",
+      "additions": 8873,
+      "deletions": 7924
+    },
+    {
+      "date": "2026-03-04",
+      "additions": 8874,
+      "deletions": 7924
+    },
+    {
+      "date": "2026-03-11",
+      "additions": 8897,
+      "deletions": 7924
+    },
+    {
+      "date": "2026-03-16",
+      "additions": 8901,
+      "deletions": 7924
+    },
+    {
+      "date": "2026-03-17",
+      "additions": 9309,
+      "deletions": 7965
+    },
+    {
+      "date": "2026-03-18",
+      "additions": 9495,
+      "deletions": 7991
+    },
+    {
+      "date": "2026-03-19",
+      "additions": 9514,
+      "deletions": 8006
+    },
+    {
+      "date": "2026-03-20",
+      "additions": 9547,
+      "deletions": 8006
+    }
+  ],
+  "TypeScript": [
+    {
+      "date": "2025-08-13",
+      "additions": 650,
+      "deletions": 395
+    },
+    {
+      "date": "2025-08-17",
+      "additions": 1499,
+      "deletions": 532
+    },
+    {
+      "date": "2025-08-20",
+      "additions": 3017,
+      "deletions": 1237
+    },
+    {
+      "date": "2025-08-21",
+      "additions": 4447,
+      "deletions": 2277
+    },
+    {
+      "date": "2025-08-22",
+      "additions": 4627,
+      "deletions": 2507
+    },
+    {
+      "date": "2025-08-23",
+      "additions": 4634,
+      "deletions": 2513
+    },
+    {
+      "date": "2025-08-24",
+      "additions": 6604,
+      "deletions": 3511
+    },
+    {
+      "date": "2025-08-26",
+      "additions": 7330,
+      "deletions": 4045
+    },
+    {
+      "date": "2025-08-27",
+      "additions": 8709,
+      "deletions": 4872
+    },
+    {
+      "date": "2025-08-29",
+      "additions": 14659,
+      "deletions": 4891
+    },
+    {
+      "date": "2025-09-01",
+      "additions": 14674,
+      "deletions": 5413
+    },
+    {
+      "date": "2025-09-06",
+      "additions": 16050,
+      "deletions": 5497
+    },
+    {
+      "date": "2025-09-16",
+      "additions": 16127,
+      "deletions": 5576
+    },
+    {
+      "date": "2026-01-14",
+      "additions": 16152,
+      "deletions": 5576
+    },
+    {
+      "date": "2026-01-15",
+      "additions": 16164,
+      "deletions": 5602
+    },
+    {
+      "date": "2026-02-05",
+      "additions": 16192,
+      "deletions": 5637
+    }
+  ],
+  "C#": [
+    {
+      "date": "2024-05-18",
+      "additions": 776,
+      "deletions": 26
+    },
+    {
+      "date": "2024-05-19",
+      "additions": 1369,
+      "deletions": 206
+    },
+    {
+      "date": "2024-05-20",
+      "additions": 2091,
+      "deletions": 263
+    },
+    {
+      "date": "2025-08-13",
+      "additions": 2327,
+      "deletions": 407
+    },
+    {
+      "date": "2025-08-17",
+      "additions": 2636,
+      "deletions": 456
+    },
+    {
+      "date": "2025-08-20",
+      "additions": 3190,
+      "deletions": 711
+    },
+    {
+      "date": "2025-08-21",
+      "additions": 3712,
+      "deletions": 1089
+    },
+    {
+      "date": "2025-08-22",
+      "additions": 3777,
+      "deletions": 1173
+    },
+    {
+      "date": "2025-08-23",
+      "additions": 3780,
+      "deletions": 1175
+    },
+    {
+      "date": "2025-08-24",
+      "additions": 4499,
+      "deletions": 1538
+    },
+    {
+      "date": "2025-08-26",
+      "additions": 4761,
+      "deletions": 1732
+    },
+    {
+      "date": "2025-08-27",
+      "additions": 5265,
+      "deletions": 2034
+    },
+    {
+      "date": "2025-09-01",
+      "additions": 5270,
+      "deletions": 2225
+    },
+    {
+      "date": "2025-09-06",
+      "additions": 5271,
+      "deletions": 2226
+    },
+    {
+      "date": "2025-09-16",
+      "additions": 5299,
+      "deletions": 2255
+    },
+    {
+      "date": "2026-01-14",
+      "additions": 5308,
+      "deletions": 2255
+    },
+    {
+      "date": "2026-01-15",
+      "additions": 5312,
+      "deletions": 2264
+    },
+    {
+      "date": "2026-02-05",
+      "additions": 5322,
+      "deletions": 2277
+    }
+  ],
+  "Java": [
+    {
+      "date": "2020-11-17",
+      "additions": 151,
+      "deletions": 13
+    },
+    {
+      "date": "2020-12-01",
+      "additions": 357,
+      "deletions": 44
+    }
+  ]
+}
